@@ -2,5 +2,5 @@
 	$localhost = 'localhost';
 	$login = 'root';
 	$pass = 'troiswa';
-	$database = 'blog';
+	$database = 'slippy_shop';
 ?>
