@@ -1,6 +1,6 @@
 <?php
 
-class Sub_category
+class SubCategory
 {
 	//Déclaration privées:
 	private $id;
