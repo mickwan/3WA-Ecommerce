@@ -19,7 +19,6 @@
 		require ("models/".$className.".class.php");
 	}
 
-
 	if (isset($_GET['page']))
 	{
 		if (in_array($_GET['page'], $access))
