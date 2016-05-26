@@ -2,13 +2,21 @@
 	$access = array(/* Tab contenant les pages disponibles du site */);
 	$page = 'home'; /*page courante : home par default*/ 
 	$error = '';
+
+	//Connection à la BDD
 	require('config.php');
 	$link = mysqli_connect($localhost, $login, $pass, $database);
 
-	if (!$link)
+	if (!$link) 
 	{
 	    require('views/bigerror.phtml');
 	    exit;
+	}
+
+	//Autoload des classes 
+	function __autoload($className)
+	{
+		require ("models/".$className.".class.php");
 	}
 
 	if (isset($_GET['page']))
