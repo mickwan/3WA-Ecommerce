@@ -7,8 +7,6 @@
 		private $content;
 		private $date;
 
-		//contructeur??
-
 		//GETTERS 
 		public function getId()
 		{
@@ -35,9 +33,9 @@
 		public function setContent($content)
 		{
 			if (strlen($content) < 10)
-				return "Le contenu de votre avis est trop court!";
+				throw new Exception("Le contenu de votre avis est trop court!");
 			if (strlen($content) > 255)
-				return "Le contenu de votre avis est trop long!";
+				throw new Exception("Le contenu de votre avis est trop long!");
 			$this->content = $content;
 		}
 	}

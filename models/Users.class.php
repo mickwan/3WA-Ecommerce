@@ -70,41 +70,41 @@ class Users
 	public function setLogin($login)
 	{
 		if(strlen($login)<2)
-			return "Login trop court(min: 2 caractères)";
+			throw new Exception ("Login trop court(min: 2 caractères)");
 		else if (strlen($login)>31)
-			return "Login trop long(max: 31 caractères";
+			throw new Exception ("Login trop long(max: 31 caractères");
 		$this->login = $login;
 	}
 	public function setFirstName($firstname)
 	{
 		if(strlen($firstname)<2)
-			return "Firstname trop court (min: 2 caractères)";
+			throw new Exception ("Firstname trop court (min: 2 caractères)");
 		else if (strlen($firstname)>63)
-			return "Firstname trop long (max: 63 caractères)";
+			throw new Exception ("Firstname trop long (max: 63 caractères)");
 		$this->firstname = $firstname;
 	}
 	public function setLastName($lastname)
 	{
 		if (strlen($lastname)<2)
-			return "Lastname trop court (min: 2 caractères)";
+			throw new Exception ("Lastname trop court (min: 2 caractères)");
 		else if(strlen($lastname)>63)
-			return "Lastname trop long (max: 63 caractères)";
+			throw new Exception ("Lastname trop long (max: 63 caractères)");
 		$this->lastname = $lastname;
 	}
 	public function setEmail($email, $confirmEmail)
 	{
 		if ($email != $confirmEmail)
-			return "Email différents";
+			throw new Exception ("Email différents");
 		else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-			return "Email non valide";
+			throw new Exception ("Email non valide");
 		$this->email = $email;
 	}
 	public function setPassword($password , $confirmPassword)
 	{
 		if ($password != $confirmPassword)
-			return "Password différents";
+			throw new Exception ("Password différents");
 		else if (strlen($password)<4)
-			return "Password trop court (min: 4 caractères)";
+			throw new Exception ("Password trop court (min: 4 caractères)");
 		$this->password = $password_hash($password, PASSWORD_BCRYPT, array("cost"=>8));
 	}
 	public function setBirthDate($birth_date)
@@ -115,13 +115,13 @@ class Users
 	public function setPhone($phone)
 	{
 		if (strlen($phone)==10 || preg_match("#^+[0-9]{10}$#", $phone))
-			return "Phone non valide";
+			throw new Exception ("Phone non valide");
 		$this->phone = $phone;
 	}
 	public function setSex($sex)
 	{
 		if($sex != "M" && $sex != "W")
-			return "Choissez votre  sex";
+			throw new Exception ("Choissez votre  sexe");
 		$this->sex = $sex;
 	}
 }
