@@ -30,17 +30,17 @@ class Sub_category
 	public function setName($name)
 	{
 		if(strlen($name)<2)
-			return "Name trop court(min: 2 caractères)";
+			throw new Exception ("Name trop court(min: 2 caractères)");
 		else if (strlen($name)>31)
-			return "Name trop long(max: 31 caractères";
+			throw new Exception ("Name trop long(max: 31 caractères");
 		$this->name = $name;
 	}
 	public function setDescription($description)
 	{
 		if(strlen($description)<10)
-			return "Description trop courte(min: 10 caractères)";
+			throw new Exception ("Description trop courte(min: 10 caractères)");
 		else if (strlen($description)>123)
-			return "Description trop longue(max: 123 caractères";
+			throw new Exception ("Description trop longue(max: 123 caractères");
 		$this->description = $description;
 	}
 }
