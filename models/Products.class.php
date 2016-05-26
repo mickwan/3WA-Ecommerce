@@ -72,25 +72,25 @@ class Products
 	public function setRef($ref)
 	{
 		if (strlen($ref) < 4)
-			return "Référence trop courte (< 4)";
+			throw new Exception ("Référence trop courte (< 4)");
 		else if (strlen($ref) > 63)
-			return "Référence trop longue (> 63)";
+			throw new Exception "Référence trop longue (> 63)";
 		$this->ref = $ref;
 	}
 
 	public function setStock($stock)
 	{		
 		if (!is_int($stock))
-			return "Entrez un nombre entier";
+			throw new Exception ("Entrez un nombre entier");
 		else if ($stock < 0)
-			return "La quantité doit être positive";
+			throw new Exception ("La quantité doit être positive");
 		$this->stock = $stock;
 	}
 
 	public function setSize($size)
 	{		
 		if ($size !== "S" && $size !== "M" && $size !== "L" && $size !== "0")
-			return "La taille n'est pas correcte";
+			throw new Exception ("La taille n'est pas correcte");
 		$this->size = $size;
 	}
 
@@ -99,7 +99,7 @@ class Products
 		$price = str_replace(',' , '.', $price);
 		$price = floatval($price);
 		if ($price <= 0)
-			return "Prix incorrect";
+			throw new Exception ("Prix incorrect");
 		$this->price = $price;
 	}
 
@@ -108,25 +108,25 @@ class Products
 		$tax = str_replace(',' , '.', $tax);
 		$tax = floatval($tax);
 		if ($tax <= 0)
-			return "Prix incorrect";
+			throw new Exception ("Prix incorrect");
 		$this->tax = $tax;
 	}
 
 	public function setDescription($description)
 	{
 		if (strlen($description) < 4)
-			return "Description trop courte (< 4)";
+			throw new Exception ("Description trop courte (< 4)");
 		else if (strlen($description) > 123)
-			return "Description trop longue (> 123)";
+			throw new Exception ("Description trop longue (> 123)");
 		$this->description = $description;
 	}
 
 	public function setName($name)
 	{
 		if (strlen($name) < 4)
-			return "Nom trop court (< 4)";
+			throw new Exception ("Nom trop court (< 4)");
 		else if (strlen($name) > 15)
-			return "Nom trop long (> 15)";
+			throw new Exception ("Nom trop long (> 15)");
 		$this->name = $name;
 	}
 
@@ -135,7 +135,7 @@ class Products
 		$weight = str_replace(',' , '.', $weight);
 		$weight = floatval($weight);
 		if ($weight <= 0)
-			return "Prix incorrect";
+			throw new Exception ("Prix incorrect");
 		$this->weight = $weight;
 	}
 
@@ -144,7 +144,7 @@ class Products
 		if ($status == "1" || $status == "0")
 			$this->status = $status;
 		else
-			return "Status disponibilité incorrect";
+			throw new Exception ("Status disponibilité incorrect");
 	}
 
 	public function setPicture($picture)
