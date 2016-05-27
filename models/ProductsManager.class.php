@@ -16,8 +16,8 @@ class ProductsManager
 		$list = [];
 		$request = "SELECT * FROM products";
 		$res = mysqli_query($this->link, $request);
-		while ($products = mysqli_fetch_object($res, "Products"))
-			$list[] = $products;
+		while ($product = mysqli_fetch_object($res, "Products", [$this->link]))
+			$list[] = $product;
 		return $list;
 	}
 
@@ -26,8 +26,8 @@ class ProductsManager
 		$id = intval($id);
 		$request = "SELECT * FROM products WHERE id=".$id;
 		$res = mysqli_query($this->link, $request);
-		$products = mysqli_fetch_object($res, "Products");
-		return $products;
+		$product = mysqli_fetch_object($res, "Products", [$this->link]);
+		return $product;
 	}
 
 	public function findByName($name)
@@ -35,18 +35,18 @@ class ProductsManager
 		$name = mysqli_real_escape_string($this->link, $name);
 		$request = "SELECT * FROM products WHERE name='".$name."'";
 		$res = mysqli_query($this->link, $request);
-		$products = mysqli_fetch_object($res, "Products");
-		return $products;
+		$product = mysqli_fetch_object($res, "Products", [$this->link]);
+		return $product;
 	}
 
 	// trouver les produits dans une sous-categorie 
 	public function findBySubCat($id_sub_cat)
 	{
 		$list = [];
-		$request = "SELECT * FROM products WHERE id_sub_cat='".$id_sub_cat."'";
+		$request = "SELECT * FROM products WHERE id_sub_cat=".$id_sub_cat;
 		$res = mysqli_query($this->link, $request);
-		while($products = mysqli_fetch_object($res, "Products"))
-			$list[] = $products;
+		while($product = mysqli_fetch_object($res, "Products", [$this->link]))
+			$list[] = $product;
 		return $list;
 	}
 
@@ -57,18 +57,15 @@ class ProductsManager
 	public function findByCat($id_category)
 	{
 		$list = [];
-		$request = "SELECT id FROM sub_category WHERE id_category='".$id_category."'";
+		$request = "SELECT products.* 
+					FROM products
+					INNER JOIN sub_category
+					ON sub_category.id = products.id_sub_cat
+					WHERE sub_category.id_category = ".$id_category;
 		$res = mysqli_query($this->link, $request);
-		
-		while($products = mysqli_fetch_object($res, "Products"))
-		{
-			$request = "SELECT id FROM products WHERE id_sub_cat='".$products."'";
-			$res = mysqli_query($this->link, $request);
-			while($products = mysqli_fetch_object($res, "Products"))
-				$list[] = $products;
-			return $list;
-		}
-		
+		while($product = mysqli_fetch_object($res, "Products", [$this->link]))
+			$list[] = $product;
+		return $list;
 	}
 
 
@@ -81,7 +78,6 @@ class ProductsManager
 			throw new Exception("Vous devez être connecté");
 		if (($_SESSION['id']) != "1")
 			throw new Exception("Vous n'êtes pas administrateur");		 
-		$products = new Products();
 		if (!isset($data['ref']))
 			throw new Exception("Indiquez la référence");
 		if (!isset($data['stock']))
@@ -103,8 +99,8 @@ class ProductsManager
 		if (!isset($data['status']))
 			throw new Exception("Indiquez le statut du produit)");
 
-		//
-		
+		$products = new Products($this->link);
+				
 		$products->setRef($data['ref']);
 		$products->setStock($data['stock']);
 		$products->setSize($data['size']);
@@ -149,11 +145,6 @@ class ProductsManager
 			throw new Exception("Internal server error");
 	}
 
-	public function getById($id)
-	{
-		return $this->findById($id);
-	}
-
 	public function update(Products $products)// type-hinting
 	{
 		$id = $products->getId();
@@ -174,7 +165,34 @@ class ProductsManager
 		}
 	}
 
+	public function OrderByPrice($orderby)
+	{
+		if ($orderby == 'ASC')
+		{
+			//requete pour qu'elle soit ordonné par ordrecroissant 
+		}
+		else if ($)
+		{
+			
+		}
+		else 
+			throw
+	}
 
+	public function remove(Category $products)
+	{
+		$id = $products->getId();
+		// droit ? admin ? access ?
+		if ($id)
+		{
+			$request = "DELETE FROM products WHERE id='".$id."' LIMIT 1";
+			$res = mysqli_query($this->link, $request);
+			if($res)
+				return $products;
+			else
+				throw new Exception("Internal server error");
+		}
+	}
 
 
 

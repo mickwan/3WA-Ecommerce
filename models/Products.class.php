@@ -15,8 +15,14 @@ class Products
 	private $id_sub_cat;
 	private $status;
 	private $picture;
+	private $link;
 
-	// Ctor
+	// Liste des fonctions magiques en php : http://php.net/manual/fr/language.oop5.magic.php
+	// $this->link <===> $link index.php
+	public function __construct($link)
+	{
+		$this->link = $link;
+	}
 
 	// Getter/Setter | Accesseur/Mutateur | Accessor/Mutator
 	public function getId()
