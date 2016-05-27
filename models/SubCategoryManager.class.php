@@ -41,7 +41,7 @@ class SubCategoryManager
 		if (!isset($_SESSION['id_category']))
 			throw new Exception("Missing paramater: id_category");
 		
-		$sub_category = new SubCategory();
+		$sub_category = new SubCategory($this->link);
 		
 		if (!isset($data['name']))
 			throw new Exception("Missing paramater: name");
@@ -56,7 +56,7 @@ class SubCategoryManager
 		$description = $article->getDescription();
 
 		$request = "INSERT INTO sub_category (id_category, name, description)
-					VALUES('".$id_category."', '".$name."', '".$description."')";
+					VALUES ('".$id_category."', '".$name."', '".$description."')";
 
 		if ($res)// Si la requete s'est bien passée
 		{
@@ -110,7 +110,7 @@ class SubCategoryManager
 			if ($res)
 				return $sub_category;
 			else
-				return "Internal server error";
+				throw new Exception ("Internal server error");
 		}
 	}
 }
