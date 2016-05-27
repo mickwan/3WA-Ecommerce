@@ -179,32 +179,24 @@ class ProductsManager
 		if ($id)// true si > 0
 		{
 			$ref = mysqli_real_escape_string($this->link, $products->getRef());
+			$stock = mysqli_real_escape_string($this->link, $products->getStock());
 			$size = mysqli_real_escape_string($this->link, $products->getSize());
+			$price = mysqli_real_escape_string($this->link, $products->getPrice());
+			$tax = mysqli_real_escape_string($this->link, $products->getTax());
 			$description = mysqli_real_escape_string($this->link, $products->getDescription());
 			$name = mysqli_real_escape_string($this->link, $products->getName());
+			$weight = mysqli_real_escape_string($this->link, $products->getWeight());
+			$id_sub_cat = mysqli_real_escape_string($this->link, $products->getSubCat());
+			$statut = mysqli_real_escape_string($this->link, $products->getStatut());
 			$picture = mysqli_real_escape_string($this->link, $products->getPicture());
 
-			$request = "UPDATE products SET ref='".$ref."', size='".$size."', description='".$description."', name='".$name."', picture='".$picture."' WHERE id=".$id;
+			$request = "UPDATE products SET ref='".$ref."', stock='".$stock."', size='".$size."', price='".$price."', tax='".$tax."', description='".$description."', name='".$name."', weight='".$weight."', id_sub_cat='".$id_sub_cat."', status='".$status."', picture='".$picture."' WHERE id=".$id;
 			$res = mysqli_query($this->link, $request);
 			if ($res)
 				return $this->findById($id);
 			else
 				return "Internal server error";
 		}
-	}
-
-	public function OrderByPrice($orderby)
-	{
-		if ($orderby == 'ASC')
-		{
-			//requete pour qu'elle soit ordonné par ordrecroissant 
-		}
-		else if ($)
-		{
-			
-		}
-		else 
-			throw
 	}
 
 	public function remove(Category $products)
@@ -221,6 +213,20 @@ class ProductsManager
 			else
 				throw new Exception("Internal server error");
 		}
+	}
+
+	public function OrderByPrice($orderby)
+	{
+		if ($orderby == 'ASC')
+		{
+			$request = "SELECT price FROM products WHERE ---  ORDER BY price " 
+		}
+		else if ($)
+		{
+			
+		}
+		else 
+			throw
 	}
 
 
