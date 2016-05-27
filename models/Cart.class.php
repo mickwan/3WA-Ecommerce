@@ -1,4 +1,5 @@
 <?php
+
 class Cart
 {
 	private $id;
@@ -82,7 +83,6 @@ class Cart
 			throw new Exception "Poids invalide";
 		$this->weight = $weight;
 	}
-
 	public function addProduct(Products $product, $nb)
 	{
 		$i = 0 

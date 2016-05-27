@@ -111,12 +111,5 @@ class CategoryManager
 				throw new Exception("Internal server error");
 		}
 	}
-	
-
-
-
-
-	}
-
-
+}
 ?>

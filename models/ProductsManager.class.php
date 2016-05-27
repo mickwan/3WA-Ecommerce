@@ -219,14 +219,29 @@ class ProductsManager
 	{
 		if ($orderby == 'ASC')
 		{
-			$request = "SELECT * FROM products ORDER BY price";
+			$list = [];
+			$request = "SELECT * FROM products ORDER BY price ASC";
+			$res = mysqli_query($this->link, $request);
+			if(!$res)
+				throw new Exception("DB request error");
+			while($product = mysqli_fetch_object($res, "Products", [$this->link]))
+				$list[] = $product;
+			return $list;
+		
 		}
-		else if ($)
+		else if ($orderby == 'DESC')
 		{
-			
+			$list = [];
+			$request = "SELECT * FROM products ORDER BY price DESC";
+			$res = mysqli_query($this->link, $request);
+			if(!$res)
+				throw new Exception("DB request error");
+			while($product = mysqli_fetch_object($res, "Products", [$this->link]))
+				$list[] = $product;
+			return $list;
 		}
 		else 
-			throw
+			throw new Exception("tri invalide");
 	}
 
 
