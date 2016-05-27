@@ -2,6 +2,7 @@
 
 class Users
 {
+
 	//Déclaration privées:
 	private $id;
 	private $login;
@@ -15,6 +16,14 @@ class Users
 	private $sex;
 	private $admin;
 	private $status;
+
+	private $link;
+	//Index.php : $link = mysqli_connect($localhost, $login, $pass, $database)
+	//Fonction magique pour le lien à la base de donnée
+	public function __construct($link)
+	{
+		$this->link = $link;
+	}
 
 	//Getter:
 	public function getId()
@@ -123,6 +132,34 @@ class Users
 		if($sex != "M" && $sex != "W")
 			throw new Exception ("Choissez votre  sexe");
 		$this->sex = $sex;
+	}
+
+	// Méthodes spécifiques:
+
+	//Trouver le paniers de l'utilisateur:
+	public function findCart()
+	{
+		$cart = new Cart($this->link/* ? */);
+		$cart = $cartManager->getByProducts($this);
+		return $cart;
+	}
+
+	//Trouver l'adresse de l'utilisateur:
+	public function findAddress()
+	{
+
+	}
+
+	//Trouver les feedback de l'utilisateur:
+	public function findFeedback()
+	{
+
+	}
+
+	//Trouver les produits acheté de l'utilisateur:
+	public function findProducts()
+	{
+
 	}
 }
 ?>
