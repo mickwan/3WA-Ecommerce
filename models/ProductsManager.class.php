@@ -85,7 +85,7 @@ class ProductsManager
 	{
 		$id_cart = $cart->getId();
 		$list = [];
-		$request = "SELECT products.id_product 
+		$request = "SELECT products.* 
 					FROM products 
 					INNER JOIN link_cart_product 
 					ON products.id = link_cart_product.id_product
