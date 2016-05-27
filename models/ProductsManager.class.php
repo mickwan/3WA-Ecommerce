@@ -195,7 +195,7 @@ class ProductsManager
 			if ($res)
 				return $this->findById($id);
 			else
-				return "Internal server error";
+				throw new Exception("Internal server error");
 		}
 	}
 
@@ -219,7 +219,7 @@ class ProductsManager
 	{
 		if ($orderby == 'ASC')
 		{
-			$request = "SELECT price FROM products WHERE ---  ORDER BY price " 
+			$request = "SELECT * FROM products ORDER BY price";
 		}
 		else if ($)
 		{

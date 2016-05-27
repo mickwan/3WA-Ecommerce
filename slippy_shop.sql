@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 26 Mai 2016 à 16:40
+-- Généré le: Ven 27 Mai 2016 à 15:45
 -- Version du serveur: 5.5.47-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -51,9 +51,9 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `id_user` int(7) unsigned NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '0:non validé / 1:validé user / 2:validé admin',
-  `price` float NOT NULL,
-  `nb_products` int(7) NOT NULL,
-  `weight` float NOT NULL,
+  `price` float NOT NULL DEFAULT '0',
+  `nb_products` int(7) NOT NULL DEFAULT '0',
+  `weight` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -99,7 +99,6 @@ CREATE TABLE IF NOT EXISTS `link_cart_product` (
   `id` int(7) unsigned NOT NULL AUTO_INCREMENT,
   `id_cart` int(7) unsigned NOT NULL,
   `id_product` int(7) unsigned NOT NULL,
-  `nb` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_cart` (`id_cart`),
   KEY `id_product` (`id_product`)
