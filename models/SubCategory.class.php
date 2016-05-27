@@ -8,12 +8,18 @@ class SubCategory
 	private $name;
 	private $description;
 
+	private $link;
+
+	public function __construct($link)
+	{
+		$this->link = $link;
+	}
 	//Getter:
 	public function getId()
 	{
 		return $this->id;
 	}
-	public function getIdCategory()
+	public function getCategory()
 	{
 		return $this->id_category;
 	}
@@ -42,6 +48,16 @@ class SubCategory
 		else if (strlen($description)>123)
 			throw new Exception ("Description trop longue(max: 123 caractères");
 		$this->description = $description;
+	}
+	public function getProduct(SubCategory $sub_category)
+	{
+		$list = [];
+		$id_sub_category = $sub_category->getId();
+		$request = "SELECT * FROM products WHERE id_sub_cat =".$id_sub_category;
+		$res = mysqli_query($this->link, $request);
+		while ($product = mysqli_fetch_object($res, "Products", [$this->link))
+			$list[] = $product;
+		return $list; 
 	}
 }
 ?>

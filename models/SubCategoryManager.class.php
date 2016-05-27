@@ -18,7 +18,7 @@ class SubCategoryManager
 					FROM sub_category 
 					WHERE id=".$id;
 		$res = mysqli_query($this->link, $request);
-		$sub_category = mysqli_fetch_object($res, "sub_category");
+		$sub_category = mysqli_fetch_object($res, "Subcategory", [$this->link]);
 		return $sub_category;
 	}
 	public function findByCategory($id_category)
@@ -30,7 +30,7 @@ class SubCategoryManager
 					WHERE id=".$id;
 		$res = mysqli_query($this->link, $request);
 
-		while($sub_category = mysqli_fetch_object($res, "sub_category"))
+		while($sub_category = mysqli_fetch_object($res, "Subcategory", [$this->link]))
 			$list[] = $sub_category;
 		return $list;
 	}

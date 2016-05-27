@@ -16,7 +16,7 @@ class CategoryManager
 		$list = [];
 		$request = "SELECT * FROM category";
 		$res = mysqli_query($this->link, $request);
-		while ($category = mysqli_fetch_object($res, "category"))
+		while ($category = mysqli_fetch_object($res, "Category", [$this->link]))
 			$list[] = $category;
 		return $list;
 	}
@@ -27,7 +27,7 @@ class CategoryManager
 		$request = "SELECT * FROM category WHERE id=".$id;
 		// SELECT * FROM category WHERE id=1
 		$res = mysqli_query($this->link, $request);
-		$category = mysqli_fetch_object($res, "Category");
+		$category = mysqli_fetch_object($res, "Category", [$this->link]);
 		return $category;
 	}
 
@@ -36,7 +36,7 @@ class CategoryManager
 		$name = mysqli_escape_string($this->link, $name);
 		$request = "SELECT FROM category WHERE name = '".$name."'";
 		$res = mysqli_query($this->link, $request);
-		$category = mysqli_fetch_object($res, "Category");
+		$category = mysqli_fetch_object($res, "Category", [$this->link]);
 		return $category;
 	}
 
@@ -79,11 +79,6 @@ class CategoryManager
 		{
 			throw new Exception("Internal server error");
 		}
-	}
-
-	public function getById($id)
-	{
-		return $this->findById($id);
 	}
 
 	public function update(Category $category)// type-hinting

@@ -7,7 +7,12 @@ class Category
 	private $name;
 	private $description;
 
-	// Ctor
+	private $link;
+
+	public function __construct($link)
+	{
+		$this->link = $link;
+	}
 
 	// Getter/Setter | Accesseur/Mutateur | Accessor/Mutator
 	public function getId()
@@ -41,5 +46,32 @@ class Category
 		$this->description = $description;
 	}
 
+	public function getSubCategory(Category $category)
+	{
+		$list = [];
+		$id_category = $category->getId();
+		if ($id_category)
+		{
+			$request = "SELECT * FROM sub_category WHERE id_category=".$id_category;
+			$res = mysqli_query($this->link, $request);
+			while ($sub_category = mysqli_fetch_object($res, "SubCategory"))
+				$list[] = $sub_category;
+			return $list;
+		}
+	}
+	public function getProducts(Category $category)
+	{
+		$list = [];
+		$id_category = $category->getId();
+		$request = "SELECT products.* 
+					FROM products
+					INNER JOIN sub_category
+					ON sub_category.id = products.id_sub_cat
+					WHERE sub_category.id_category = ".$id_category;
+		$res = mysqli_query($this->link, $request);
+		while($product = mysqli_fetch_object($res, "Products", [$this->link]))
+			$list[] = $product;
+		return $list;
+	}
 }
 ?>

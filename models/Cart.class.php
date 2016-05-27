@@ -62,22 +62,22 @@ class Cart
 	public function setPrice($price)
 	{
 		$price = str_replace(",",".",$price);
-		$price=floatval($price);
+		$price = floatval($price);
 		if ($price <=0)
 			throw new Exception "Prix invalide";
 		$this->price = $price;
 	}
 	public function setNbProducts($nb_products)
 	{
-		$nb_products=intval($nb_products);
+		$nb_products = intval($nb_products);
 		if ($nb_products<=0)
 			throw new Exception "Quantité invalide";
 		$this->nb_products = $nb_products;
 	}
 	public function setWeight($weight)
 	{
-		$weight= str_replace(",",".",$weight);
-		$weight=floatval($weight);
+		$weight = str_replace(",",".",$weight);
+		$weight = floatval($weight);
 		if ($weight<=0)
 			throw new Exception "Poids invalide";
 		$this->weight = $weight;
