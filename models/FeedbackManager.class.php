@@ -81,15 +81,12 @@
 						
 		}
 
-		public function update($data)
+		public function update(Feedback $feedback)
 		{
-			$id = intval($data['id']);
+			$id = $feedback->getId();
 			if ($id)
 			{
-				$feedback = new Feedback();
-				$feedback->setContent($data['content']);
 				$content = mysqli_real_escape_string($feedback->getContent());
-				
 				$request = "UPDATE feedback SET content='".$content."' WHERE id=".$id;
 				$res = mysqli_query($this->link, $request);
 				if ($res)
@@ -98,6 +95,19 @@
 					throw new Exception("Server Error");
 					
 			}
-		}	
+		}
+		public function remove(Feedback $feedback)
+		{
+			$id = $feedback->getId();
+			if($id)
+			{
+				$request = "DELETE FROM feedback WHERE id=".$id;
+				$res = mysqli_query($this->lin, $request);
+				if ($res)
+					return $feedback;
+				else
+					throw new Exception("Server Error");
+			}
+		}
 	}
 ?>

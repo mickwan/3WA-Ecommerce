@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 25 Mai 2016 à 16:43
+-- Généré le: Jeu 26 Mai 2016 à 16:40
 -- Version du serveur: 5.5.47-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   `id_product` int(7) unsigned NOT NULL,
   `content` varchar(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '0:attente / 1:validé / 2:refusé',
   PRIMARY KEY (`id`),
   KEY `id_author` (`id_author`),
   KEY `id_product` (`id_product`)
@@ -122,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `weight` float NOT NULL,
   `id_sub_cat` int(7) unsigned DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '1' COMMENT '0:indispo / 1:dispo',
+  `picture` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_sub_cat` (`id_sub_cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -183,15 +185,15 @@ ALTER TABLE `cart`
 -- Contraintes pour la table `feedback`
 --
 ALTER TABLE `feedback`
-  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`id_author`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `link_cart_product`
 --
 ALTER TABLE `link_cart_product`
-  ADD CONSTRAINT `link_cart_product_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `link_cart_product_ibfk_1` FOREIGN KEY (`id_cart`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `link_cart_product_ibfk_1` FOREIGN KEY (`id_cart`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `link_cart_product_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `products`
