@@ -11,6 +11,19 @@ class ProductsManager
 		$this->link = $link;
 	}
 
+	public function findByCart(Cart $cart)
+	{
+		$id = $cart->getId();
+		$list = [];
+		$request = "SELECT * FROM products
+			INNER JOIN link_cart_product ON products.id=link_cart_product.id_product
+			WHERE link_cart_product.id_cart=".$id;
+		$res = mysqli_query($this->link, $request);
+		while ($product = mysqli_fetch_object($res, "Products", [$this->link]))
+			$list[] = $product;
+		return $list;
+	}
+
 	public function findAll()
 	{
 		$list = [];
@@ -54,7 +67,7 @@ class ProductsManager
 	// il faut trouver tous les produits dont les sous-catégories
 	// appartiennent à la même catégorie !
 
-	public function findByCat($id_category)
+	public function findByCategory($id_category)
 	{
 		$list = [];
 		$request = "SELECT products.* 
@@ -64,6 +77,21 @@ class ProductsManager
 					WHERE sub_category.id_category = ".$id_category;
 		$res = mysqli_query($this->link, $request);
 		while($product = mysqli_fetch_object($res, "Products", [$this->link]))
+			$list[] = $product;
+		return $list;
+	}
+
+	public function findByCart(Cart $cart)
+	{
+		$id_cart = $cart->getId();
+		$list = [];
+		$request = "SELECT products.id_product 
+					FROM products 
+					INNER JOIN link_cart_product 
+					ON products.id = link_cart_product.id_product
+					WHERE link_cart_product.id_cart =".$id_cart;
+		$res = mysqli_query($this->link, $request);
+		while ($product = mysqli_fetch_object($res, "Products", [$this->link]))
 			$list[] = $product;
 		return $list;
 	}
@@ -185,7 +213,8 @@ class ProductsManager
 		// droit ? admin ? access ?
 		if ($id)
 		{
-			$request = "DELETE FROM products WHERE id='".$id."' LIMIT 1";
+			$request = "DELETE FROM products 
+						WHERE id='".$id."' LIMIT 1";
 			$res = mysqli_query($this->link, $request);
 			if($res)
 				return $products;

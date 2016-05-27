@@ -161,5 +161,11 @@ class Users
 	{
 
 	}
+
+	//Quand l'utilisateur n'est plus actif sur le site:
+	public function setInactive()
+	{
+		
+	}
 }
 ?>

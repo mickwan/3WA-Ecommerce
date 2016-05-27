@@ -8,7 +8,14 @@ class Cart
 	private $price;
 	private $nb_products;
 	private $weight;
+	private $products;
 
+	private $link;
+
+	public function __construct($link)
+	{
+		$this->link = $link;
+	}
 
 	public function getId()
 	{
@@ -38,6 +45,13 @@ class Cart
 	{
 		return $this->weight;
 	}
+	public function getProducts()
+	{
+		$ProductManager = new ProductsManager($this->link);
+		$this->products = $ProductManager->findByCart($this);
+		return $this->products;
+	}
+
 
 	public function setStatus($status)
 	{
@@ -69,8 +83,29 @@ class Cart
 		$this->weight = $weight;
 	}
 
-
-
+	public function addProduct(Products $product, $nb)
+	{
+		$i = 0 
+		if ($this->products === null)
+			$this->getProducts();
+		while ($i < $nb)
+		{
+			$this->products[] = $product;
+			$i++;
+		}
+	}
+	public function removeProduct(Products $product)
+	{
+		$id_product = $product->getId();
+		if ($this->products === null)
+			$this->getProducts();
+		$saveTab = [];
+		while ($this->products)
+		{
+			if ($id_product != $this->products['id'])
+				$saveTab = $this->products[];
+		}
+		$this->products = $saveTab;
+	}	
 }
-
 ?>

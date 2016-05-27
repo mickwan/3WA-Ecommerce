@@ -104,7 +104,7 @@ class SubCategoryManager
 		if ($id)
 		{
 			$request = "DELETE FROM sub_category 
-						WHERE id=".$id;
+						WHERE id=".$id "'LIMIT 1'";
 			$res = mysqli_query($this->link, $request);
 
 			if ($res)
