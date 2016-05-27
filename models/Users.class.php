@@ -1,8 +1,6 @@
 <?php
-
 class Users
 {
-
 	//Déclaration privées:
 	private $id;
 	private $login;

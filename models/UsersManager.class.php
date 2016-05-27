@@ -1,5 +1,4 @@
 <?php
-
 class UsersManager
 {
 	private $link;
