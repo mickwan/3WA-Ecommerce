@@ -42,28 +42,30 @@ class Cart
 	public function setStatus($status)
 	{
 		if ($status != 0 && $status != 1)
-			return 'Status invalide';
+			throw new Exception 'Status invalide';
 		$this->status = $status;
 	}
 	public function setPrice($price)
 	{
+		$price = str_replace(",",".",$price);
 		$price=floatval($price);
 		if ($price <=0)
-			return "Prix invalide";
+			throw new Exception "Prix invalide";
 		$this->price = $price;
 	}
 	public function setNbProducts($nb_products)
 	{
 		$nb_products=intval($nb_products);
 		if ($nb_products<=0)
-			return "Quantité invalide";
+			throw new Exception "Quantité invalide";
 		$this->nb_products = $nb_products;
 	}
 	public function setWeight($weight)
 	{
+		$weight= str_replace(",",".",$weight);
 		$weight=floatval($weight);
 		if ($weight<=0)
-			return "Poids invalide";
+			throw new Exception "Poids invalide";
 		$this->weight = $weight;
 	}
 
