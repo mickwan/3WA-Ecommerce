@@ -157,5 +157,23 @@ class Products
 	{	
 		$this->picture = $picture;
 	}
+
+
+	public function findCat(Products $product)
+	{
+		$categoryManager = new categoryManager($this->link);
+		
+	}
+
+	public function getFeedback(Products $product)
+	{
+		$feedbackManager = new FeedbackManager($this->link);
+		$feedback = $feedbackManager->findByProduct($this->id);
+		return $feedback;
+	}
+
+
+
+
 }
 ?>

@@ -11,19 +11,6 @@ class ProductsManager
 		$this->link = $link;
 	}
 
-	public function findByCart(Cart $cart)
-	{
-		$id = $cart->getId();
-		$list = [];
-		$request = "SELECT * FROM products
-			INNER JOIN link_cart_product ON products.id=link_cart_product.id_product
-			WHERE link_cart_product.id_cart=".$id;
-		$res = mysqli_query($this->link, $request);
-		while ($product = mysqli_fetch_object($res, "Products", [$this->link]))
-			$list[] = $product;
-		return $list;
-	}
-
 	public function findAll()
 	{
 		$list = [];
