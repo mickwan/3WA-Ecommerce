@@ -1,5 +1,5 @@
 <?php
-	$access = array(/* Tab contenant les pages disponibles du site */);
+	$access = array('home', 'login', 'register');
 	$page = 'home'; /*page courante : home par default*/ 
 	$error = '';
 
