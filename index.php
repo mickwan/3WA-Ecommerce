@@ -1,7 +1,5 @@
 <?php
-	$access = array('home', 'login', 'register');
-	$page = 'home'; /*page courante : home par default*/ 
-	$error = '';
+	session_start();
 
 	//Connection à la BDD
 	require('config.php');
@@ -19,15 +17,29 @@
 		require ("models/".$className.".class.php");
 	}
 
+	$access = array('logout', 'login', 'register', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'cat_admin', 'product_admin');
+	$page = 'home'; /*page courante : home par default*/ 
+	$error = '';
+
 	if (isset($_GET['page']))
 	{
 		if (in_array($_GET['page'], $access))
 			$page = $_GET['page'];
 	}
 
-	$access_traitement = array(/*tab contenant les traitements.php*/);
+	$access_traitement = array(
+								"login" => "user", 
+								"logout" => "user", 
+								"register" => "user", 
+								"edit_contact" => "user",
+								"current_cart" => "cart", 
+								"cart" => "cart",  
+								"feedback" => "feedback", 
+								"cat_admin" => "cat_admin", 
+								"product_admin" => "product_admin"
+								);
 	
-	if (in_array($page, $access_traitement))
-		require('apps/treatments/traitement_'.$page.'.php');
+	if (array_key_exists($page, $access_traitement))
+		require('apps/treatments/traitement_'.$access_traitement[$page].'.php');
 	require 'apps/skel.php';
 ?>

@@ -17,24 +17,34 @@ class UsersManager
 					FROM users
 					WHERE id=".$id;
 		$res = mysqli_query($this->link, $request);
-		$user = mysqli_fetch_object($res, "user", [$this->link]);
-		return $user
+		$user = mysqli_fetch_object($res, "Users", [$this->link]);
+		return $user;
+	}
+	public function findByEmail($email)
+	{
+		$email = mysqli_real_escape_string($this->link, $email);
+		$request = "SELECT *
+					FROM users
+					WHERE email = '".$email."'";
+		$res = mysqli_query($this->link, $request);
+		$user = mysqli_fetch_object($res, "Users", [$this->link]);
+		return $user;
 	}
 
 	//Création d'un user:
 	public function create($data)
 	{
-		if (!isset($_SESSION['id']))
-			throw new Exception("Missing parameter: users");
 		if (!isset($data['login']))
 			throw new Exception("Missing parameter: login");
 		if (!isset($data['firstname']))
 			throw new Exception("Missing parameter: firstname");
 		if (!isset($data['lastname']))
 			throw new Exception("Missing parameter: lastname");
-		if (!isset($data['email'])
+		if (!isset($data['email']))
 			throw new Exception("Missing parameter: email");
 		if (!isset($data['password']))
+			throw new Exception("Missing parameter: password");
+		if (!isset($data['confirmPassword']))
 			throw new Exception("Missing parameter: password");
 		if (!isset($data['birth_date']))
 			throw new Exception("Missing parameter: birth date");
@@ -45,8 +55,28 @@ class UsersManager
 
 		$user = new Users($this->link);
 
-		$request ="INSERT INTO user (id, login, firstname, lastname, email, password, birth_date, phone, sex) 
-				   VALUES ('".$id."', '".$login."', '".$firstname."''".$lastname."', '".$email."', '".$password."''".$birth_date."', '".$phone."', '".$sex."')";
+		$user->setLogin($data['login']);
+		$user->setFirstName($data['firstname']);
+		$user->setLastName($data['lastname']);
+		$user->setEmail($data['email'], $data['confirmEmail']);
+		$user->setPassword($data['password'], $data['confirmPassword']);
+		$user->setBirthDate($data['birth_date']);
+		$user->setPhone($data['phone']);
+		$user->setSex($data['sex']);
+
+		$login = mysqli_real_escape_string($this->link, $user->getLogin());
+		$firstname = mysqli_real_escape_string($this->link, $user->getFirstname());
+		$lastname = mysqli_real_escape_string($this->link, $user->getLastname());
+		$email = mysqli_real_escape_string($this->link, $user->getEmail());
+		$password = $user->getPassword();
+		$birth_date = $user->getBirthDate();
+		$phone = $user->getPhone();
+		$sex = $user->getSex();
+
+		$request ="INSERT INTO users(login, firstname, lastname, email, password, birth_date, phone, sex) 
+				   VALUES ('".$login."', '".$firstname."', '".$lastname."', '".$email."', '".$password."', '".$birth_date."', '".$phone."', '".$sex."')";
+
+		$res = mysqli_query($this->link, $request);
 
 		if ($res)// Si la requete s'est bien passée
 		{
@@ -61,9 +91,8 @@ class UsersManager
 				throw new Exception("Internal server error");
 		}
 		else
-			throw new Exception("Internal server error");
-		}	
-	}
+			throw new Exception("Internal server error 1 ");
+	}	
 
 	//Modification d'un user:
 	public function update(Users $user)
@@ -76,11 +105,14 @@ class UsersManager
 			$firstname = mysqli_real_escape_string($this->link, $users->getFirstname());
 			$lastname = mysqli_real_escape_string($this->link, $users->getLastname());
 			$email = mysqli_real_escape_string($this->link, $users->getEmail());
-			$password = mysqli_real_escape_string($this->link, $users->getPasword());
-			$birth_date = mysqli_real_escape_string($this->link, $users->getBirthDate());
-			$phone = mysqli_real_escape_string($this->link, $users->getPhone());
+			$password = $users->getPasword();
+			$birth_date = $users->getBirthDate();
+			$phone = $users->getPhone();
 			$sex = mysqli_real_escape_string($this->link, $users->getSex());
+			$status = $user->getStatus;
 
+			$request = "UPDATE users 
+						SET login = '".$login."', firstname = '".$firstname."', lastname = '".$lastname."', email = '".$email."', password = '".$password."', birth_date = '".$birth_date."', phone = '".$phone."', sex = '".$sex."', status = '".$status."'";
 			$res = mysqli_query($this->link, $request);
 
 			if ($res)

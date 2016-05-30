@@ -22,7 +22,7 @@ class CartManager
 		$id_user = intval($id_user);
 		$request = "SELECT * 
 					FROM cart 
-					WHERE id=".$id_user;
+					WHERE id_user=".$id_user;
 		$res = mysqli_fetch_object($res, "Cart", [$this->link]);
 		return $cart;
 	}
