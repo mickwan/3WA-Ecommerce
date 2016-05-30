@@ -114,7 +114,7 @@ class Products
 		$tax = str_replace(',' , '.', $tax);
 		$tax = floatval($tax);
 		if ($tax <= 0)
-			throw new Exception ("Prix incorrect");
+			throw new Exception ("Taxe incorrecte (entrer un nombre décimal ex: 5.5)");
 		$this->tax = $tax;
 	}
 
@@ -141,7 +141,7 @@ class Products
 		$weight = str_replace(',' , '.', $weight);
 		$weight = floatval($weight);
 		if ($weight <= 0)
-			throw new Exception ("Prix incorrect");
+			throw new Exception ("Poids incorrect (entrer un nombre décimal ex: 2.4)");
 		$this->weight = $weight;
 	}
 
