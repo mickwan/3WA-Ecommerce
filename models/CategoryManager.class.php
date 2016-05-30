@@ -43,6 +43,18 @@ class CategoryManager
 		$category = mysqli_fetch_object($res, "Category", [$this->link]);
 		return $category;
 	}
+	public function findByProduct(Products $product)
+	{
+		$id_sub_cat = $product->getSubCat();
+		$request = "SELECT category.* 
+					FROM category 
+					INNER JOIN sub_category 
+					ON category.id = sub_category.id_category 
+					WHERE sub_category.id =".$id_sub_cat;
+		$res = mysqli_query($this->link, $request);
+		$category = mysqli_fetch_object($res, "Category", [$this->link]);
+		return $category;	
+	}
 
 	public function create($data)
 	{

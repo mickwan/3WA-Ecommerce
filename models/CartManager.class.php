@@ -22,7 +22,11 @@ class CartManager
 		$id_user = intval($id_user);
 		$request = "SELECT * 
 					FROM cart 
+<<<<<<< HEAD
 					WHERE id_user=".$id_user;
+=======
+					WHERE id=".$id_user;
+>>>>>>> 3b326e9710cb0db4b08c974bdd85452e2338baf0
 		$res = mysqli_fetch_object($res, "Cart", [$this->link]);
 		return $cart;
 	}
@@ -33,7 +37,10 @@ class CartManager
 		$request = "SELECT * 
 					FROM cart 
 					WHERE id=".$status;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3b326e9710cb0db4b08c974bdd85452e2338baf0
 		$res = mysqli_query($this->link, $request);
 		while ($cart = mysqli_fetch_object($res, "Cart", [$this->link]))
 			$list[] = $cart;
