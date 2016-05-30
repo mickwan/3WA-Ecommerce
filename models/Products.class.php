@@ -77,10 +77,10 @@ class Products
 
 	public function setRef($ref)
 	{
-		if (strlen($ref) < 4)
-			throw new Exception ("Référence trop courte (< 4)");
+		if (strlen($ref) < 2)
+			throw new Exception ("Référence trop courte (< 2)");
 		else if (strlen($ref) > 63)
-			throw new Exception "Référence trop longue (> 63)";
+			throw new Exception ("Référence trop longue (> 63)");
 		$this->ref = $ref;
 	}
 
