@@ -53,7 +53,9 @@ class SubCategory
 	{
 		$list = [];
 		$id_sub_category = $sub_category->getId();
-		$request = "SELECT * FROM products WHERE id_sub_cat =".$id_sub_category;
+		$request = "SELECT *
+					FROM products 
+					WHERE id_sub_cat =".$id_sub_category;
 		$res = mysqli_query($this->link, $request);
 		while ($product = mysqli_fetch_object($res, "Products", [$this->link))
 			$list[] = $product;

@@ -11,7 +11,9 @@ class AddressManager
 	public function findById($id)
 	{
 		$id = intval($id);
-		$request = "SELECT * FROM address WHERE id=".$id;
+		$request = "SELECT * 
+					FROM address 
+					WHERE id=".$id;
 		$res = mysqli_query($this->link,$request);
 		$address = mysqli_fetch_object($res, "Address");
 		return $address;
@@ -19,7 +21,9 @@ class AddressManager
 	public function findByUser($id_user)
 	{
 		$id_user = intval($id_user);
-		$request = "SELECT * FROM address WHERE id=".$id_user;
+		$request = "SELECT * 
+					FROM address 
+					WHERE id=".$id_user;
 		$res = mysqli_query($this->link, $request);
 		$address = mysqli_fetch_object($res, "Address");
 		return $address;
@@ -27,7 +31,9 @@ class AddressManager
 	public function findByName($name)
 	{
 		$name = mysqli_real_escape_string($this->link, $name);
-		$request = "SELECT * FROM address WHERE id=".$name;
+		$request = "SELECT * 
+					FROM address 
+					WHERE id=".$name;
 		$res = mysqli_query($this->link,$request);
 		$address = mysqli_fetch_object($res, "Address");
 		return $address;
@@ -69,7 +75,8 @@ class AddressManager
 		$zipcode = $address->getZipcode();
 		$type = $address->getType();
 		$id_user = $_SESSION['id'];
-		$request = "INSERT INTO address (name, 'number', pathway, city, country, zipcode, type, id_user) VALUES('".$name."', '".$number."', '".$pathway."', '".$city."', '".$country."', '".$zipcode."', '".$type."', '".$id_user."')";
+		$request = "INSERT INTO address (name, 'number', pathway, city, country, zipcode, type, id_user) 
+					VALUES('".$name."', '".$number."', '".$pathway."', '".$city."', '".$country."', '".$zipcode."', '".$type."', '".$id_user."')";
 		$res = mysql_query($this->link, $request);
 
 		if ($res)
@@ -104,7 +111,8 @@ class AddressManager
 			$country = mysqli_real_escape_string($this->link, $address->getCountry());
 			$zipcode = mysqli_real_escape_string($this->link, $address->getZipcode());
 			$type = mysqli_real_escape_string($this->link, $address->getType());
-			$request = "UPDATE address SET name='".$name."', number='".$number."', pathway ='".$pathway ."', city='".$city."', country='".$country."', zipcode='".$zipcode."', type='".$type."' WHERE id=".$id;
+			$request = "UPDATE address 
+						SET name='".$name."', number='".$number."', pathway ='".$pathway ."', city='".$city."', country='".$country."', zipcode='".$zipcode."', type='".$type."' WHERE id=".$id;
 			$res = mysql_query($this->link, $request);
 			if ($res)
 				return $this->findById($id);
@@ -118,7 +126,8 @@ class AddressManager
 		$id = $address->getId();
 		if ($id)
 		{
-			$request = "DELETE FROM address WHERE id=".$id;
+			$request = "DELETE FROM address 
+						WHERE id=".$id;
 			$res = mysqli_query($this->link, $request);
 			if ($res)
 				return $address;

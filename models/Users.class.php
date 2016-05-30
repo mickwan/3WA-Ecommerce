@@ -148,7 +148,6 @@ class Users
 		$address_manager = new AddressManager($this->link);
 		$user_address = $address_manager->findByUser($this->id);
 		return $user_address;
-
 	}
 
 	//Trouver les feedback de l'utilisateur:
