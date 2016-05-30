@@ -145,7 +145,7 @@ class Users
 	//Trouver l'adresse de l'utilisateur:
 	public function findAddress()
 	{
-
+		
 	}
 
 	//Trouver les feedback de l'utilisateur:

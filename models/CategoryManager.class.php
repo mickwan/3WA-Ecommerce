@@ -14,7 +14,8 @@ class CategoryManager
 	public function findAll()
 	{
 		$list = [];
-		$request = "SELECT * FROM category";
+		$request = "SELECT * 
+					FROM category";
 		$res = mysqli_query($this->link, $request);
 		while ($category = mysqli_fetch_object($res, "Category", [$this->link]))
 			$list[] = $category;
@@ -24,7 +25,9 @@ class CategoryManager
 	public function findById($id)
 	{
 		$id = intval($id);
-		$request = "SELECT * FROM category WHERE id=".$id;
+		$request = "SELECT * 
+					FROM category 
+					WHERE id=".$id;
 		// SELECT * FROM category WHERE id=1
 		$res = mysqli_query($this->link, $request);
 		$category = mysqli_fetch_object($res, "Category", [$this->link]);
@@ -34,7 +37,8 @@ class CategoryManager
 	public function findByName($name)
 	{
 		$name = mysqli_escape_string($this->link, $name);
-		$request = "SELECT FROM category WHERE name = '".$name."'";
+		$request = "SELECT FROM category 
+					WHERE name = '".$name."'";
 		$res = mysqli_query($this->link, $request);
 		$category = mysqli_fetch_object($res, "Category", [$this->link]);
 		return $category;
@@ -88,7 +92,8 @@ class CategoryManager
 		{
 			$name = mysqli_real_escape_string($this->link, $category->getName());
 			$description = mysqli_real_escape_string($this->link, $category->getDescription());
-			$request = "UPDATE category SET name='".$name."', description='".$description."' WHERE id=".$id;
+			$request = "UPDATE category 
+						SET name='".$name."', description='".$description."' WHERE id=".$id;
 			$res = mysqli_query($this->link, $request);
 			if ($res)
 				return $this->findById($id);
@@ -103,7 +108,8 @@ class CategoryManager
 		// droit ? admin ? access ?
 		if ($id)
 		{
-			$request = "DELETE FROM category WHERE id='".$id."' LIMIT 1";
+			$request = "DELETE FROM category 
+						WHERE id='".$id."' LIMIT 1";
 			$res = mysqli_query($this->link, $request);
 			if($res)
 				return $category;
