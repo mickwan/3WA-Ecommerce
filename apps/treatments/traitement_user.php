@@ -5,7 +5,7 @@
 		header ('Location: index.php?page=home');
 		exit;
 	}
-	if ($_GET['action'] == 'login')
+	if ($_POST['action'] == 'login')
 	{
 		$email = $_POST['email'];
 		$password = $_POST['password'];
@@ -32,7 +32,7 @@
 			$error = $exception->getMessage();
 		}
 	}
-	if ($_GET['action'] == 'register')
+	if ($_POST['action'] == 'register')
 	{
 		$usersManager = new UsersManager;
 		try
