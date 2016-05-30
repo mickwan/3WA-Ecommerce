@@ -112,18 +112,19 @@ class Users
 			throw new Exception ("Password différents");
 		else if (strlen($password)<4)
 			throw new Exception ("Password trop court (min: 4 caractères)");
-		$this->password = $password_hash($password, PASSWORD_BCRYPT, array("cost"=>8));
+		$this->password = password_hash($password, PASSWORD_BCRYPT, array("cost"=>8));
 	}
 	public function setBirthDate($birth_date)
 	{
-		$birth_date = strtotime($birth_date);
+		//mettre les conditions pour vérifier le  format!
 		$this->birth_date = $birth_date;
 	}
 	public function setPhone($phone)
 	{
-		if (strlen($phone)==10 || preg_match("#^+[0-9]{10}$#", $phone))
+		if (strlen($phone) == 10 || preg_match("#^+[0-9]{10}$#", $phone))
+			$this->phone = $phone;
+		else
 			throw new Exception ("Phone non valide");
-		$this->phone = $phone;
 	}
 	public function setSex($sex)
 	{
@@ -155,7 +156,7 @@ class Users
 	{
 		$feedback_manager = new FeedbackManager($this->link);
 		$user_feedbacks = $feedback_manager->findByAuthor($this->id);
-		return $user_feedbacks
+		return $user_feedbacks;
 	}
 
 	//Trouver les produits acheté de l'utilisateur:

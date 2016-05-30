@@ -17,18 +17,18 @@ class UsersManager
 					FROM users
 					WHERE id=".$id;
 		$res = mysqli_query($this->link, $request);
-		$user = mysqli_fetch_object($res, "user", [$this->link]);
-		return $user
+		$user = mysqli_fetch_object($res, "Users", [$this->link]);
+		return $user;
 	}
 	public function findByEmail($email)
 	{
-		$id = intval($id);
+		$email = mysqli_real_escape_string($this->link, $email);
 		$request = "SELECT *
 					FROM users
-					WHERE email=".$email;
+					WHERE email = '".$email."'";
 		$res = mysqli_query($this->link, $request);
-		$user = mysqli_fetch_object($res, "user", [$this->link]);
-		return $user
+		$user = mysqli_fetch_object($res, "Users", [$this->link]);
+		return $user;
 	}
 
 	//Création d'un user:
@@ -40,7 +40,7 @@ class UsersManager
 			throw new Exception("Missing parameter: firstname");
 		if (!isset($data['lastname']))
 			throw new Exception("Missing parameter: lastname");
-		if (!isset($data['email'])
+		if (!isset($data['email']))
 			throw new Exception("Missing parameter: email");
 		if (!isset($data['password']))
 			throw new Exception("Missing parameter: password");
@@ -59,22 +59,24 @@ class UsersManager
 		$user->setFirstName($data['firstname']);
 		$user->setLastName($data['lastname']);
 		$user->setEmail($data['email'], $data['confirmEmail']);
-		$user->setPassword($data['password'], $data['confirmPassword'])
+		$user->setPassword($data['password'], $data['confirmPassword']);
 		$user->setBirthDate($data['birth_date']);
 		$user->setPhone($data['phone']);
 		$user->setSex($data['sex']);
 
-		$login = $user->getLogin();
-		$firstname = $user->getFirstname();
-		$lastname = $user->getLastname();
-		$email = $user->getEmail();
+		$login = mysqli_real_escape_string($this->link, $user->getLogin());
+		$firstname = mysqli_real_escape_string($this->link, $user->getFirstname());
+		$lastname = mysqli_real_escape_string($this->link, $user->getLastname());
+		$email = mysqli_real_escape_string($this->link, $user->getEmail());
 		$password = $user->getPassword();
 		$birth_date = $user->getBirthDate();
 		$phone = $user->getPhone();
 		$sex = $user->getSex();
 
-		$request ="INSERT INTO user (login, firstname, lastname, email, password, birth_date, phone, sex) 
-				   VALUES ('".$login."', '".$firstname."''".$lastname."', '".$email."', '".$password."''".$birth_date."', '".$phone."', '".$sex."')";
+		$request ="INSERT INTO users(login, firstname, lastname, email, password, birth_date, phone, sex) 
+				   VALUES ('".$login."', '".$firstname."', '".$lastname."', '".$email."', '".$password."', '".$birth_date."', '".$phone."', '".$sex."')";
+
+		$res = mysqli_query($this->link, $request);
 
 		if ($res)// Si la requete s'est bien passée
 		{
@@ -89,9 +91,8 @@ class UsersManager
 				throw new Exception("Internal server error");
 		}
 		else
-			throw new Exception("Internal server error");
-		}	
-	}
+			throw new Exception("Internal server error 1 ");
+	}	
 
 	//Modification d'un user:
 	public function update(Users $user)
