@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 27 Mai 2016 à 15:45
+-- Généré le: Lun 30 Mai 2016 à 15:59
 -- Version du serveur: 5.5.47-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `slippy_shop`
+-- Base de données: `campshop`
 --
 
 -- --------------------------------------------------------
@@ -69,7 +69,16 @@ CREATE TABLE IF NOT EXISTS `category` (
   `name` varchar(31) NOT NULL,
   `description` varchar(123) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `description`) VALUES
+(1, 'accessories', ''),
+(2, 'men', ''),
+(3, 'women', '');
 
 -- --------------------------------------------------------
 
@@ -125,7 +134,18 @@ CREATE TABLE IF NOT EXISTS `products` (
   `picture` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_sub_cat` (`id_sub_cat`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `products`
+--
+
+INSERT INTO `products` (`id`, `ref`, `stock`, `size`, `price`, `tax`, `description`, `name`, `weight`, `id_sub_cat`, `status`, `picture`) VALUES
+(1, '00001', 5, '1.5', 65.99, 19.6, 'GRAND SAC À DOS HAUT ROULÉ\r\nBoucle fermeture latérale, bretelles matelassées, poche avant zip, 2 poches plaquées latérales\r', 'swamis', 1.5, 1, 1, 'public/images/products/accessories/bags/swamis.png'),
+(2, '00002', 5, '1.5', 65.99, 19.6, 'Signature striped fabric liner\r\nPadded and fleece lined 15" laptop sleeve\r\nMagnetic strap closures with metal pin clips\r\nMa', 'little america', 1.5, 1, 1, 'public/images/products/accessories/bags/little_america_black.jpeg'),
+(3, '00003', 5, '1.5', 65.99, 19.6, 'Signature striped fabric liner\r\nFully padded and fleece lined 15" laptop sleeve pocket\r\nMain compartment cinch top closure\r', 'little america', 1.5, 1, 1, 'public/images/products/accessories/bags/little_america_beige.jpeg'),
+(4, '00004', 5, 'M', 25.99, 19.6, 'BONNET EN ACRYLIQUE\r\nbonnet en grosses mailles confectionné à la main. Fil torsadé aux couleurs contrastées. Détail d’étiqu', 'tête brûlée', 0.1, 5, 1, 'public/images/products/accessories/caps&hats/tet_brulee_black.jpg'),
+(5, '00005', 5, 'M', 25.99, 19.6, 'BONNET EN ACRYLIQUE\r\nbonnet en grosses mailles confectionné à la main. Fil torsadé aux couleurs contrastées. Détail d’étiqu', 'tête brûlée', 0.1, 5, 1, 'public/images/products/accessories/caps&hats/tete_brulee.jpg');
 
 -- --------------------------------------------------------
 
@@ -140,7 +160,28 @@ CREATE TABLE IF NOT EXISTS `sub_category` (
   `description` varchar(123) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_category` (`id_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+
+--
+-- Contenu de la table `sub_category`
+--
+
+INSERT INTO `sub_category` (`id`, `id_category`, `name`, `description`) VALUES
+(1, 1, 'bags', ''),
+(2, 1, 'wallets', ''),
+(3, 1, 'watches', ''),
+(4, 1, 'glasses', ''),
+(5, 1, 'caps&hats', ''),
+(6, 2, 'sweaters', ''),
+(7, 2, 'jackets', ''),
+(8, 2, 'shirts&t-shirts', ''),
+(9, 2, 'pants', ''),
+(10, 2, 'accessories', ''),
+(11, 3, 'sweaters', ''),
+(12, 3, 'jackets', ''),
+(13, 3, 'shirts&t-shirts', ''),
+(14, 3, 'pants', ''),
+(15, 3, 'accessories', '');
 
 -- --------------------------------------------------------
 
@@ -156,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(123) NOT NULL,
   `password` varchar(255) NOT NULL,
   `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `birth_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `birth_date` date NOT NULL,
   `phone` varchar(15) NOT NULL,
   `sex` varchar(31) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0:user / 1:admin',
