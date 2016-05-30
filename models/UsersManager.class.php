@@ -80,7 +80,10 @@ class UsersManager
 			$birth_date = mysqli_real_escape_string($this->link, $users->getBirthDate());
 			$phone = mysqli_real_escape_string($this->link, $users->getPhone());
 			$sex = mysqli_real_escape_string($this->link, $users->getSex());
+			$status = $user->getStatus;
 
+			$request = "UPDATE users 
+						SET login = '".$login."', firstname = '".$firstname."', lastname = '".$lastname."', email = '".$email."', password = '".$password."', birth_date = '".$birth_date."', phone = '".$phone."', sex = '".$sex."', status = '".$status."'";
 			$res = mysqli_query($this->link, $request);
 
 			if ($res)
