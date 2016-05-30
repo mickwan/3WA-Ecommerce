@@ -166,15 +166,15 @@ class ProductsManager
 		if ($id)// true si > 0
 		{
 			$ref = mysqli_real_escape_string($this->link, $products->getRef());
-			$stock = mysqli_real_escape_string($this->link, $products->getStock());
-			$size = mysqli_real_escape_string($this->link, $products->getSize());
-			$price = mysqli_real_escape_string($this->link, $products->getPrice());
-			$tax = mysqli_real_escape_string($this->link, $products->getTax());
+			$stock = $products->getStock();
+			$size = $products->getSize();
+			$price = $products->getPrice();
+			$tax = $products->getTax();
 			$description = mysqli_real_escape_string($this->link, $products->getDescription());
 			$name = mysqli_real_escape_string($this->link, $products->getName());
-			$weight = mysqli_real_escape_string($this->link, $products->getWeight());
-			$id_sub_cat = mysqli_real_escape_string($this->link, $products->getSubCat());
-			$statut = mysqli_real_escape_string($this->link, $products->getStatut());
+			$weight = $products->getWeight();
+			$id_sub_cat = $products->getSubCat();
+			$statut = $products->getStatut();
 			$picture = mysqli_real_escape_string($this->link, $products->getPicture());
 
 			$request = "UPDATE products SET ref='".$ref."', stock='".$stock."', size='".$size."', price='".$price."', tax='".$tax."', description='".$description."', name='".$name."', weight='".$weight."', id_sub_cat='".$id_sub_cat."', status='".$status."', picture='".$picture."' WHERE id=".$id;

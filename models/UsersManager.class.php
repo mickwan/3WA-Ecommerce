@@ -76,9 +76,9 @@ class UsersManager
 			$firstname = mysqli_real_escape_string($this->link, $users->getFirstname());
 			$lastname = mysqli_real_escape_string($this->link, $users->getLastname());
 			$email = mysqli_real_escape_string($this->link, $users->getEmail());
-			$password = mysqli_real_escape_string($this->link, $users->getPasword());
-			$birth_date = mysqli_real_escape_string($this->link, $users->getBirthDate());
-			$phone = mysqli_real_escape_string($this->link, $users->getPhone());
+			$password = $users->getPasword();
+			$birth_date = $users->getBirthDate();
+			$phone = $users->getPhone();
 			$sex = mysqli_real_escape_string($this->link, $users->getSex());
 			$status = $user->getStatus;
 
