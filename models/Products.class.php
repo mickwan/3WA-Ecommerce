@@ -162,7 +162,8 @@ class Products
 	public function findCat(Products $product)
 	{
 		$categoryManager = new categoryManager($this->link);
-		
+		$cat = $categoryManager->findByProduct($this);
+		return $cat;
 	}
 
 	public function getFeedback(Products $product)
