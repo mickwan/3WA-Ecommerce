@@ -20,12 +20,20 @@ class UsersManager
 		$user = mysqli_fetch_object($res, "user", [$this->link]);
 		return $user
 	}
+	public function findByEmail($email)
+	{
+		$id = intval($id);
+		$request = "SELECT *
+					FROM users
+					WHERE email=".$email;
+		$res = mysqli_query($this->link, $request);
+		$user = mysqli_fetch_object($res, "user", [$this->link]);
+		return $user
+	}
 
 	//Création d'un user:
 	public function create($data)
 	{
-		if (!isset($_SESSION['id']))
-			throw new Exception("Missing parameter: users");
 		if (!isset($data['login']))
 			throw new Exception("Missing parameter: login");
 		if (!isset($data['firstname']))
