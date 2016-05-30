@@ -20,13 +20,9 @@ class CartManager
 	public function findByUser($id_user)
 	{
 		$id_user = intval($id_user);
-<<<<<<< HEAD
-		$request = "SELECT * FROM cart WHERE id_user=".$id_user;
-=======
 		$request = "SELECT * 
 					FROM cart 
 					WHERE id=".$id_user;
->>>>>>> 9bc0b576ba17f7bfc641a495305dd28212db99cd
 		$res = mysqli_fetch_object($res, "Cart", [$this->link]);
 		return $cart;
 	}
@@ -34,13 +30,9 @@ class CartManager
 	{
 		$list = [];
 		$status = mysqli_real_escape_string($this->link, $status);
-<<<<<<< HEAD
-		$request = "SELECT * FROM cart WHERE status=".$status;
-=======
 		$request = "SELECT * 
 					FROM cart 
 					WHERE id=".$status;
->>>>>>> 9bc0b576ba17f7bfc641a495305dd28212db99cd
 		$res = mysqli_query($this->link, $request);
 		while ($cart = mysqli_fetch_object($res, "Cart", [$this->link]))
 			$list[] = $cart;
