@@ -44,6 +44,8 @@ class UsersManager
 			throw new Exception("Missing parameter: email");
 		if (!isset($data['password']))
 			throw new Exception("Missing parameter: password");
+		if (!isset($data['confirmPassword']))
+			throw new Exception("Missing parameter: password");
 		if (!isset($data['birth_date']))
 			throw new Exception("Missing parameter: birth date");
 		if (!isset($data['phone']))
@@ -53,8 +55,26 @@ class UsersManager
 
 		$user = new Users($this->link);
 
-		$request ="INSERT INTO user (id, login, firstname, lastname, email, password, birth_date, phone, sex) 
-				   VALUES ('".$id."', '".$login."', '".$firstname."''".$lastname."', '".$email."', '".$password."''".$birth_date."', '".$phone."', '".$sex."')";
+		$user->setLogin($data['login']);
+		$user->setFirstName($data['firstname']);
+		$user->setLastName($data['lastname']);
+		$user->setEmail($data['email'], $data['confirmEmail']);
+		$user->setPassword($data['password'], $data['confirmPassword'])
+		$user->setBirthDate($data['birth_date']);
+		$user->setPhone($data['phone']);
+		$user->setSex($data['sex']);
+
+		$login = $user->getLogin();
+		$firstname = $user->getFirstname();
+		$lastname = $user->getLastname();
+		$email = $user->getEmail();
+		$password = $user->getPassword();
+		$birth_date = $user->getBirthDate();
+		$phone = $user->getPhone();
+		$sex = $user->getSex();
+
+		$request ="INSERT INTO user (login, firstname, lastname, email, password, birth_date, phone, sex) 
+				   VALUES ('".$login."', '".$firstname."''".$lastname."', '".$email."', '".$password."''".$birth_date."', '".$phone."', '".$sex."')";
 
 		if ($res)// Si la requete s'est bien passée
 		{

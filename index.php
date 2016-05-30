@@ -27,9 +27,20 @@
 			$page = $_GET['page'];
 	}
 
-	$access_traitement = array(["login" => "user", "logout" => "user", "register" => "user", "edit_contact" => "user"],["cart" => "cart", "cart_user" => "cart", "cart_admin" => "cart"], "feedback", "cat_admin", "product_admin");
+	$access_traitement = array(
+								"login" => "user", 
+								"logout" => "user", 
+								"register" => "user", 
+								"edit_contact" => "user",
+								"cart" => "cart", 
+								"cart_user" => "cart", 
+								"cart_admin" => "cart", 
+								"feedback" => "feedback", 
+								"cat_admin" => "cat_admin", 
+								"product_admin" => "product_admin"
+								);
 	
-	if (in_array($page, $access_traitement))
-		require('apps/treatments/traitement_'.$page.'.php');
+	if (array_key_exists($page, $access_traitement))
+		require('apps/treatments/traitement_'.$access_traitement[$page].'.php');
 	require 'apps/skel.php';
 ?>
