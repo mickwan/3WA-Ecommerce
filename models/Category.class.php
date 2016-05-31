@@ -52,7 +52,9 @@ class Category
 		$id_category = $category->getId();
 		if ($id_category)
 		{
-			$request = "SELECT * FROM sub_category WHERE id_category=".$id_category;
+			$request = "SELECT * 
+						FROM sub_category 
+						WHERE id_category=".$id_category;
 			$res = mysqli_query($this->link, $request);
 			while ($sub_category = mysqli_fetch_object($res, "SubCategory"))
 				$list[] = $sub_category;

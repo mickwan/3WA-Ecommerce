@@ -28,6 +28,9 @@
 		{
 			return $this->date;
 		}
+		public function getStatus()
+		{
+			return $this->status;		}
 
 		//SETTERS
 		public function setContent($content)
@@ -37,6 +40,13 @@
 			if (strlen($content) > 255)
 				throw new Exception("Le contenu de votre avis est trop long!");
 			$this->content = $content;
+		}
+		public function setStatus($status)
+		{
+			if ($status >= 0 || $status <= 2)
+				$this->status = $status;
+			else
+				throw new Exception("Mauvais Statut");
 		}
 	}
 ?>

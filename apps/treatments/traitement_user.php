@@ -1,31 +1,22 @@
 <?php
 	if (isset($_POST['action']))
 	{
-		if ($_POST['action'] == 'logout')
-		{
-			session_destroy();
-			header ('Location: index.php?page=home');
-			exit;
-		}
-
 		if ($_POST['action'] == 'login')
 		{
 			$email = $_POST['email'];
 			$password = $_POST['password'];
-			$usersManager = new UsersManager($link);
 			try 
 			{
+				$usersManager = new UsersManager($link);
 				if ($user = $usersManager->findByEmail($email))
 				{
-					if ($user->getStatus() == 0)
-					{					
+					if ($user->getStatus() == 0)				
 						throw new Exception("Inactive Account");
-					}
-					else if (password_verify($password, $user->getPassword()))
+					if (password_verify($password, $user->getPassword()))
 					{
 						$_SESSION['id_user'] = $user->getID();
 						$_SESSION['admin'] = $user->getAdmin();
-						header ('Location: index.php?page=home');
+						header ('Location: index.php?page=profile');
 						exit; 
 					}
 					else
@@ -39,8 +30,7 @@
 				$error = $exception->getMessage();
 			}
 		}
-
-		if ($_POST['action'] == 'register')
+		else if ($_POST['action'] == 'register')
 		{
 			$usersManager = new UsersManager($link);
 			try
@@ -54,8 +44,7 @@
 				$error = $exception->getMessage();
 			}
 		}
-
-		if ($_POST['action'] == 'edit')
+		else if ($_POST['action'] == 'edit')
 		{
 			try
 			{
@@ -79,8 +68,24 @@
 				$error = $exception->getMessage();
 			}
 		}
-
-		if ($_POST['action'] = 'delete') // Le compte User n'est jamais supprimé mais plutôt rendu inactif
+		else if ($_POST['action'] == 'pass_change')
+		{
+			try
+			{
+				$usersManager = new UsersManager($link);
+				$user = $usersManager->findById($_SESSION['id_user']);
+				$user->setPassword($_POST['password'], $_POST['confirmPassword']);
+				var_dump($user);
+				$usersManager->update($user);
+				header('Location: index.php?page=profile');
+				exit;
+			}
+			catch (Exception $exception)
+			{
+				$error = $exception->getMessage();
+			}
+		}
+		else if ($_POST['action'] == 'delete') // Le compte User n'est jamais supprimé mais plutôt rendu inactif
 		{
 			$usersManager = new UsersManager($link);
 			$user = $usersManager->findById($_SESSION['id_user']);

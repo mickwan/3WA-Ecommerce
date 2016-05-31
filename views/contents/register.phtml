@@ -1,61 +1,74 @@
-<h1>Register</h1>
+<div class="register-container">		
+	<div class="titre-register text-center">
+		<span class="fa-stack fa-4x">
+			<i class="fa fa-user-plus fa-stack-1x icon"></i>
+		</span>
+	
+		<h1>Register</h1>
+		<span class="separation-noir"> </span>
+		<span class="separation-vert"> </span>
+		<div class="error">
+			<?=$error?>
+		</div>
+	</div>
+	
+	<form class="form-style" method="POST">
 
-<div>
-	<?=$error?>
+			<div class="form-group clearfix">
+				<label for="inputPseudo">Login</label>
+				<input type="text" name="login" autofocus class="input" id="inputPseudo" placeholder="Specify a login">
+			</div>
+
+			<div class="form-group clearfix">
+				<label for="firstname">Firstname</label>
+				<input type="firstname" name="firstname" class="input" id="firstname" placeholder="Your firstname">
+			</div>
+
+			<div class="form-group clearfix">
+				<label for="lastname">Lastname</label>
+				<input type="lastname" name="lastname" class="input" id="lastname" placeholder="Your lastname">
+			</div>
+
+			<div class="form-group clearfix">
+				<label for="inputEmail">Email address</label>
+				<input type="email" name="email" autofocus class="input" id="inputEmail" placeholder="Your e-mail">
+			</div>
+
+			<div class="form-group clearfix">
+				<label for="inputConfirmEmail">Confirm Email</label>
+				<input type="email" name="confirmEmail" autofocus class="input" id="inputConfirmEmail" placeholder="Confirm e-mail">
+			</div>
+
+			<div class="form-group clearfix">
+				<label for="inputPassword">Password</label>
+				<input type="password" name="password" class="input" id="inputPassword" placeholder="Your password">
+			</div>
+
+			<div class="form-group clearfix">
+				<label for="inputConfirmPassword">Confirm Password</label>
+				<input type="password" name="confirmPassword" class="input" id="inputConfirmPassword" placeholder="Confirm Password">
+			</div>
+
+			<div class="form-group clearfix">
+				<label for="birthDate">Birth Date</label>
+				<input type="date" name="birth_date" id="birthDate" class="input" placeholder="Enter your birth date">
+			</div>
+
+			<div class="form-group clearfix">
+				<label for="phone">Phone</label>
+				<input type="phone" name="phone" class="input" id="phone" placeholder="Specify a phone">
+			</div>
+
+			<div class="form-group clearfix">
+				<input type="radio" name="sex" value="M" id="men" checked /> <label class="radio" for="men">Men</label>
+			</div>
+			<div class="form-group clearfix">
+				<input type="radio" name="sex" value="W" id="women" /><label class="radio" for="women"> Women</label>
+			</div>
+
+			<input type="hidden" name="action" value="register" />
+
+			<div class="text-center"><input class="valid-button" type="submit" value="Valider"></div>
+
+		</form>
 </div>
-
-<form method="POST">
-
-	<div>
-		<label for="login">Login</label>
-		<input type="login" name="login" id="login" placeholder="specify a login">
-	</div>
-
-	<div>
-		<label for="firstname">Firstname</label>
-		<input type="firstname" name="firstname" id="firstname" placeholder="your firstname">
-	</div>
-
-	<div>
-		<label for="lastname">Lastname</label>
-		<input type="lastname" name="lastname" id="lastname" placeholder="your lastname">
-	</div>
-
-	<div>
-		<label for="email">Email address</label>
-		<input type="email" name="email" id="email" placeholder="your email">
-	</div>
-
-	<div>
-		<label for="email">Confirm Email</label>
-		<input type="email" name="confirmEmail" id="confirmEmail">
-	</div>
-
-	<div>
-		<label for="password">Password</label>
-		<input type="password" name="password" id="password" placeholder="specify a password">
-	</div>
-
-	<div>
-		<label for="password">Confirm Password</label>
-		<input type="password" name="confirmPassword" id="confirmPassword">
-	</div>
-
-	<div>
-		<label for="birth_date">Birth Date</label>
-		<input type="date" name="birth_date" id="birth_date" placeholder="enter your birth_date">
-	</div>
-
-	<div>
-		<label for="phone">Phone</label>
-		<input type="phone" name="phone" id="phone" placeholder="specify a phone">
-	</div>
-
-	<div>
-		<input type="radio" name="sex" value="M" id="men" checked /> <label for="men">Men</label>
-		<input type="radio" name="sex" value="W" id="women" /> <label for="women">Women</label>
-	</div>
-	<input type="hidden" name="action" value="register" />
-	<input type="submit" />
-
-</form>

@@ -86,9 +86,10 @@
 			$id = $feedback->getId();
 			if ($id)
 			{
-				$content = mysqli_real_escape_string($feedback->getContent());
+				$content = mysqli_real_escape_string($this->link, $feedback->getContent());
+				$status = $feedback->getStatus();
 				$request = "UPDATE feedback 
-							SET content='".$content."' 
+							SET content='".$content."', status=".$status." 
 							WHERE id=".$id;
 				$res = mysqli_query($this->link, $request);
 				if ($res)
@@ -105,7 +106,7 @@
 			{
 				$request = "DELETE FROM feedback 
 							WHERE id=".$id;
-				$res = mysqli_query($this->lin, $request);
+				$res = mysqli_query($this->link, $request);
 				if ($res)
 					return $feedback;
 				else
