@@ -1,3 +1,3 @@
 <?php
-	require 'views/header_guest.phtml';
+	require 'views/header_admin.phtml';
 ?> 
