@@ -1,0 +1,24 @@
+<h1>Détail produit</h1>
+
+<div>
+
+	<h2><?=$product->getName()?></h2>
+
+	<div><?=$product->getPicture()?></div>
+	<div>
+		<div>Size</div>
+		<div>Quantity</div>
+		<button type="button" action="addProduct">ADD TO CART</button>
+	</div>
+	<div>
+		<?=$product->getPrice()?>
+	</div>
+	<div>
+		<?=$product->getDescription()?>
+	</div>
+
+</div>
+
+<?php
+	require ("apps/contents/display_feedback.php");
+?>

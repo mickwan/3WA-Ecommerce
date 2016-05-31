@@ -13,7 +13,7 @@
 			$id = intval($id);
 			$request = "SELECT * FROM feedback WHERE id=".$id;
 			$res = mysqli_query($this->link, $request);
-			$feedback = mysqli_fetch_object($res, "Feedback"))
+			$feedback = mysqli_fetch_object($res, "Feedback");
 			return $feedback;
 		}
 		public function findByAuthor($id_author)
