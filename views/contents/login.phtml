@@ -1,16 +1,19 @@
 <h1>Login</h1>
-<form method = "POST" class = "form-logreg">
+<form method="POST">
+	<div>
+		<?=$error?>
+	</div>
 
-	<div class = "form-log">
+	<div>
 		<label for="email">Email address</label>
 		<input type="email" name="email" id="email" placeholder="your email">
 	</div>
 
-	<div class = "form-log">
+	<div>
 		<label for="password">Password</label>
 		<input type="password" name="password" id="password" placeholder="your password">
 	</div>
-	<input type="hidden" name="action" value="login">
-	<button type="submit" class="btn-logreg">Submit</button>
+	<input type="hidden" name="action" value="login" />
+	<input type="submit" />
 
 </form>

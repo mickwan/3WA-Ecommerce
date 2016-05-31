@@ -175,7 +175,7 @@ class Users
 	}
 
 	//Quand l'utilisateur n'est plus actif sur le site:
-	public function setInactive(Users $user)
+	public function setInactive()
 	{
 		$this->status = 0;
 		return $this->status;

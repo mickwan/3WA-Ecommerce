@@ -2,9 +2,9 @@
 	if (isset($_SESSION['id_user']))
 	{
 		if ($_SESSION['admin'] == 0)
-			require 'apps/contents/profile_user.phtml';
+			require 'views/contents/profile_user.phtml';
 		else if ($_SESSION['admin'] == 1)
-			require 'apps/contents/profile_admin.phtml';
+			require 'views/contents/profile_admin.phtml';
 	}
 	else 
 	{

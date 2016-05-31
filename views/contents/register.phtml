@@ -1,59 +1,61 @@
 <h1>Register</h1>
-<?php
-	var_dump($error);
-?>
-<form method = "POST" class = "form-logreg">
 
-	<div class = "form-reg">
+<div>
+	<?=$error?>
+</div>
+
+<form method="POST">
+
+	<div>
 		<label for="login">Login</label>
 		<input type="login" name="login" id="login" placeholder="specify a login">
 	</div>
 
-	<div class = "form-reg">
+	<div>
 		<label for="firstname">Firstname</label>
 		<input type="firstname" name="firstname" id="firstname" placeholder="your firstname">
 	</div>
 
-	<div class = "form-reg">
+	<div>
 		<label for="lastname">Lastname</label>
 		<input type="lastname" name="lastname" id="lastname" placeholder="your lastname">
 	</div>
 
-	<div class = "form-reg">
+	<div>
 		<label for="email">Email address</label>
 		<input type="email" name="email" id="email" placeholder="your email">
 	</div>
 
-	<div class = "form-reg">
+	<div>
 		<label for="email">Confirm Email</label>
 		<input type="email" name="confirmEmail" id="confirmEmail">
 	</div>
 
-	<div class = "form-reg">
+	<div>
 		<label for="password">Password</label>
 		<input type="password" name="password" id="password" placeholder="specify a password">
 	</div>
 
-	<div class = "form-reg">
+	<div>
 		<label for="password">Confirm Password</label>
 		<input type="password" name="confirmPassword" id="confirmPassword">
 	</div>
 
-	<div class = "form-reg">
+	<div>
 		<label for="birth_date">Birth Date</label>
 		<input type="date" name="birth_date" id="birth_date" placeholder="enter your birth_date">
 	</div>
 
-	<div class = "form-reg">
+	<div>
 		<label for="phone">Phone</label>
 		<input type="phone" name="phone" id="phone" placeholder="specify a phone">
 	</div>
 
-	<div class = "form-reg">
+	<div>
 		<input type="radio" name="sex" value="M" id="men" checked /> <label for="men">Men</label>
 		<input type="radio" name="sex" value="W" id="women" /> <label for="women">Women</label>
 	</div>
-	<input type="hidden" name="action" value="register">
-	<button type="submit" class="btn-logreg">Submit</button>
+	<input type="hidden" name="action" value="register" />
+	<input type="submit" />
 
 </form>

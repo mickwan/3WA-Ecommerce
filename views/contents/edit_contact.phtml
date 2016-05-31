@@ -1,0 +1,43 @@
+<h1>Edit My Profile</h1>
+
+<form method="POST">
+	<h2>E-mail</h2>
+	<div>
+		<label for="email">E-mail</label>
+		<input type="text" name="email" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
+	</div>
+	<div>
+		<label for="confirmEmail">Confirm Your E-mail</label>
+		<input type="text" name="confirmEmail" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
+	</div>
+	
+	<h2>General</h2>
+	<div>
+		<label for="login">Login</label>
+		<input type="text" name="login" placeholder="<?=$user->getLogin()?>" value="<?=$user->getLogin()?>">
+	</div>
+	<div>
+		<label for="firstname">First Name</label>
+		<input type="text" name="firstname" placeholder="<?=$user->getFirstName()?>" value="<?=$user->getFirstName()?>">
+	</div>
+	<div>
+		<label for="lastname">Last Name</label>
+		<input type="text" name="lastname" placeholder="<?=$user->getLastName()?>" value="<?=$user->getLastName()?>">
+	</div>
+	<div>
+		<label for="birth_date">Birth Date</label>
+		<input type="date" name="birth_date" placeholder="<?=$user->getBirthDate()?>" value="<?=$user->getBirthDate()?>">
+	</div>
+	<div>
+		<label for="phone">Phone</label>
+		<input type="text" name="phone" placeholder="<?=$user->getPhone()?>" value="<?=$user->getPhone()?>">
+	</div>
+	<div>
+		<p>Sexe : </p>
+		<input type="radio" name="sex" value="M" id="men" <?=$Mcheck?>/> <label for="men">Men</label>
+		<input type="radio" name="sex" value="W" id="women" <?=$Fcheck?>/> <label for="women">Women</label>
+	</div>
+
+	<input type="hidden" name="action" value="edit" />
+	<input type="submit" />
+</form>
