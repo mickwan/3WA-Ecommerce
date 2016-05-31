@@ -2,18 +2,19 @@
 
 class SubCategory
 {
+
 	//Déclaration privées:
 	private $id;
 	private $id_category;
 	private $name;
 	private $description;
-
 	private $link;
-
+	
 	public function __construct($link)
 	{
 		$this->link = $link;
 	}
+
 	//Getter:
 	public function getId()
 	{
@@ -57,7 +58,7 @@ class SubCategory
 					FROM products 
 					WHERE id_sub_cat =".$id_sub_category;
 		$res = mysqli_query($this->link, $request);
-		while ($product = mysqli_fetch_object($res, "Products", [$this->link))
+		while ($product = mysqli_fetch_object($res, "Products", [$this->link]))
 			$list[] = $product;
 		return $list; 
 	}
