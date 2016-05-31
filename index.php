@@ -17,7 +17,7 @@
 		require ("models/".$className.".class.php");
 	}
 
-	$access = array('logout', 'login', 'register', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'cat_admin', 'product_admin');
+	$access = array('logout', 'login', 'register', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'display_cat', 'product_admin', 'add_edit_feedback');
 	$page = 'home'; /*page courante : home par default*/ 
 	$error = '';
 
@@ -34,7 +34,8 @@
 								"edit_contact" => "user",
 								"current_cart" => "cart", 
 								"cart" => "cart",  
-								"feedback" => "feedback", 
+								"feedback" => "feedback",
+								"add_edit_feedback" => "feedback", 
 								"cat_admin" => "cat_admin", 
 								"product_admin" => "product_admin"
 								);
