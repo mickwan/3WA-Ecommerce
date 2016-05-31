@@ -9,7 +9,7 @@ class SubCategory
 	private $name;
 	private $description;
 	private $link;
-	
+
 	public function __construct($link)
 	{
 		$this->link = $link;

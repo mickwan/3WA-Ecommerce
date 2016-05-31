@@ -1,6 +1,6 @@
 <?php
 	$id = 1;
-	$subCategoryManager = new SubCategoryManager($link);
-	$sub_cat = $subCategoryManager->findByCategory($id);
+	$SubCategoryManager = new SubCategoryManager($link);
+	$sub_cat = $SubCategoryManager->findByCategory($id);
 require('views/contents/shop.phtml');
 ?>
