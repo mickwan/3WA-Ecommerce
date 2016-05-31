@@ -1,13 +1,6 @@
 <?php
 	if (isset($_POST['action']))
 	{
-		if ($_POST['action'] == 'logout')
-		{
-			session_destroy();
-			header ('Location: index.php?page=home');
-			exit;
-		}
-
 		if ($_POST['action'] == 'login')
 		{
 			$email = $_POST['email'];
@@ -17,15 +10,13 @@
 			{
 				if ($user = $usersManager->findByEmail($email))
 				{
-					if ($user->getStatus() == 0)
-					{					
+					if ($user->getStatus() == 0)				
 						throw new Exception("Inactive Account");
-					}
-					else if (password_verify($password, $user->getPassword()))
+					if (password_verify($password, $user->getPassword()))
 					{
 						$_SESSION['id_user'] = $user->getID();
 						$_SESSION['admin'] = $user->getAdmin();
-						header ('Location: index.php?page=home');
+						header ('Location: index.php?page=profile');
 						exit; 
 					}
 					else
@@ -80,7 +71,7 @@
 			}
 		}
 
-		if ($_POST['action'] = 'delete') // Le compte User n'est jamais supprimé mais plutôt rendu inactif
+		if ($_POST['action'] == 'delete') // Le compte User n'est jamais supprimé mais plutôt rendu inactif
 		{
 			$usersManager = new UsersManager($link);
 			$user = $usersManager->findById($_SESSION['id_user']);
