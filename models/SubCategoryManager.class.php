@@ -27,7 +27,7 @@ class SubCategoryManager
 		$category = intval($id_category);
 		$request = "SELECT * 
 					FROM sub_category 
-					WHERE id=".$id;
+					WHERE id_category=".$id_category;
 		$res = mysqli_query($this->link, $request);
 
 		while($sub_category = mysqli_fetch_object($res, "Subcategory", [$this->link]))
@@ -72,7 +72,6 @@ class SubCategoryManager
 		}
 		else
 			throw new Exception("Internal server error");
-		}
 	}
 
 	//Modification d'une sub_category:
@@ -104,7 +103,7 @@ class SubCategoryManager
 		if ($id)
 		{
 			$request = "DELETE FROM sub_category 
-						WHERE id=".$id "'LIMIT 1'";
+						WHERE id=".$id.'LIMIT 1';
 			$res = mysqli_query($this->link, $request);
 
 			if ($res)
