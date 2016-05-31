@@ -101,14 +101,14 @@ class UsersManager
 
 		if ($id)
 		{
-			$login = mysqli_real_escape_string($this->link, $users->getLogin());
-			$firstname = mysqli_real_escape_string($this->link, $users->getFirstname());
-			$lastname = mysqli_real_escape_string($this->link, $users->getLastname());
-			$email = mysqli_real_escape_string($this->link, $users->getEmail());
-			$password = $users->getPasword();
-			$birth_date = $users->getBirthDate();
-			$phone = $users->getPhone();
-			$sex = mysqli_real_escape_string($this->link, $users->getSex());
+			$login = mysqli_real_escape_string($this->link, $user->getLogin());
+			$firstname = mysqli_real_escape_string($this->link, $user->getFirstname());
+			$lastname = mysqli_real_escape_string($this->link, $user->getLastname());
+			$email = mysqli_real_escape_string($this->link, $user->getEmail());
+			$password = $user->getPassword();
+			$birth_date = $user->getBirthDate();
+			$phone = $user->getPhone();
+			$sex = mysqli_real_escape_string($this->link, $user->getSex());
 			$status = $user->getStatus;
 
 			$request = "UPDATE users 
