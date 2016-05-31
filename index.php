@@ -20,6 +20,7 @@
 	$access = array('logout', 'login', 'register', 'change_password', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'display_cat', 'product_admin', 'add_edit_feedback');
 	$page = 'home'; /*page courante : home par default*/ 
 	$error = '';
+	$success = '';
 
 	if (isset($_GET['page']))
 	{
