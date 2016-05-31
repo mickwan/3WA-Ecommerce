@@ -1,5 +1,8 @@
 <h1>Login</h1>
-<form method = "POST">
+<form method="POST">
+	<div>
+		<?=$error?>
+	</div>
 
 	<div>
 		<label for="email">Email address</label>
@@ -10,7 +13,7 @@
 		<label for="password">Password</label>
 		<input type="password" name="password" id="password" placeholder="your password">
 	</div>
-	<input type="hidden" name="action" value="login">
-	<button type="submit" class="btn-logreg">Submit</button>
+	<input type="hidden" name="action" value="login" />
+	<input type="submit" />
 
 </form>

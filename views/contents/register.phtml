@@ -1,8 +1,10 @@
 <h1>Register</h1>
-<?php
-	var_dump($error);
-?>
-<form method = "POST">
+
+<div>
+	<?=$error?>
+</div>
+
+<form method="POST">
 
 	<div>
 		<label for="login">Login</label>
@@ -53,7 +55,7 @@
 		<input type="radio" name="sex" value="M" id="men" checked /> <label for="men">Men</label>
 		<input type="radio" name="sex" value="W" id="women" /> <label for="women">Women</label>
 	</div>
-	<input type="hidden" name="action" value="register">
-	<button type="submit">Submit</button>
+	<input type="hidden" name="action" value="register" />
+	<input type="submit" />
 
 </form>
