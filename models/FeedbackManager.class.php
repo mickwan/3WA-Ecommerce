@@ -106,7 +106,7 @@
 			{
 				$request = "DELETE FROM feedback 
 							WHERE id=".$id;
-				$res = mysqli_query($this->lin, $request);
+				$res = mysqli_query($this->link, $request);
 				if ($res)
 					return $feedback;
 				else

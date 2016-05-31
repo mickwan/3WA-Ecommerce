@@ -1,11 +1,11 @@
 <?php
-	if (isset($_SESSION['id_user']))
+	try
 	{
-		if ($_SESSION['admin'] == 1)
+		if (isset($_SESSION['id_user']))
 		{
 			if (isset($_GET['action']))
 			{
-				try
+				if ($_SESSION['admin'] == 1)
 				{
 					$id = intval($_GET['id']);
 					$feedbackManager = new FeedbackManager($link);
@@ -25,20 +25,32 @@
 						exit;
 					}
 				}
-				catch (Exception $exception)
+				else if ($_SESSION['admin'] == 0)
 				{
-					$error = $exception->getMessage();
-				} 
+					$id = intval($_GET['id']);
+					$feedbackManager = new FeedbackManager($link);
+					$feedback = $feedbackManager->findById($id);
+					if ($_GET['action'] == 'edit')
+					{
+
+					}
+					else if ($_GET['action'] == 'delete')
+					{
+						$feedbackManager->remove($feedback);
+						header('Location: index.php?page=feedback');
+						exit;
+					} 
+				}
 			}
 		}
 		else
 		{
-			//Les changements du user
+			header ('Location: index.php?page=login');
+			exit;
 		}
 	}
-	else
+	catch (Exception $exception)
 	{
-		header ('Location: index.php?page=login');
-		exit;
-	}
+		$error = $exception->getMessage();
+	} 
 ?>
