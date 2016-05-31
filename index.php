@@ -14,6 +14,7 @@
 	//Autoload des classes 
 	function __autoload($className)
 	{
+		echo $className;
 		require ("models/".$className.".class.php");
 	}
 
