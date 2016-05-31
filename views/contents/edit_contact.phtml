@@ -1,6 +1,16 @@
 <h1>Edit My Profile</h1>
 
 <form method="POST">
+	<h2>E-mail</h2>
+	<div>
+		<label for="email">E-mail</label>
+		<input type="text" name="email" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
+	</div>
+	<div>
+		<label for="confirmEmail">Confirm Your E-mail</label>
+		<input type="text" name="confirmEmail" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
+	</div>
+	
 	<h2>General</h2>
 	<div>
 		<label for="login">Login</label>
@@ -26,26 +36,6 @@
 		<p>Sexe : </p>
 		<input type="radio" name="sex" value="M" id="men" <?=$Mcheck?>/> <label for="men">Men</label>
 		<input type="radio" name="sex" value="W" id="women" <?=$Fcheck?>/> <label for="women">Women</label>
-	</div>
-
-	<h2>E-mail</h2>
-	<div>
-		<label for="email">E-mail</label>
-		<input type="text" name="email" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
-	</div>
-	<div>
-		<label for="confirmEmail">Confirm Your E-mail</label>
-		<input type="text" name="confirmEmail" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
-	</div>
-
-	<h2>Password</h2>
-	<div>
-		<label for="password">New Password</label>
-		<input type="password" name="password" placeholder="<?=$user->getPassword()?>" value="<?=$user->getPassword()?>">
-	</div>
-	<div>
-		<label for="confirmPassword">Confirm Your Password</label>
-		<input type="password" name="confirmPassword" placeholder="<?=$user->getPassword()?>" value="<?=$user->getPassword()?>">
 	</div>
 
 	<input type="hidden" name="action" value="edit" />
