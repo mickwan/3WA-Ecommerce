@@ -109,7 +109,7 @@ class UsersManager
 			$birth_date = $user->getBirthDate();
 			$phone = $user->getPhone();
 			$sex = mysqli_real_escape_string($this->link, $user->getSex());
-			$status = $user->getStatus;
+			$status = $user->getStatus();
 
 			$request = "UPDATE users 
 						SET login = '".$login."', firstname = '".$firstname."', lastname = '".$lastname."', email = '".$email."', password = '".$password."', birth_date = '".$birth_date."', phone = '".$phone."', sex = '".$sex."', status = '".$status."'";
