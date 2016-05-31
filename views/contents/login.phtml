@@ -1,19 +1,33 @@
-<h1>Login</h1>
-<form method="POST">
-	<div>
-		<?=$error?>
+<div class="login-container">
+	<div class="titre-login text-center">
+		<span class="fa-stack fa-4x">
+			<i class="fa fa-plane fa-stack-1x icon"></i>
+		</span>
+		<h1>Login</h1>
+
+		<span class="separation-noir"> </span>
+		<span class="separation-vert"> </span>
+		
+		<div class="error">
+				<?=$error?>
+		</div>
 	</div>
 
-	<div>
-		<label for="email">Email address</label>
-		<input type="email" name="email" id="email" placeholder="your email">
-	</div>
+	<form class="form-style clearfix" method="POST">
+		<div class="form-group clearfix">
+			<label for="email">Email address</label>
+			<input class="input" type="email" name="email" id="email" placeholder="your email">
+		</div>
 
-	<div>
-		<label for="password">Password</label>
-		<input type="password" name="password" id="password" placeholder="your password">
-	</div>
-	<input type="hidden" name="action" value="login" />
-	<input type="submit" />
+		<div class="form-group clearfix">
+			<label for="password">Password</label>
+			<input class="input" type="password" name="password" id="password" placeholder="your password">
+		</div>
 
-</form>
+		<input type="hidden" name="action" value="login" />
+
+		<div class="text-center">
+			<input class="valid-button" type="submit" value="Valider" />
+		</div>
+	</form>
+</div>
