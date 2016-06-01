@@ -34,6 +34,11 @@ class SubCategory
 	}
 
 	//Setter:
+	public function setCategory($id_category)
+	{
+		$id_category = intval($id_category);
+		$this->id_category = $id_category;
+	}
 	public function setName($name)
 	{
 		if(strlen($name)<2)

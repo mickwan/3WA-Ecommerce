@@ -2,8 +2,8 @@
 	$subCatManager = new SubCategoryManager($link);
 	$subCategories = $subCatManager->findByCategory($categories[$i]->getId());
 	$j = 0;
-	$max = count($subCategories);
-	while ($j < $max)
+	$maxj = count($subCategories);
+	while ($j < $maxj)
 	{
 		require 'views/contents/display_sub_cat.phtml';
 		$j++;

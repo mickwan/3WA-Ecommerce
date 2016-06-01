@@ -48,24 +48,26 @@ class SubCategoryManager
 	//Création d'une sub_category:
 	public function create($data)
 	{
-		if (!isset($_SESSION['id_category']))
+		if (!isset($data['id_category']))
 			throw new Exception("Missing paramater: id_category");
-		$sub_category = new SubCategory($this->link);
-		
 		if (!isset($data['name']))
 			throw new Exception("Missing paramater: name");
 		if (!isset($data['description']))
 			throw new Exception("Missing paramater: description");
 
+		$sub_category = new SubCategory($this->link);
+		$sub_category->setCategory($data['id_category']);
 		$sub_category->setName($data['name']);
 		$sub_category->setDescription($data['description']);
 
-		$id_category = $_SESSION['id_category'];
-		$name = $article->getName();
-		$description = $article->getDescription();
+		$id_category = $sub_category->getCategory();
+		$name = $sub_category->getName();
+		$description = $sub_category->getDescription();
 
 		$request = "INSERT INTO sub_category (id_category, name, description)
 					VALUES ('".$id_category."', '".$name."', '".$description."')";
+
+		$res = mysqli_query($this->link, $request);
 
 		if ($res)// Si la requete s'est bien passée
 		{
@@ -92,9 +94,10 @@ class SubCategoryManager
 		{
 			$name = mysqli_real_escape_string($this->link, $sub_category->getName());
 			$description = mysqli_real_escape_string($this->link, $sub_category->getDescription());
+			$id_category = $sub_category->getCategory();
 			$request = "UPDATE sub_category 
-						SET title='".$name."', content='".$description."' WHERE id=".$id;
-
+						SET id_category=".$id_category.", name='".$name."', description='".$description."' WHERE id=".$id;
+			var_dump($request);
 			$res = mysqli_query($this->link, $request);
 
 			if ($res)
@@ -105,14 +108,14 @@ class SubCategoryManager
 	}
 
 	//Supression d'une sub_category:
-	public function remove(SubCategory $sub_category)
+	public function delete(SubCategory $sub_category)
 	{
 		$id = $sub_category->getId();
 
 		if ($id)
 		{
 			$request = "DELETE FROM sub_category 
-						WHERE id=".$id.'LIMIT 1';
+						WHERE id=".$id;
 			$res = mysqli_query($this->link, $request);
 
 			if ($res)
