@@ -11,6 +11,16 @@ class SubCategoryManager
 	}
 
 	//FindBy:
+	public function findAll()
+	{
+		$list = [];
+		$request = "SELECT * 
+					FROM sub_category";
+		$res = mysqli_query($this->link, $request);
+		while ($subCategory = mysqli_fetch_object($res, "SubCategory", [$this->link]))
+			$list[] = $subCategory;
+		return $list;
+	}
 	public function findById($id)
 	{
 		$id = intval($id);

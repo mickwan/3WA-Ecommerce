@@ -1,6 +1,12 @@
 <?php
 	try
 	{
+		if ($_GET['page'] == 'logout')
+		{
+			session_destroy();
+			header ('Location: index.php?page=home');
+			exit;
+		}
 		if (isset($_POST['action']))
 		{
 			if ($_POST['action'] == 'login')
