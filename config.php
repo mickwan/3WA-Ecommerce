@@ -1,6 +1,6 @@
 <?php
-	$localhost = 'localhost:8889';
+	$localhost = 'localhost';
 	$login = 'root';
-	$pass = 'root';
+	$pass = 'troiswa';
 	$database = 'campshop';
 ?>
