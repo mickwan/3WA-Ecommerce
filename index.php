@@ -17,7 +17,7 @@
 			require ("models/".$className.".class.php");
 	}
 
-	$access = array('logout', 'login', 'register', 'change_password', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'display_cat', 'product_admin', 'add_edit_feedback');
+	$access = array('logout', 'login', 'register', 'change_password', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'cat_admin', 'product_admin', 'add_edit_feedback');
 	$page = 'home'; /*page courante : home par default*/ 
 	$error = '';
 	$success = '';
@@ -38,8 +38,8 @@
 								"cart" => "cart",  
 								"feedback" => "feedback",
 								"add_edit_feedback" => "feedback", 
-								"cat_admin" => "cat_admin", 
-								"product_admin" => "product_admin"
+								"cat_admin" => "cat", 
+								"product_admin" => "product"
 								);
 	
 	if (array_key_exists($page, $access_traitement))
