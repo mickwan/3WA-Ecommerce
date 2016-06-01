@@ -1,6 +1,14 @@
 <?php
 	$id = 1;
-	$SubCategoryManager = new SubCategoryManager($link);
-	$sub_cat = $SubCategoryManager->findByCategory($id);
-require('views/contents/shop.phtml');
+	$SubCategory = new SubCategoryManager($link);
+	$sub_cat = $SubCategoryManager->findById($id);
+
+	$i = 0;
+	$count = count($sub_cat); 
+		while ($i < $count)
+		{
+			$test = $sub_cat[$i];
+			require('views/contents/shop.phtml');
+			$i++;
+		}
 ?>
