@@ -4,6 +4,4 @@
 	$pass = 'root';
 
 	$database = 'slippy_shop';
-
-	$database = 'campshop';
 ?>
