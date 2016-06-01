@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 30 Mai 2016 à 15:59
+-- Généré le: Mer 01 Juin 2016 à 10:27
 -- Version du serveur: 5.5.47-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -141,9 +141,9 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 INSERT INTO `products` (`id`, `ref`, `stock`, `size`, `price`, `tax`, `description`, `name`, `weight`, `id_sub_cat`, `status`, `picture`) VALUES
-(1, '00001', 5, '1.5', 65.99, 19.6, 'GRAND SAC À DOS HAUT ROULÉ\r\nBoucle fermeture latérale, bretelles matelassées, poche avant zip, 2 poches plaquées latérales\r', 'swamis', 1.5, 1, 1, 'public/images/products/accessories/bags/swamis.png'),
-(2, '00002', 5, '1.5', 65.99, 19.6, 'Signature striped fabric liner\r\nPadded and fleece lined 15" laptop sleeve\r\nMagnetic strap closures with metal pin clips\r\nMa', 'little america', 1.5, 1, 1, 'public/images/products/accessories/bags/little_america_black.jpeg'),
-(3, '00003', 5, '1.5', 65.99, 19.6, 'Signature striped fabric liner\r\nFully padded and fleece lined 15" laptop sleeve pocket\r\nMain compartment cinch top closure\r', 'little america', 1.5, 1, 1, 'public/images/products/accessories/bags/little_america_beige.jpeg'),
+(1, '00001', 5, '0', 65.99, 19.6, 'GRAND SAC À DOS HAUT ROULÉ\r\nBoucle fermeture latérale, bretelles matelassées, poche avant zip, 2 poches plaquées latérales\r', 'swamis', 1.5, 1, 1, 'public/images/products/accessories/bags/swamis.png'),
+(2, '00002', 5, '0', 65.99, 19.6, 'Signature striped fabric liner\r\nPadded and fleece lined 15" laptop sleeve\r\nMagnetic strap closures with metal pin clips\r\nMa', 'little america', 1.5, 1, 1, 'public/images/products/accessories/bags/little_america_black.jpeg'),
+(3, '00003', 5, '0', 65.99, 19.6, 'Signature striped fabric liner\r\nFully padded and fleece lined 15" laptop sleeve pocket\r\nMain compartment cinch top closure\r', 'little america', 1.5, 1, 1, 'public/images/products/accessories/bags/little_america_beige.jpeg'),
 (4, '00004', 5, 'M', 25.99, 19.6, 'BONNET EN ACRYLIQUE\r\nbonnet en grosses mailles confectionné à la main. Fil torsadé aux couleurs contrastées. Détail d’étiqu', 'tête brûlée', 0.1, 5, 1, 'public/images/products/accessories/caps&hats/tet_brulee_black.jpg'),
 (5, '00005', 5, 'M', 25.99, 19.6, 'BONNET EN ACRYLIQUE\r\nbonnet en grosses mailles confectionné à la main. Fil torsadé aux couleurs contrastées. Détail d’étiqu', 'tête brûlée', 0.1, 5, 1, 'public/images/products/accessories/caps&hats/tete_brulee.jpg');
 
@@ -203,7 +203,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `admin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0:user / 1:admin',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0:inactif / 1:actif',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `login`, `firstname`, `lastname`, `email`, `password`, `register_date`, `birth_date`, `phone`, `sex`, `admin`, `status`) VALUES
+(1, 'mickwan', 'mickael', 'rinner', 'mickael.rinner@hotmail.fr', '$2y$08$LsOaMJxvH3yojIwoSDvFw.iMWpz7yz6e8SyEUvMhQaPemy8wy2FBS', '2016-06-01 07:57:34', '1990-11-29', '0688330599', 'M', 0, 1);
 
 --
 -- Contraintes pour les tables exportées

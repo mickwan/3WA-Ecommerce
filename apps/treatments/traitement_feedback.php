@@ -3,8 +3,10 @@
 	{
 		if (isset($_SESSION['id_user']))
 		{
-			if (isset($_GET['action']))
+			if (isset($_GET['action']) || isset($_POST['action']))
 			{
+				if ($_GET['action'] == 'add' && $_SESSION['admin'] == 1)
+					header ('Location: index.php?page=profile');
 				if ($_SESSION['admin'] == 1)
 				{
 					$id = intval($_GET['id']);
@@ -28,7 +30,6 @@
 				else if ($_SESSION['admin'] == 0)
 				{
 					$feedbackManager = new FeedbackManager($link);
-			
 					if (isset($_POST['action']) && $_POST['action'] == 'add')
 					{
 						$feedbackManager->create($_POST);
@@ -36,10 +37,10 @@
 						exit;
 					}
 
-					$id = intval($_GET['id']);
-					$feedback = $feedbackManager->findById($id);
 					if (isset($_POST['action']) && $_POST['action'] == "edit")
 					{
+						$id = intval($_GET['id']);
+						$feedback = $feedbackManager->findById($id);
 						$feedback->setContent($_POST['content']);
 						$feedback->setStatus(0);
 						$feedbackManager->update($feedback);

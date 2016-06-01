@@ -2,35 +2,19 @@
 
 try 
 {
-// if (isset($_GET['product.id']))
-// {
-	$id = 1;
 	$feedbackManager = new FeedbackManager($link);
-	$feedback = $feedbackManager->findByProduct($id);
-
+	$feedbacks = $feedbackManager->findByProduct($id_product);
+	$userManager = new UsersManager($link);
 	$user = new Users($link);
-	$utilisateur = $user->getLogin(1);
-	var_dump($user);
-	var_dump($utilisateur);
 
-	
 	$i = 0;
-//	var_dump($list[0]);
-	$count = count($feedback); 
-		while ($i < $count)
-		{
-			$commentaire = $feedback[$i];
-			$utilisateur = $login;
-			require('views/contents/display_feedback.phtml');
-			$i++;
-		}
-
-/*
-}
-else
-	throw nex Exception("error Feedback not found");
-
-*/
+	$count = count($feedbacks); 
+	while ($i < $count)
+	{
+		$user = $userManager->findById($feedbacks[$i]->getAuthor());
+		require('views/contents/display_feedback.phtml');
+		$i++;
+	}
 }
 catch (Exception $exception)
 {

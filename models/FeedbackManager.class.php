@@ -49,7 +49,7 @@
 
 		public function create($data)
 		{
-			if (!isset($_SESSION['id']))
+			if (!isset($_SESSION['id_user']))
 				throw new Exception("Vous devez être connecté");
 			if (!isset($data['id_product']))
 				throw new Exception("Paramètre manquant : Produit");
@@ -58,12 +58,12 @@
 
 			$feedback = new Feedback();
 			$feedback->setContent($data['content']);
-			$id_author = $_SESSION['id'];
+			$id_author = $_SESSION['id_user'];
 			$id_product = $data['id_product'];
-			$content = mysqli_real_escape_string($feedback->getContent());
+			$content = mysqli_real_escape_string($this->link, $feedback->getContent());
 
 			$request = "INSERT INTO feedback (id_author, id_product, content) 
-						VALUES ('".$id_author."', '".$id_product."', '".$content."')";
+						VALUES (".$id_author.", ".$id_product.", '".$content."')";
 			$res = mysqli_query($this->link, $request);
 			if ($res) //Si la requete s'est bien passé
 			{

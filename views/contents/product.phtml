@@ -1,24 +1,33 @@
 <h1>Détail produit</h1>
 
 <div>
+	<figure>
+		<img src="<?=$product->getPicture()?>" alt="image produit"/>
+	</figure>
 
-	<h2><?=$product->getName()?></h2>
+	<div>
+		<h2><?=$product->getName()?></h2>
 
-	<div><?=$product->getPicture()?></div>
-	<div>
-		<div>Size</div>
-		<div>Quantity</div>
-		<button type="button" action="addProduct">ADD TO CART</button>
+		<?php
+			require('apps/contents/form_product.php');
+		?>
+		<div>
+			<?=$product->getPrice()?>
+		</div>
+		<div>
+			<?=$product->getDescription()?>
+		</div>
 	</div>
-	<div>
-		<?=$product->getPrice()?>
-	</div>
-	<div>
-		<?=$product->getDescription()?>
-	</div>
-
 </div>
 
-<?php
-	require ("apps/contents/display_feedback.php");
-?>
+<div>
+	<a href="index.php?page=add_edit_feedback&action=add&id_product=<?=$id_product?>">Add feedback</a>
+</div>
+
+
+<div>
+	<h2>Feedbacks : </h2>
+	<?php
+		require ("apps/contents/display_feedback.php");
+	?>
+</div>

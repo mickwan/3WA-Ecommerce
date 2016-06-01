@@ -1,6 +1,13 @@
-<h2>Avis</h2>
-
-<div>
-	<?=$commentaire->getContent()?>
-	<?=$utilisateur->getLogin()?>
+<div class="feedback-container">
+	<div class="feeback-header">
+		<div>
+			<p><?=$user->getLogin()?></p>
+		</div>
+		<div>
+			<?=$feedbacks[$i]->getdate()?>
+		</div>
+	</div>
+	<div class="feedback-content">
+		<?=$feedbacks[$i]->getContent()?>
+	</div>
 </div>
