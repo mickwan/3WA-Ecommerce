@@ -5,8 +5,8 @@
 		{
 			if ($_POST['action'] == 'login')
 			{
-			$email = $_POST['email'];
-			$password = $_POST['password'];
+				$email = $_POST['email'];
+				$password = $_POST['password'];
 				$usersManager = new UsersManager($link);
 				if ($user = $usersManager->findByEmail($email))
 				{
@@ -54,7 +54,6 @@
 				$usersManager = new UsersManager($link);
 				$user = $usersManager->findById($_SESSION['id_user']);
 				$user->setPassword($_POST['password'], $_POST['confirmPassword']);
-				var_dump($user);
 				$usersManager->update($user);
 				header('Location: index.php?page=profile');
 				exit;
