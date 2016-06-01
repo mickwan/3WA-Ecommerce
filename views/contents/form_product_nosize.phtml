@@ -1,8 +1,9 @@
 <form method="POST">
-	<div>
+	<div class="product-quantity">
 		<label for="quantity">Quantity</label>
-		<input type="number" name ="quantity" min="1" max="<?=$max?>" />
+		<input class="input" type="number" name ="quantity" min="1" max="<?=$max?>" />
 	</div>
 	<input type="hidden" name="action" value="addProduct">
-	<input type="submit" />
+
+	<input class="valid-button pull-right" type="submit" value="Valider">
 </form>
