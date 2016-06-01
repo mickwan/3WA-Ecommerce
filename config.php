@@ -1,6 +1,9 @@
 <?php
 	$localhost = 'localhost';
 	$login = 'root';
-	$pass = 'troiswa';
-	$database = 'campshop';
+
+	$pass = 'root';
+
+	$database = 'slippy_shop';
+
 ?>
