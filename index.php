@@ -14,8 +14,7 @@
 	//Autoload des classes 
 	function __autoload($className)
 	{
-		echo $className;
-		require ("models/".$className.".class.php");
+			require ("models/".$className.".class.php");
 	}
 
 	$access = array('logout', 'login', 'register', 'change_password', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'display_cat', 'product_admin', 'add_edit_feedback');
