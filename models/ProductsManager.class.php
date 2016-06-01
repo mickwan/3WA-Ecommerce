@@ -114,6 +114,8 @@ class ProductsManager
 		if (!isset($data['status']))
 			throw new Exception("Indiquez le statut du produit)");
 
+		
+
 		$products = new Products($this->link);
 				
 		$products->setRef($data['ref']);

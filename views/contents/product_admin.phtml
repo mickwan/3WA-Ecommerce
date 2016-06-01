@@ -1,0 +1,59 @@
+<h1> Création et édition de produit</h1>
+
+<!-- Création -->
+
+<form method="post" enctype="multipart/form-data">
+	<div>
+		<label for="inputRef">Reference</label>
+		<input type="text" name="ref" class="input" id="inputRef" placeholder="Product reference">
+	</div>
+	<div>
+		<label for="inputStock">Stock</label>
+		<input type="text" name="stock" class="input" id="inputStock" placeholder="Stock quantity">
+	</div>
+	<div>
+		<label for="size">Size</label>
+		<select name="size" id="size">
+			<option value="S">S</option>
+			<option value="M" selected>M</option>
+			<option value="L">L</option>
+			<option value="0">0 as without size</option>
+		</select>
+	</div>
+	<div>
+		<label for="inputPrice">Price</label>
+		<input type="text" name="price" class="input" id="inputPrice" placeholder="Price (form 0.00)">
+	</div>
+	<div>
+		<label for="inputTax">Tax</label>
+		<input type="text" name="tax" class="input" id="inputTax" placeholder="Tax (form 0.00)">
+	</div>
+	<div>
+		<label for="inputDescription">Description</label>
+		<input type="text" name="description" class="input" id="inputDescription" placeholder="Description (max. 123 char.)">
+	</div>
+	<div>
+		<label for="inputName">Name</label>
+		<input type="text" name="name" class="input" id="inputName" placeholder="Product name (max. 15 char.)">
+	</div>
+	<div>
+		<label for="inputWeight">Weight</label>
+		<input type="text" name="weight" class="input" id="inputWeight" placeholder="Weight (form 0.00)">
+	</div>
+	<div>
+		<label for="status">Status</label>
+		<select name="status" id="status">
+			<option value="0" selected>0 as not available</option>
+			<option value="1">1 as available</option>
+		</select>
+	</div>
+	<div>
+		<label for="picture">Product picture (max. 1Mo)</label>
+		<input type="file" name="picture" id="picture" />		
+		<input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+	</div>
+	<div>
+		<input class="valid-button" type="submit" value="Submit">
+	</div>
+
+</form>
