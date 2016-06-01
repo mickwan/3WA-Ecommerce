@@ -9,7 +9,7 @@ try
 	$feedback = $feedbackManager->findByProduct($id);
 
 	$user = new Users($link);
-	$utilisateur = $user->getLogin(1);
+	$utilisateur = $user->getLogin($id);
 	var_dump($user);
 	var_dump($utilisateur);
 
