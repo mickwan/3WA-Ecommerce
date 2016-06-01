@@ -76,7 +76,7 @@ class CategoryManager
 		$description = $category->getDescription();
 		//
 		$request = "INSERT INTO category (name, description)
-					VALUES ('".$name."', '"..$description"')";
+					VALUES ('".$name."', '".$description."')";
 		$res = mysqli_query($this->link, $request);
 		if ($res)	// si la requete est bien effectuée
 		{
