@@ -1,33 +1,34 @@
-<h1>Détail produit</h1>
+<div class="product-container text-center">
+	<h1>Détail produit</h1>
 
-<div>
-	<figure>
-		<img src="<?=$product->getPicture()?>" alt="image produit"/>
-	</figure>
+	<div class="product">
+		<figure class="product-picture">
+			<img src="<?=$product->getPicture()?>" alt="image produit"/>
+		</figure>
 
-	<div>
-		<h2><?=$product->getName()?></h2>
+		<div class="product-description">
+			<h2><?=$product->getName()?></h2>
 
-		<?php
-			require('apps/contents/form_product.php');
-		?>
-		<div>
-			<?=$product->getPrice()?>
-		</div>
-		<div>
-			<?=$product->getDescription()?>
+			<?php
+				require('apps/contents/form_product.php');
+			?>
+			<div>
+				<?=$product->getPrice()?>
+			</div>
+			<div>
+				<?=$product->getDescription()?>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div>
-	<a href="index.php?page=add_edit_feedback&action=add&id_product=<?=$id_product?>">Add feedback</a>
-</div>
+	<div class="product-addFeedback">
+		<a href="index.php?page=add_edit_feedback&action=add&id_product=<?=$id_product?>">Add feedback</a>
+	</div>
 
 
-<div>
-	<h2>Feedbacks : </h2>
-	<?php
-		require ("apps/contents/display_feedback.php");
-	?>
-</div>
+	<div class="product-feedback">
+		<h2>Feedbacks : </h2>
+		<?php
+			require ("apps/contents/display_feedback.php");
+		?>
+	</div>
