@@ -1,5 +1,5 @@
 <form method="POST">
-	<div>
+	<div class="product-size">
 		<label for="size">Size</label>
 		<select name="size" id="size">
 			<option value="S">S</option>
@@ -7,10 +7,10 @@
 			<option value="L">L</option>
 		</select>
 	</div>
-	<div>
+	<div class="product-quantity">
 		<label for="quantity">Quantity</label>
-		<input type="number" name ="quantity" min="1" max="<?=$max?>" />
+		<input class="input" type="number" name ="quantity" min="1" max="<?=$max?>" />
 	</div>
 	<input type="hidden" name="action" value="addProduct">
-	<input type="submit" />
+	<div class="text-center"><input class="valid-button" type="submit" value="Valider"></div>
 </form>

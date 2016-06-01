@@ -1,1 +1,5 @@
-<li><?=$subCategories[$j]->getName();?></li>
+<li>
+	<?=$subCategories[$j]->getName();?>
+	<a href="index.php?page=add_edit_sub_cat&action=edit&id_sub_cat=<?=$subCategories[$i]->getId()?>">Edit</a>
+	<a href="index.php?page=cat_admin&action=delete&id_sub_cat=<?=$subCategories[$i]->getId()?>">Delete</a>
+</li>

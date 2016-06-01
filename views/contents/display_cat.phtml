@@ -1,5 +1,7 @@
 <li>
-	<?=$categories[$i]->getName()?>
+	<?=$categories[$i]->getName()?> 
+	<a href="index.php?page=add_edit_cat&action=edit&id_cat=<?=$categories[$i]->getId()?>">Edit</a>
+	<a href="index.php?page=cat_admin&action=delete&id_cat=<?=$categories[$i]->getId()?>">Delete</a>
 	<ul>
 			<?php require 'apps/contents/display_sub_cat.php';?>
 	</ul>

@@ -58,17 +58,17 @@ class CategoryManager
 
 	public function create($data)
 	{
-		if (!isset($_SESSION['id']))
+		if (!isset($_SESSION['id_user']))
 			throw new Exception("Vous devez être connecté");
-		if (($_SESSION['id']) != "1")
+		if (($_SESSION['admin']) != "1")
 			throw new Exception("Vous n'êtes pas administrateur");
-		$category = new Category();
 		if (!isset($data['name']))
 			throw new Exception("Nommer la catégorie");
 		if (!isset($data['description']))
 			throw new Exception("Donner une description succincte de la catégorie");
 
 		//
+		$category = new Category($this->link);
 		$category->setName($data['name']);
 		$category->setDescription($data['description']);
 		//
@@ -114,7 +114,7 @@ class CategoryManager
 		}
 	}
 
-	public function remove(Category $category)
+	public function delete(Category $category)
 	{
 		$id = $category->getId();
 		// droit ? admin ? access ?
