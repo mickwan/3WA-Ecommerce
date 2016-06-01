@@ -2,18 +2,10 @@
 
 try 
 {
-// if (isset($_GET['product.id']))
-// {
-	$id = 1;
+	$id = intval($_GET['id']);
 	$productsManager = new ProductsManager($link);
 	$product = $productsManager->findById($id);
 	require('views/contents/product.phtml');
-/*
-}
-else
-	throw nex Exception("error Id product not found");
-
-*/
 }
 catch (Exception $exception)
 {
