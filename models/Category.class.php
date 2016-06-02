@@ -6,7 +6,7 @@ class Category
 	private $id;
 	private $name;
 	private $description;
-	private $sousCategories;
+	private $subCategories;
 
 	private $link;
 
@@ -47,34 +47,24 @@ class Category
 		$this->description = $description;
 	}
 
-	public function getSubCategory(Category $category)
+	public function getSubCategories()
 	{
-		$list = [];azdaz
-		$id_category = $category->getId();
-		if ($id_category)
+		if($this->subCategories == NULL)
 		{
-			$request = "SELECT * 
-						FROM sub_category 
-						WHERE id_category=".$id_category;
-			$res = mysqli_query($this->link, $request);
-			while ($sub_category = mysqli_fetch_object($res, "SubCategory"))
-				$list[] = $sub_category;
-			return $list;
+			$subCategoryManager = new SubCategoryManager($this->link);
+			$this->subCategories = $subCategoryManager->findByCategory($this);
 		}
+		return $this->subCategories;
 	}
-	public function getProducts(Category $category)
-	{
-		$list = [];dazdaz
-		$id_category = $category->getId();
-		$request = "SELECT products.* 
-					FROM products
-					INNER JOIN sub_category
-					ON sub_category.id = products.id_sub_cat
-					WHERE sub_category.id_category = ".$id_category;
-		$res = mysqli_query($this->link, $request);
-		while($product = mysqli_fetch_object($res, "Products", [$this->link]))
-			$list[] = $product;
-		return $list;
+
+	public function getProducts()
+	{		
+		if($this->products == NULL)
+		{
+			$productsManager = new ProductsManager($this->link);
+			$this->products = $productsManager->findByCategory($this);
+		}
+		return $this->products;
 	}
 }
 ?>

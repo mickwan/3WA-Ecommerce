@@ -34,9 +34,9 @@ class CategoryManager
 		return $category;
 	}
 
-	public function findByName($name)
+	public function findByName(Products $product)
 	{
-		$name = mysqli_escape_string($this->link, $name);
+		$name = $product->getName();
 		$request = "SELECT FROM category 
 					WHERE name = '".$name."'";
 		$res = mysqli_query($this->link, $request);
