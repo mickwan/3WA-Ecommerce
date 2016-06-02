@@ -37,15 +37,21 @@ class SubCategory
 	}
 	public function getCategory()
 	{
-		$categoryManager = new CategoryManager($this->link);
-		$category = $categoryManager->findById($this->id_category);
-		return $category;
+		if ($this->category == null)
+		{
+			$categoryManager = new CategoryManager($this->link);
+			$this->category = $categoryManager->findById($this->id_category);
+		}
+		return $this->category;
 	}
 	public function getProducts()
 	{
-		$productManager = new ProductsManager($this->link);
-		$products = $productManager->findBySubCat($this);
-		return $products;
+		if ($this->products == null)
+		{
+			$productManager = new ProductsManager($this->link);
+			$this->products = $productManager->findBySubCat($this);
+		}
+		return $this->products;
 	}
 
 	//Setter:
