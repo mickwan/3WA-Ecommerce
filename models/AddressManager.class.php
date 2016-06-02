@@ -18,15 +18,17 @@ class AddressManager
 		$address = mysqli_fetch_object($res, "Address");
 		return $address;
 	}
-	public function findByUser($id_user)
+	public function findByUser(Users $user)
 	{
-		$id_user = intval($id_user);
+		$id_user = $user->getId();
+		$list = [];
 		$request = "SELECT * 
 					FROM address 
 					WHERE id=".$id_user;
 		$res = mysqli_query($this->link, $request);
-		$address = mysqli_fetch_object($res, "Address");
-		return $address;
+		while ($address = mysqli_fetch_object($res, "Address"))
+			$list[] = $address;
+		return $list;
 	}
 	public function findByName($name)
 	{
@@ -94,11 +96,6 @@ class AddressManager
 			throw new Exception("Internal server error");
 	}
 
-	public function getById($id)
-	{
-		return $this->findById($id);
-	}
-
 	public function update (Address $address)
 	{
 		$id = $address->getId();
@@ -121,7 +118,7 @@ class AddressManager
 		}
 	}
 
-	public function remove(Address $address)
+	public function delete(Address $address)
 	{
 		$id = $address->getId();
 		if ($id)

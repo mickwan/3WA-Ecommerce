@@ -19,5 +19,5 @@
 		require 'views/contents/edit_contact.phtml';
 	}
 	else 
-		header ('Location: index.php?page=login');
+		require 'views/contents/must_be_logged.phtml';
 ?>

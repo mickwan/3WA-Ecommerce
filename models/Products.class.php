@@ -17,7 +17,9 @@ class Products
 	private $picture;
 
 	private $feedbacks;
-	private $sub_cat;
+	private $subCat;
+	private $cat;
+
 
 	private $link;
 
@@ -65,7 +67,7 @@ class Products
 	{
 		return $this->weight;
 	}
-	public function getSubCat()
+	public function getIdSubCat()
 	{
 		return $this->id_sub_cat;
 	}
@@ -78,6 +80,35 @@ class Products
 		return $this->picture;
 	}
 
+	public function getFeedbacks()
+	{
+		if($this->feedbacks == NULL)
+		{
+			$feedbackManager = new FeedbackManager($this->link);
+			$this->feedbacks = $feedbackManager->findByProduct($this);
+		}
+		return $this->feedbacks;
+	}
+
+	public function getSubCat()
+	{
+		if($this->subCat == NULL)
+		{
+			$subCategoryManager = new SubCategoryManager($this->link);
+			$this->subCat = $subCategoryManager->findById($this->id_sub_cat);
+		}
+		return $this->subCat;
+	}
+
+	public function getCat()
+	{
+		if($this->cat == NULL)
+		{
+			$categoryManager = new categoryManager($this->link);
+			$this->cat = $categoryManager->findByProduct($this);
+		}		
+		return $this->cat;
+	}
 
 	public function setRef($ref)
 	{
@@ -184,27 +215,8 @@ class Products
 		if ($image_sizes[0] > $maxwidth OR $image_sizes[1] > $maxheight)
 			throw new Exception ("Taille image trop grande (accepté : 150x150");
 
-
 		$this->picture = $picture;
 	}
-
-
-	public function findCat(Products $product)
-	{
-		// if
-		$categoryManager = new categoryManager($this->link);
-		$cat = $categoryManager->findByProduct($this);
-		return $cat;
-	}
-
-	public function getFeedback(Products $product)
-	{
-		$feedbackManager = new FeedbackManager($this->link);
-		$feedback = $feedbackManager->findByProduct($this->id);
-		return $feedback;
-	}
-
-
 
 
 }

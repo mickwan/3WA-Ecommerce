@@ -16,10 +16,10 @@
 			$feedback = mysqli_fetch_object($res, "Feedback");
 			return $feedback;
 		}
-		public function findByAuthor($id_author)
+		public function findByAuthor(Users $user)
 		{
 			$list = [];
-			$id_author = intval($id_author);
+			$id_author = $user->getId();
 			$request = "SELECT * FROM feedback WHERE id_author=".$id_author;
 			$res = mysqli_query($this->link, $request);
 			while ($feedback = mysqli_fetch_object($res, "Feedback"))
@@ -99,7 +99,7 @@
 					
 			}
 		}
-		public function remove(Feedback $feedback)
+		public function delete(Feedback $feedback)
 		{
 			$id = $feedback->getId();
 			if($id)

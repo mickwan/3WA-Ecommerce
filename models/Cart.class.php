@@ -49,9 +49,21 @@ class Cart
 	}
 	public function getProducts()
 	{
-		$ProductManager = new ProductsManager($this->link);
-		$this->products = $ProductManager->findByCart($this);
+		if ($this->products == null)
+		{
+			$ProductManager = new ProductsManager($this->link);
+			$this->products = $ProductManager->findByCart($this);
+		}
 		return $this->products;
+	}
+	public function getUser()
+	{
+		if ($this->user)
+		{
+			$usersManager = new UsersManager($this->link);
+			$this->user = $usersManager->findById($this->id_user);
+		}
+		return $this->user;
 	}
 
 

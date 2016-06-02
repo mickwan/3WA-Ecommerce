@@ -17,9 +17,9 @@ class CartManager
 		$cart = mysqli_fetch_object($res, "Cart", [$this->link]);
 		return $cart;
 	}
-	public function findByUser($id_user)
+	public function findByUser(Users $user)
 	{
-		$id_user = intval($id_user);
+		$id_user = $user->getId();
 		$request = "SELECT * 
 					FROM cart 
 					WHERE id_user=".$id_user;

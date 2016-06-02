@@ -123,7 +123,8 @@ class UsersManager
 			$status = $user->getStatus();
 
 			$request = "UPDATE users 
-						SET login = '".$login."', firstname = '".$firstname."', lastname = '".$lastname."', email = '".$email."', password = '".$password."', birth_date = '".$birth_date."', phone = '".$phone."', sex = '".$sex."', status = '".$status."'";
+						SET login = '".$login."', firstname = '".$firstname."', lastname = '".$lastname."', email = '".$email."', password = '".$password."', birth_date = '".$birth_date."', phone = '".$phone."', sex = '".$sex."', status = '".$status."'
+						WHERE id=".$id;
 			$res = mysqli_query($this->link, $request);
 
 			if ($res)
