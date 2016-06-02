@@ -23,7 +23,7 @@ class SubCategory
 	{
 		return $this->id;
 	}
-	public function getCategory()
+	public function getIdCategory()
 	{
 		return $this->id_category;
 	}
@@ -34,6 +34,18 @@ class SubCategory
 	public function getDescription()
 	{
 		return $this->description;
+	}
+	public function getCategory()
+	{
+		$categoryManager = new CategoryManager($this->link);
+		$category = $categoryManager->findById($this->id_category);
+		return $category;
+	}
+	public function getProducts()
+	{
+		$productManager = new ProductsManager($this->link);
+		$products = $productManager->findBySubCat($this);
+		return $products;
 	}
 
 	//Setter:
@@ -57,18 +69,6 @@ class SubCategory
 		else if (strlen($description)>123)
 			throw new Exception ("Description trop longue(max: 123 caractères");
 		$this->description = $description;
-	}
-	public function getProducts()
-	{
-		$list = [];dazdazdaz
-		$id_sub_category = $this->getId();
-		$request = "SELECT *
-					FROM products 
-					WHERE id_sub_cat =".$id_sub_category;
-		$res = mysqli_query($this->link, $request);
-		while ($product = mysqli_fetch_object($res, "Products", [$this->link]))
-			$list[] = $product;
-		return $list; 
 	}
 }
 ?>
