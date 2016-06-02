@@ -5,19 +5,21 @@
 		{
 			if (isset($_GET['action']) && $_GET['action'] == 'delete')
 			{
-				if (isset($_GET['id_cat']) && !isset($_GET['id_sub_cat']))
+				if (isset($_GET['id_sub_cat']))
+				{
+					//
+					$subCategoryManager = new SubCategoryManager($link);
+					$subCategory = $subCategoryManager->findById($_GET['id_sub_cat']);
+					$subCategoryManager->delete($subCategory);
+					//
+					header ('Location: index.php?page=cat_admin');
+					exit;
+				}
+				else if (isset($_GET['id_cat']))
 				{
 					$categoryManager = new CategoryManager($link);
 					$category = $categoryManager->findById($_GET['id_cat']);
 					$categoryManager->delete($category);
-					header ('Location: index.php?page=cat_admin');
-					exit;
-				}
-				if (isset($_GET['id_sub_cat']))
-				{
-					$subCategoryManager = new SubCategoryManager($link);
-					$subCategory = $subCategoryManager->findById($_GET['id_sub_cat']);
-					$subCategoryManager->delete($subCategory);
 					header ('Location: index.php?page=cat_admin');
 					exit;
 				}
@@ -58,6 +60,8 @@
 						$subCategory->setName($_POST['name']);
 						$subCategory->setDescription($_POST['description']);
 						$subCategory->setCategory($_POST['id_category']);
+						dazdazdaz
+						$subCategory->setCategory($category);
 						$subCategoryManager->update($subCategory);
 						header ('Location: index.php?page=cat_admin');
 						exit;	

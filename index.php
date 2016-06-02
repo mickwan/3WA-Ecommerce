@@ -46,5 +46,17 @@
 	
 	if (array_key_exists($page, $access_traitement))
 		require('apps/treatments/traitement_'.$access_traitement[$page].'.php');
-	require 'apps/skel.php';
+	/*
+	$.get('index.php', ["page":"cat_admin","ajax":true], function(data)
+	{
+		$('div').html(data);
+	});
+	*/
+	if (isset($_GET['ajax']))
+	{
+		$accessAjax = [];
+		require (/**/"");
+	}
+	else
+		require 'apps/skel.php';
 ?>

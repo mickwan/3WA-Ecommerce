@@ -15,6 +15,9 @@ class Users
 	private $admin;
 	private $status;
 
+	private $feedback;
+	/// ...
+
 	private $link;
 	//Index.php : $link = mysqli_connect($localhost, $login, $pass, $database)
 	//Fonction magique pour le lien à la base de donnée
@@ -136,15 +139,19 @@ class Users
 	// Méthodes spécifiques:
 
 	//Trouver le paniers de l'utilisateur:
-	public function findCart()
+	// public function findCart()
+	public function getCart()
 	{
-		$cart_manager = new cartManager($this->link);
-		$user_cart = $cart_manager->findByUser($this->id);
-		return $user_cart;
+		if ($this->user_cart === null)
+		{
+			$cart_manager = new cartManager($this->link);
+			$this->user_cart = $cart_manager->findByUser($this->id);
+		}
+		return $this->user_cart;
 	}
 
 	//Trouver l'adresse de l'utilisateur:
-	public function findAddress()
+	public function getAddress()
 	{
 		$address_manager = new AddressManager($this->link);
 		$user_address = $address_manager->findByUser($this->id);
@@ -152,7 +159,7 @@ class Users
 	}
 
 	//Trouver les feedback de l'utilisateur:
-	public function findFeedback()
+	public function getFeedback()
 	{
 		$feedback_manager = new FeedbackManager($this->link);
 		$user_feedbacks = $feedback_manager->findByAuthor($this->id);
@@ -160,7 +167,8 @@ class Users
 	}
 
 	//Trouver les produits acheté de l'utilisateur:
-	public function findProducts()
+	// $user->getProduts();
+	/*public function findProducts()
 	{
 		$list = [];
 		$request = "SELECT link_cart_product.id_product 
@@ -172,7 +180,7 @@ class Users
 		while ($product = mysqli_fetch_assoc($res))
 			$list = $product;
 		return $list;
-	}
+	}*/
 
 	//Quand l'utilisateur n'est plus actif sur le site:
 	public function setInactive()

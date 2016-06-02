@@ -10,6 +10,7 @@ class Cart
 	private $nb_products;
 	private $weight;
 	private $products;
+	private $user;
 
 	private $link;
 

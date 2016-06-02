@@ -8,6 +8,9 @@ class SubCategory
 	private $id_category;
 	private $name;
 	private $description;
+	private $category;
+	private $products;
+
 	private $link;
 
 	public function __construct($link)
@@ -55,10 +58,10 @@ class SubCategory
 			throw new Exception ("Description trop longue(max: 123 caractères");
 		$this->description = $description;
 	}
-	public function getProduct(SubCategory $sub_category)
+	public function getProducts()
 	{
-		$list = [];
-		$id_sub_category = $sub_category->getId();
+		$list = [];dazdazdaz
+		$id_sub_category = $this->getId();
 		$request = "SELECT *
 					FROM products 
 					WHERE id_sub_cat =".$id_sub_category;

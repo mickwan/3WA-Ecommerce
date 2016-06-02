@@ -26,7 +26,7 @@
 				$list[] = $feedback;
 			return $list;  
 		}
-		public function findByProduct($id_product)
+		public function findByProduct(Product $product)
 		{
 			$list = [];
 			$id_product = intval($id_product);

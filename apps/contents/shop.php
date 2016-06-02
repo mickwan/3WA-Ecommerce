@@ -4,7 +4,7 @@
 	$sub_cat = $SubCategoryManager->findById($id);
 
 	$i = 0;
-	$count = count($sub_cat); 
+	$count = count($sub_cat);
 		while ($i < $count)
 		{
 			$test = $sub_cat[$i];

@@ -6,6 +6,7 @@ class Category
 	private $id;
 	private $name;
 	private $description;
+	private $sousCategories;
 
 	private $link;
 
@@ -48,7 +49,7 @@ class Category
 
 	public function getSubCategory(Category $category)
 	{
-		$list = [];
+		$list = [];azdaz
 		$id_category = $category->getId();
 		if ($id_category)
 		{
@@ -63,7 +64,7 @@ class Category
 	}
 	public function getProducts(Category $category)
 	{
-		$list = [];
+		$list = [];dazdaz
 		$id_category = $category->getId();
 		$request = "SELECT products.* 
 					FROM products
