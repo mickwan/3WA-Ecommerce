@@ -20,7 +20,12 @@
 				<div class="account-option"><a href="index.php?page=feedback">My Feedbacks</a></div>
 			</div>
 			<div class="account-option-padding">
-				<div class="account-option"><a href="index.php?page=edit_contact?action=delete">Delete My Account</a></div>
+				<div class="account-option">
+					<form method="POST">
+					<input type="hidden" name="action" value="delete">
+					<input type="submit" value="Delete my Account">
+					</form>
+				</div>
 			</div>
 			<div class="account-option-padding">
 				<div class="account-option"><a href="index.php?page=address">My Address</a></div>	

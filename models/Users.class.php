@@ -126,7 +126,7 @@ class Users
 	}
 	public function setPhone($phone)
 	{
-		if (strlen($phone) == 10 || preg_match("#^+[0-9]{10}$#", $phone))
+		if (strlen($phone) == 10)// || preg_match("#^+[0-9]{10}$#", $phone))
 			$this->phone = $phone;
 		else
 			throw new Exception ("Phone non valide");
@@ -189,6 +189,14 @@ class Users
 	{
 		$this->status = 0;
 		return $this->status;
+	}
+
+	public function verifPassword($password)
+	{
+		if (password_verify($password, $this->password))
+			return true;
+		throw new Exception("Wrong Password");
+		
 	}
 }
 ?>

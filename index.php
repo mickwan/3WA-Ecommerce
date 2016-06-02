@@ -34,6 +34,7 @@
 								"register" => "user", 
 								"edit_contact" => "user",
 								"change_password" => "user",
+								"profile" => "user",
 								"current_cart" => "cart", 
 								"cart" => "cart",  
 								"feedback" => "feedback",
@@ -59,7 +60,5 @@
 		require ("");
 	}
 	*/
-
-	else
-		require 'apps/skel.php';
+	require 'apps/skel.php';
 ?>

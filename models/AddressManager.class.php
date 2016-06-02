@@ -18,15 +18,17 @@ class AddressManager
 		$address = mysqli_fetch_object($res, "Address");
 		return $address;
 	}
-	public function findByUser($id_user)
+	public function findByUser(Users $user)
 	{
-		$id_user = intval($id_user);
+		$id_user = $user->getId();
+		$list = [];
 		$request = "SELECT * 
 					FROM address 
 					WHERE id=".$id_user;
 		$res = mysqli_query($this->link, $request);
-		$address = mysqli_fetch_object($res, "Address");
-		return $address;
+		while ($address = mysqli_fetch_object($res, "Address"))
+			$list[] = $address;
+		return $list;
 	}
 	public function findByName($name)
 	{
