@@ -10,27 +10,28 @@
     <!-- Bootstrap -->
     <link href='https://fonts.googleapis.com/css?family=Raleway:700,800|Playfair+Display:700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./public/styles/owl.carousel.css">
+    <link rel="stylesheet" href="./public/styles/owl.carousel.min.css">
+    <link rel="stylesheet" href="./public/styles/owl.theme.default.min.css">
+    
 
     <link href="public/styles/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet/less" type="text/css" href="public/styles/style.less" />
 
     <script src="public/scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="public/scripts/less.min.js"></script>
-    <script src="public/scripts/jquery-2.2.3.min.js"></script>
-    <script src="public/scripts/owl.carousel.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        var options ={
-          "items":3,
-          "nav":true,
-          "navText":['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-          "dots":true
-        };
 
-          $(".owl-carousel").owlCarousel(options);
+    <script src="./public/scripts/owl.carousel.min.js"></script>
+    <script src="./public/scripts/jquery-2.2.3.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('.owl-carousel').owlCarousel({
+        "items": 3,
+        "nav": true,
+        "loop": true
       });
-    </script>
+    });
+  </script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
