@@ -15,6 +15,7 @@
     
 
     <link href="public/styles/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="public/styles/reset.css" />
     <link rel="stylesheet/less" type="text/css" href="public/styles/style.less" />
 
     <script src="public/scripts/bootstrap.min.js"></script>
@@ -23,15 +24,6 @@
     <script src="./public/scripts/owl.carousel.min.js"></script>
     <script src="./public/scripts/jquery-2.2.3.min.js"></script>
 
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $('.owl-carousel').owlCarousel({
-        "items": 3,
-        "nav": true,
-        "loop": true
-      });
-    });
-  </script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,12 +34,25 @@
   </head>
   <body>
     
-    <?php
+    
+      <?php
       require 'apps/header.php';
       require 'apps/content.php';
       require 'apps/footer.php';
     ?>
+    
+    
 
 
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('.owl-carousel').owlCarousel({
+        "items": 3,
+        "nav": true,
+        "loop": true
+      });
+    });
+    </script>
   </body>
 </html>

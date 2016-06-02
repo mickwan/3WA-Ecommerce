@@ -21,15 +21,18 @@ h1{
 	margin:0;
 }
 
+
 /* HEADER */
 
 .container-header{
 	background-color: rgba(255, 255, 255, 0.7);
 	display: flex;
 	flex-direction: row;
+	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
 	height: 100px;
+	width: 100%;
 }
 
 .header{
@@ -124,25 +127,42 @@ ul.header-icon{
 
 /* vidéo */
 
+
+.home-intro-content{
+	overflow: hidden;
+}
+
 .video-home{
-	position: relative;
+	/*position: relative;
     top: 202px;
     left: 50%;
     min-width: 100%;
     height: auto;
     z-index: -100;
     -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);*/
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
 }
 
 /* rubriques */
 
-.rubriques{
+/*.rubriques{
 	position: relative;
-	top:-170px;
+	top:-50%;
 	width: 100%;
 }
-
+*/
 .men, .accessories, .women{
 	height: 398px;
 
@@ -207,8 +227,8 @@ ul.header-icon{
 .presentation img{
 	height: auto;
 	width: 100%;
-	position: relative;
-	top: -170px;
+	/*position: relative;
+	top: -170px;*/
 }
 
 /* What's new */
@@ -216,8 +236,8 @@ ul.header-icon{
 .news{
 	height: auto;
 	width: 100%;
-	position: relative;
-	top: -150px;
+	/*position: relative;
+	top: -150px;*/
 	background-color: #fff;
 	padding: 0 20px 0;
 }
@@ -233,6 +253,7 @@ ul.header-icon{
 }
 
 /*slider */
+
 
 
 /* FORM */
@@ -326,6 +347,7 @@ label{
 }
 
 .account-option{
+	margin: 0 auto;
 	width: 350px;
 	border:2px solid #39633F;
 	padding: 10px;
