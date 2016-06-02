@@ -24,6 +24,7 @@
 						{
 							$_SESSION['id_user'] = $user->getID();
 							$_SESSION['admin'] = $user->getAdmin();
+							$_SESSION['user'] = $user;
 							header ('Location: index.php?page=profile');
 							exit; 
 						}
@@ -55,40 +56,65 @@
 		{
 			$usersManager = new UsersManager($link);
 			$user = $usersManager->findById($_SESSION['id_user']);
-			try
-			{
-				$user->setLogin($_POST['login']);
-				$user->setFirstName($_POST['firstname']);
-				$user->setLastName($_POST['lastname']);
-				$user->setEmail($_POST['email'], $_POST['confirmEmail']);
-				$user->setBirthDate($_POST['birth_date']);
-				$user->setPhone($_POST['phone']);
-				$user->setSex($_POST['sex']);
 
-				$usersManager->update($user);
-			}
-			catch (Exception $exception)
+			if (!isset($_POST['login']))
+				$error = "Missing parameter: login";
+			if (!isset($_POST['firstname']))
+				$error = "Missing parameter: firstname";
+			if (!isset($_POST['lastname']))
+				$error = "Missing parameter: lastname";
+			if (!isset($_POST['email']))
+				$error = "Missing parameter: email";
+			if (!isset($_POST['birth_date']))
+				$error = "Missing parameter: birth date";
+			if (!isset($_POST['phone']))
+				$error = "Missing parameter: phone";
+			if (!isset($_POST['sex']))
+				$error = "Missing parameter: sex";	
+			if (empty($error))
 			{
-				$error = $exception->getMessage();
+				try
+				{
+					$user->setLogin($_POST['login']);
+					$user->setFirstName($_POST['firstname']);
+					$user->setLastName($_POST['lastname']);
+					$user->setEmail($_POST['email'], $_POST['confirmEmail']);
+					$user->setBirthDate($_POST['birth_date']);
+					$user->setPhone($_POST['phone']);
+					$user->setSex($_POST['sex']);
+
+					$usersManager->update($user);
+				}
+				catch (Exception $exception)
+				{
+					$error = $exception->getMessage();
+				}
+				header('Location: index.php?page=profile');
+				exit;
 			}
-			header('Location: index.php?page=profile');
-			exit;
 		}
 		else if ($_POST['action'] == 'pass_change')
 		{
 			$usersManager = new UsersManager($link);
 			$user = $usersManager->findById($_SESSION['id_user']);
-			try
-			{
-				$user->setPassword($_POST['password'], $_POST['confirmPassword']);
-				$usersManager->update($user);
+			if (!isset($_POST['password']))
+				$error = "Missing parameter: password";
+			if (!isset($_POST['confirmPassword']))
+				$error = "Missing parameter: password";
+			if (empty($error))
+			{		
+				try
+				{
+					$user->setPassword($_POST['password'], $_POST['confirmPassword']);
+					$usersManager->update($user);
+				}
+				catch (Exception $exception)
+				{
+					$error = $exception->getMessage();
+				}
+				header('Location: index.php?page=profile');
+				exit;
 			}
-			catch (Exception $exception)
-			{
-				$error = $exception->getMessage();
-			}
-			header('Location: index.php?page=profile');
-			exit;
 		}
 		else if ($_POST['action'] == 'delete') // Le compte User n'est jamais supprimé mais plutôt rendu inactif
 		{

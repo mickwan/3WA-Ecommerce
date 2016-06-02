@@ -1,12 +1,12 @@
-<h1><?=$option?>Feedback</h1>
+<h1><?=$option?> Feedback</h1>
 <form method="POST">
 	<div>
 		<label for="content">Content : </label>
 		<textarea name="content" value="<?=$content?>"><?=$content?></textarea>
 	</div>
 
-	<input type="hidden" name="action" value="<?=$_GET['action']?>" />
-	<input type="hidden" name="id" value="<?=$id?>" />
+	<input type="hidden" name="action" value="<?=$option?>" />
+	<input type="hidden" name="id_feedback" value="<?=$id_feedback?>" />
 	<input type="hidden" name="id_product" value="<?=$id_product?>" />
 
 	<div class="text-center"><input class="valid-button" type="submit" value="Valider"></div>

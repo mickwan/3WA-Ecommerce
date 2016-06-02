@@ -1,16 +1,16 @@
 <?php
 	$action = 'add';
-	$id_cat = '0';
+	$id_category = '0';
 	$name = 'Enter a Name...';
 	$description= 'Enter a small description...';
 	$nameEdit = '';
 	$descriptionEdit = '';
-	if (isset($_GET['action']) && $_GET['action'] == 'edit')
+	if (isset($_POST['action']) && $_POST['action'] == 'edit')
 	{
 		$action = 'edit';
-		$id_cat = $_GET['id_cat'];
+		$id_category = intval($_POST['id_category']);
 		$categoryManager = new CategoryManager($link);
-		$category = $categoryManager->findById($id_cat);
+		$category = $categoryManager->findById($id_category);
 		$name = $category->getName();
 		$description = $category->getDescription();
 		$nameEdit = $category->getName();

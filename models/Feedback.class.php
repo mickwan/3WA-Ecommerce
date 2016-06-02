@@ -9,6 +9,7 @@
 
 		private $author;
 		private $product;
+		private $link;
 
 		public function __construct($link)
 		{
@@ -23,7 +24,7 @@
 		{
 			return $this->id_author;
 		}
-		public function getProduct()
+		public function getIdProduct()
 		{
 			return $this->id_product;
 		}
@@ -43,18 +44,19 @@
 		{
 			if ($this->author == null)
 			{
-				$usersManager = new usersManager($this->link);
+				$usersManager = new UsersManager($this->link);
 				$this->author = $usersManager->findById($this->id_author);
 			}
 			return $this->author;
 		}
 		public function getProduct()
 		{
-			if ($this->product)
+			if ($this->product == null)
 			{
 				$productsManager = new ProductsManager($this->link);
-				$this->product = $usersManager->findById($this->id_author);
+				$this->product = $productsManager->findById($this->id_product);
 			}
+
 			return $this->product;
 		}
 

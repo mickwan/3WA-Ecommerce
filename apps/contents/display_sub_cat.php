@@ -1,5 +1,5 @@
 <?php
-	$subCategories = $categorie->getSubCat();
+	$subCategories = $categorie->getSubCategories();
 	$j = 0;
 	$maxj = count($subCategories);
 	while ($j < $maxj)
