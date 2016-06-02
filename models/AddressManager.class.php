@@ -94,11 +94,6 @@ class AddressManager
 			throw new Exception("Internal server error");
 	}
 
-	public function getById($id)
-	{
-		return $this->findById($id);
-	}
-
 	public function update (Address $address)
 	{
 		$id = $address->getId();
@@ -121,7 +116,7 @@ class AddressManager
 		}
 	}
 
-	public function remove(Address $address)
+	public function delete(Address $address)
 	{
 		$id = $address->getId();
 		if ($id)

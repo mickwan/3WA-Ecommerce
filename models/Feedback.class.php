@@ -6,15 +6,20 @@
 		private $id_product;
 		private $content;
 		private $date;
+
 		private $author;
 		private $product;
 
+		public function __construct($link)
+		{
+			$this->link = $link;
+		}
 		//GETTERS 
 		public function getId()
 		{
 			return $this->id;
 		}
-		public function getAuthor()
+		public function getIdAuthor()
 		{
 			return $this->id_author;
 		}
@@ -32,7 +37,26 @@
 		}
 		public function getStatus()
 		{
-			return $this->status;		}
+			return $this->status;
+		}
+		public function getAuthor()
+		{
+			if ($this->author == null)
+			{
+				$usersManager = new usersManager($this->link);
+				$this->author = $usersManager->findById($this->id_author);
+			}
+			return $this->author;
+		}
+		public function getProduct()
+		{
+			if ($this->product)
+			{
+				$productsManager = new ProductsManager($this->link);
+				$this->product = $usersManager->findById($this->id_author);
+			}
+			return $this->product;
+		}
 
 		//SETTERS
 		public function setContent($content)

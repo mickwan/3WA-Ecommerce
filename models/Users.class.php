@@ -15,11 +15,13 @@ class Users
 	private $admin;
 	private $status;
 
-	private $feedback;
-	/// ...
+	private $user_feedbacks;
+	private $products;
+	private $user_carts;
+	private $user_address;
 
 	private $link;
-	//Index.php : $link = mysqli_connect($localhost, $login, $pass, $database)
+
 	//Fonction magique pour le lien à la base de donnée
 	public function __construct($link)
 	{
@@ -138,14 +140,13 @@ class Users
 
 	// Méthodes spécifiques:
 
-	//Trouver le paniers de l'utilisateur:
-	// public function findCart()
-	public function getCart()
+	//Trouver les paniers de l'utilisateur:
+	public function getCarts()
 	{
-		if ($this->user_cart === null)
+		if ($this->user_carts === null)
 		{
 			$cart_manager = new cartManager($this->link);
-			$this->user_cart = $cart_manager->findByUser($this->id);
+			$this->user_carts = $cart_manager->findByUser($this);
 		}
 		return $this->user_cart;
 	}
@@ -153,34 +154,35 @@ class Users
 	//Trouver l'adresse de l'utilisateur:
 	public function getAddress()
 	{
-		$address_manager = new AddressManager($this->link);
-		$user_address = $address_manager->findByUser($this->id);
-		return $user_address;
+		if ($this->user_address == null)
+		{
+			$address_manager = new AddressManager($this->link);
+			$this->user_address = $address_manager->findByUser($this);
+		}
+		return $this->user_address;
 	}
 
 	//Trouver les feedback de l'utilisateur:
 	public function getFeedback()
 	{
-		$feedback_manager = new FeedbackManager($this->link);
-		$user_feedbacks = $feedback_manager->findByAuthor($this->id);
-		return $user_feedbacks;
+		if ($this->user_feedbacks == null)
+		{
+			$feedback_manager = new FeedbackManager($this->link);
+			$this->user_feedbacks = $feedback_manager->findByAuthor($this);
+		}
+		return $this->user_feedbacks;
 	}
 
 	//Trouver les produits acheté de l'utilisateur:
-	// $user->getProduts();
-	/*public function findProducts()
+	public function getProducts()
 	{
-		$list = [];
-		$request = "SELECT link_cart_product.id_product 
-					FROM link_cart_product 
-					INNER JOIN cart 
-					ON link_cart_product.id_cart = cart.id
-					WHERE cart.id_user =".$this->id;
-		$res = mysqli_query($this->link, $request);
-		while ($product = mysqli_fetch_assoc($res))
-			$list = $product;
-		return $list;
-	}*/
+		if ($this->products)
+		{
+			$product_manager = new ProductManager($this->link);
+			$this->products = $product_manager->findByUser($this);
+		}
+		return $this->products;
+	}
 
 	//Quand l'utilisateur n'est plus actif sur le site:
 	public function setInactive()

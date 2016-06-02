@@ -40,8 +40,9 @@ class ProductsManager
 	}
 
 	// trouver les produits dans une sous-categorie 
-	public function findBySubCat($id_sub_cat)
+	public function findBySubCat(SubCategory $subCat)
 	{
+		$id_sub_cat = $subCat->getId();
 		$list = [];
 		$request = "SELECT * FROM products WHERE id_sub_cat=".$id_sub_cat;
 		$res = mysqli_query($this->link, $request);
@@ -54,8 +55,9 @@ class ProductsManager
 	// il faut trouver tous les produits dont les sous-catégories
 	// appartiennent à la même catégorie !
 
-	public function findByCategory($id_category)
+	public function findByCategory(Category $cat)
 	{
+		$id_category = $cat->getId();
 		$list = [];
 		$request = "SELECT products.* 
 					FROM products
@@ -83,6 +85,26 @@ class ProductsManager
 		return $list;
 	}
 
+	public function findByUser(Users $user)
+	{
+		$carts = $user->getCarts();
+		$list = [];
+		$i = 0;
+		$max = count($carts);
+		$request = "SELECT *
+					FROM products
+					INNER JOIN link_cart_product
+					ON products.id = link_cart_product.id_product
+					WHERE link_cart_product.id_cart=".$carts[$i]['id'];
+		while ($i < $max)
+		{
+			$res = mysqli_query($this->link, $request);
+			while ($product = mysqli_fetch_object($res, "Products", [$this->link]))
+				$list[] = $product;
+			$i++;
+		}
+		return $list;
+	}
 
 	// autres fonctions de recherche à venir si besoin 
 
@@ -188,7 +210,7 @@ class ProductsManager
 		}
 	}
 
-	public function remove(Category $products)
+	public function delete(Category $products)
 	{
 		$id = $products->getId();
 		// droit ? admin ? access ?
