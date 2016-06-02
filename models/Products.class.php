@@ -15,6 +15,10 @@ class Products
 	private $id_sub_cat;
 	private $status;
 	private $picture;
+
+	private $feedbacks;
+	private $sub_cat;
+
 	private $link;
 
 	// Liste des fonctions magiques en php : http://php.net/manual/fr/language.oop5.magic.php
@@ -158,7 +162,7 @@ class Products
 		$maxsize = 1048576;
 		$maxwidth = 150;
 		$maxheight = 150;
-		$valid_extension = array( 'jpg', 'jpeg', 'png');
+		$valid_extension = array( 'jpg', 'jpeg', 'png', 'bmp');
 		//1. strrchr renvoie l'extension avec le point (« . »).
 		//2. substr(chaine,1) ignore le premier caractère de chaine.
 		//3. strtolower met l'extension en minuscules.
@@ -187,6 +191,7 @@ class Products
 
 	public function findCat(Products $product)
 	{
+		// if
 		$categoryManager = new categoryManager($this->link);
 		$cat = $categoryManager->findByProduct($this);
 		return $cat;

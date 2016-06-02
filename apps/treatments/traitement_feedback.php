@@ -6,7 +6,10 @@
 			if (isset($_GET['action']) || isset($_POST['action']))
 			{
 				if ($_GET['action'] == 'add' && $_SESSION['admin'] == 1)
+				{
 					header ('Location: index.php?page=profile');
+					exit;
+				}
 				if ($_SESSION['admin'] == 1)
 				{
 					$id = intval($_GET['id']);
@@ -33,7 +36,10 @@
 					if (isset($_POST['action']) && $_POST['action'] == 'add')
 					{
 						$feedbackManager->create($_POST);
-						header("Location: index.php?page=product&id_product=".$_POST['id_product']."");
+						dazdaz
+						// if exists $produit
+						$feedbackManager->create($_POST, $user, $produit);
+						header("Location: index.php?page=product&id_product=".$product->getId()."");
 						exit;
 					}
 
@@ -50,6 +56,9 @@
 
 					if ($_GET['action'] == 'delete')
 					{
+						$id = intval($_GET['id']);
+						$feedback = $feedbackManager->findById($id);
+						// if ($feedback->getAuthor() == $_SESSION['user_id'])
 						$feedbackManager->remove($feedback);
 						header('Location: index.php?page=feedback');
 						exit;

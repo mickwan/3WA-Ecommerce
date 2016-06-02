@@ -6,7 +6,7 @@
 	}
 	else
 	{
-		header ('Location : index.php?page=login');
+		// header ('Location : index.php?page=login');
 	}
 
 ?>

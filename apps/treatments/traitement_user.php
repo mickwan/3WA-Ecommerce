@@ -18,6 +18,7 @@
 				{
 					if ($user->getStatus() == 0)				
 						throw new Exception("Inactive Account");
+					if ($user->verifPassword())
 					if (password_verify($password, $user->getPassword()))
 					{
 						$_SESSION['id_user'] = $user->getID();
@@ -33,12 +34,14 @@
 			}
 			else if ($_POST['action'] == 'register')
 			{
+				//
 				$usersManager = new UsersManager($link);
 				$usersManager->create($_POST);
+				//
 				header('Location: index.php?page=login');
 				exit;
 			}
-			else if ($_POST['action'] == 'edit')
+			else if ($_POST['action'] == 'edit' && isset($_POST['']))
 			{
 				$usersManager = new UsersManager($link);
 				$user = $usersManager->findById($_SESSION['id_user']);
@@ -46,7 +49,7 @@
 				$user->setFirstName($_POST['firstname']);
 				$user->setLastName($_POST['lastname']);
 				$user->setEmail($_POST['email'], $_POST['confirmEmail']);
-				$user->setPassword($_POST['password'], $_POST['confirmPassword']);
+				// $user->setPassword($_POST['password'], $_POST['confirmPassword']);
 				$user->setBirthDate($_POST['birth_date']);
 				$user->setPhone($_POST['phone']);
 				$user->setSex($_POST['sex']);
@@ -69,6 +72,7 @@
 				$usersManager = new UsersManager($link);
 				$user = $usersManager->findById($_SESSION['id_user']);
 				$user->setInactive();
+				$usersManager->update($user);
 				header ('Location: index.php?page=logout');
 				exit;
 			}

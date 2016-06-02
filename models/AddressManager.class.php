@@ -105,7 +105,7 @@ class AddressManager
 		if ($id)
 		{
 			$name = mysqli_real_escape_string($this->link, $address->getName());
-			$number = mysqli_real_escape_string($this->link, $address->getNumber());
+			$number = intval($address->getNumber());
 			$pathway = mysqli_real_escape_string($this->link, $address->getPathway());
 			$city = mysqli_real_escape_string($this->link, $address->getCity());
 			$country = mysqli_real_escape_string($this->link, $address->getCountry());

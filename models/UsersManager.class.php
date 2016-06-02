@@ -20,6 +20,17 @@ class UsersManager
 		$user = mysqli_fetch_object($res, "Users", [$this->link]);
 		return $user;
 	}
+	public function findByCredential($email, $login)
+	{
+		$email = mysqli_real_escape_string($this->link, $email);
+		$login = mysqli_real_escape_string($this->link, $login);
+		$request = "SELECT *
+					FROM users
+					WHERE email = '".$email."' OR login='".$login."'";
+		$res = mysqli_query($this->link, $request);
+		$user = mysqli_fetch_object($res, "Users", [$this->link]);
+		return $user;
+	}
 	public function findByEmail($email)
 	{
 		$email = mysqli_real_escape_string($this->link, $email);

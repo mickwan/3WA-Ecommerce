@@ -8,7 +8,8 @@
 	}
 	else 
 	{
-		header ('Location: index.php?page=login');
-		exit;
+		// require('views/mustbelogged.phtml');
+		// header ('Location: index.php?page=login');
+		// exit;
 	}
 ?>

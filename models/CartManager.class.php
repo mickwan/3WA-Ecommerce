@@ -76,7 +76,7 @@ class CartManager
 			throw new Exception("Error Processing Request");
 
 		$request = "INSERT INTO link_cart_product(id_cart, id_product)
-					VALUES ('".$id_cart."', '".$products['id']."')";				
+					VALUES ('".$id_cart."', '".$products['id']."')";
 		while ($products[])
 		{
 			$res = mysqli_query($this->link, $request);
