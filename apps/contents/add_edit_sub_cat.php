@@ -5,10 +5,10 @@
 	$description= 'Enter a small description...';
 	$nameEdit = '';
 	$descriptionEdit = '';
-	if (isset($_GET['action']) && $_GET['action'] == 'edit')
+	if (isset($_POST['action']) && $_POST['action'] == 'edit')
 	{
 		$action = 'edit';
-		$id_sub_cat = $_GET['id_sub_cat'];
+		$id_sub_cat = $_POST['id_sub_cat'];
 		$subCategoryManager = new SubCategoryManager($link);
 		$subCategory = $subCategoryManager->findById($id_sub_cat);
 		$name = $subCategory->getName();

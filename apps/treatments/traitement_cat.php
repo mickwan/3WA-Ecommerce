@@ -1,80 +1,129 @@
 <?php
-	try
+	if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1)
 	{
-		if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1)
+		if (isset($_POST['action']))
 		{
-			if (isset($_GET['action']) && $_GET['action'] == 'delete')
+			if (isset($_POST['id_category']))
 			{
-				if (isset($_GET['id_sub_cat']))
+				$categoryManager = new CategoryManager($link);
+				if ($_POST['action'] == 'add' && !isset($_POST['form']))
 				{
-					//
-					$subCategoryManager = new SubCategoryManager($link);
-					$subCategory = $subCategoryManager->findById($_GET['id_sub_cat']);
-					$subCategoryManager->delete($subCategory);
-					//
-					header ('Location: index.php?page=cat_admin');
-					exit;
+					try
+					{	
+						$categoryManager->create($_POST);
+						header('Location: index.php?page=cat_admin');
+						exit;
+					}
+					catch (Exception $exception)
+					{
+						$error = $exception->getMessage();
+					}
 				}
-				else if (isset($_GET['id_cat']))
+				else if ($_POST['action'] == 'edit' && !isset($_POST['form']))
 				{
-					$categoryManager = new CategoryManager($link);
-					$category = $categoryManager->findById($_GET['id_cat']);
-					$categoryManager->delete($category);
-					header ('Location: index.php?page=cat_admin');
-					exit;
+					if (!isset($_POST['name']))
+						$error = "Nommer la catégorie";
+					if (!isset($_POST['description']))
+						$error = "Donner une description succincte de la catégorie";
+					if (empty($error))
+					{
+						try
+						{
+							$id_category = intval($_POST['id_category']);
+							$category = $categoryManager->findById($id_category);
+							$category->setName($_POST['name']);
+							$category->setDescription($_POST['description']);
+							$categoryManager->update($category);
+							header('Location: index.php?page=cat_admin');
+							exit;
+						}
+						catch (Exception $exception)
+						{
+							$error = $exception->getMessage();
+						}
+					}
+
+				}
+				else if ($_POST['action'] == 'delete')
+				{
+					try 
+					{
+						$id_category = intval($_POST['id_category']);
+						$category = $categoryManager->findById($id_category);
+						$categoryManager->delete($category);
+						header('Location: index.php?page=cat_admin');
+						exit;
+					}
+					catch (Exception $exception)
+					{
+						$error = $exception->getMessage();
+					}
 				}
 			}
-			if (isset($_POST['action']))
+			else if (isset($_POST['id_sub_cat']))
 			{
-				if (isset($_POST['id_cat']))
+				$subCategoryManager = new SubCategoryManager($link);
+				if ($_POST['action'] == 'add' && !isset($_POST['form']))
 				{
-					$categoryManager = new CategoryManager($link);
-					if ($_POST['action'] == 'add')
-					{
-						$categoryManager->create($_POST);
-						header ('Location: index.php?page=cat_admin');
-						exit;
-					}
-					else if ($_POST['action'] == 'edit')
-					{
-						$category = $categoryManager->findById($_POST['id_cat']);
-						$category->setName($_POST['name']);
-						$category->setDescription($_POST['description']);
-						$categoryManager->update($category);
-						header ('Location: index.php?page=cat_admin');
-						exit;
-					}
-				}	
-				else if (isset($_POST['id_sub_cat']))
-				{
-					$subCategoryManager = new SubCategoryManager($link);
-					if ($_POST['action'] == 'add')
-					{
+					try
+					{	
 						$subCategoryManager->create($_POST);
-						header ('Location: index.php?page=cat_admin');
+						header('Location: index.php?page=cat_admin');
 						exit;
 					}
-					else if ($_POST['action'] == 'edit')
+					catch (Exception $exception)
 					{
-						$subCategory = $subCategoryManager->findById($_POST['id_sub_cat']);
-						$subCategory->setName($_POST['name']);
-						$subCategory->setDescription($_POST['description']);
-						$subCategory->setCategory($_POST['id_category']);
-						dazdazdaz
-						$subCategory->setCategory($category);
-						$subCategoryManager->update($subCategory);
-						header ('Location: index.php?page=cat_admin');
-						exit;	
+						$error = $exception->getMessage();
+					}
+				}
+				else if ($_POST['action'] == 'edit' && !isset($_POST['form']))
+				{
+					if (!isset($_POST['id_category']))
+						$error = "Missing paramater: id_category";
+					if (!isset($_POST['name']))
+						$error = "Nommer la sous catégorie";
+					if (!isset($_POST['description']))
+						$error = "Donner une description succincte de la sous catégorie";
+					if (empty($error))
+					{
+						try
+						{
+							$id_sub_cat = intval($_POST['id_sub_cat']);
+							$subCategory = $subCategoryManager->findById($id_sub_cat);
+							$subCategory->setCategory($_POST['id_category']);
+							$subCategory->setName($_POST['name']);
+							$subCategory->setDescription($_POST['description']);
+							$subCategoryManager->update($subCategory);
+							header('Location: index.php?page=cat_admin');
+							exit;
+						}
+						catch (Exception $exception)
+						{
+							$error = $exception->getMessage();
+						}
+					}
+				}
+				else if ($_POST['action'] == 'delete')
+				{
+					try 
+					{
+						$id_sub_cat = intval($_POST['id_sub_cat']);
+						$subCategory = $subCategoryManager->findById($id_sub_cat);
+						$subCategoryManager->delete($subCategory);
+						header('Location: index.php?page=cat_admin');
+						exit;
+					}
+					catch (Exception $exception)
+					{
+						$error = $exception->getMessage();
 					}
 				}
 			}
 		}
-		else
-			throw new Exception("Vous devez être connecté!");
-			
 	}
-	catch (Exception $exception)
+	else
 	{
-		$error = $exception->getMessage();
-	} 
+		header('Location: index.php?page=login');
+		exit;
+	}
 ?>

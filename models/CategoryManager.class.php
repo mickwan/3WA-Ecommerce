@@ -72,10 +72,10 @@ class CategoryManager
 		$category->setName($data['name']);
 		$category->setDescription($data['description']);
 		//
-		$name = $category->getName();
-		$description = $category->getDescription();
+		$name = mysqli_real_escape_string($this->link, $category->getName());
+		$description = mysqli_real_escape_string($this->link, $category->getDescription());
 		//
-		$request = "INSERT INTO category (name, description)
+		$request = "INSERT INTO category(name, description)
 					VALUES ('".$name."', '".$description."')";
 		$res = mysqli_query($this->link, $request);
 		if ($res)	// si la requete est bien effectuée
