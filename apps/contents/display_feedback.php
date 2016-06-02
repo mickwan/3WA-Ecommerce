@@ -1,13 +1,12 @@
 <?php
-
-	$feedbacks = $produit->getFeedbacks();
-
+	$feedbacks = $product->getFeedbacks();
 	$i = 0;
 	$count = count($feedbacks); 
 	while ($i < $count)
 	{
 		$user = $feedbacks[$i]->getAuthor();
-		require('views/contents/display_feedback.phtml');
+		if ($feedbacks[$i]->getStatus() == 1)
+			require('views/contents/display_feedback.phtml');
 		$i++;
 	}
 ?>

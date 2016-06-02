@@ -13,7 +13,7 @@
 			$id = intval($id);
 			$request = "SELECT * FROM feedback WHERE id=".$id;
 			$res = mysqli_query($this->link, $request);
-			$feedback = mysqli_fetch_object($res, "Feedback");
+			$feedback = mysqli_fetch_object($res, "Feedback", [$this->link]);
 			return $feedback;
 		}
 		public function findByAuthor(Users $user)
@@ -22,17 +22,17 @@
 			$id_author = $user->getId();
 			$request = "SELECT * FROM feedback WHERE id_author=".$id_author;
 			$res = mysqli_query($this->link, $request);
-			while ($feedback = mysqli_fetch_object($res, "Feedback"))
+			while ($feedback = mysqli_fetch_object($res, "Feedback", [$this->link]))
 				$list[] = $feedback;
 			return $list;  
 		}
-		public function findByProduct(Product $product)
+		public function findByProduct(Products $product)
 		{
 			$list = [];
-			$id_product = intval($id_product);
+			$id_product = $product->getId();
 			$request = "SELECT * FROM feedback WHERE id_product=".$id_product;
 			$res = mysqli_query($this->link, $request);
-			while ($feedback = mysqli_fetch_object($res, "Feedback"))
+			while ($feedback = mysqli_fetch_object($res, "Feedback", [$this->link]))
 				$list[] = $feedback;
 			return $list;
 		}
@@ -42,7 +42,7 @@
 			$status = intval($status);
 			$request = "SELECT * FROM feedback WHERE status=".$status;
 			$res = mysqli_query($this->link, $request);
-			while ($feedback = mysqli_fetch_object($res, "Feedback"))
+			while ($feedback = mysqli_fetch_object($res, "Feedback", [$this->link]))
 				$list[] = $feedback;
 			return $list;
 		}
@@ -56,7 +56,7 @@
 			if (!isset($data['content']))
 				throw new Exception("Paramètre manquant : Contenu");
 
-			$feedback = new Feedback();
+			$feedback = new Feedback($this->link);
 			$feedback->setContent($data['content']);
 			$id_author = $_SESSION['id_user'];
 			$id_product = $data['id_product'];

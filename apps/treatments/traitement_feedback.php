@@ -1,79 +1,100 @@
 <?php
-	try
+	if (isset($_SESSION['id_user']))
 	{
-		if (isset($_SESSION['id_user']))
+		if (isset($_POST['action']))
 		{
-			if (isset($_GET['action']) || isset($_POST['action']))
+			$feedbackManager = new FeedbackManager($link);
+			if ($_SESSION['user']->getAdmin() == 1)
 			{
-				if ($_GET['action'] == 'add' && $_SESSION['admin'] == 1)
+				$id_feedback = intval($_POST['id_feedback']);
+				$feedback = $feedbackManager->findById($id_feedback);
+				if ($_POST['action'] == 'valid')
 				{
-					header ('Location: index.php?page=profile');
-					exit;
-				}
-				if ($_SESSION['admin'] == 1)
-				{
-					$id = intval($_GET['id']);
-					$feedbackManager = new FeedbackManager($link);
-					$feedback = $feedbackManager->findById($id);
-					if ($_GET['action'] == 'valid')
+					try
 					{
 						$feedback->setStatus(1);
 						$feedbackManager->update($feedback);
 						header('Location: index.php?page=feedback');
 						exit;
 					}
-					else if ($_GET['action'] == 'refuse')
+					catch (Exception $exception)
+					{	
+						$error = $exception->getMessage();
+					}
+				}
+				else if ($_POST['action'] == 'refuse')
+				{
+					try
 					{
 						$feedback->setStatus(2);
 						$feedbackManager->update($feedback);
 						header('Location: index.php?page=feedback');
 						exit;
 					}
+					catch (Exception $exception)
+					{
+						$error = $exception->getMessage();
+					}
 				}
-				else if ($_SESSION['admin'] == 0)
+			}
+			else if ($_SESSION['user']->getAdmin() == 0)
+			{
+				if ($_POST['action'] == 'add' && !isset($_POST['form']))
 				{
-					$feedbackManager = new FeedbackManager($link);
-					if (isset($_POST['action']) && $_POST['action'] == 'add')
+					try
 					{
 						$feedbackManager->create($_POST);
-						dazdaz
-						// if exists $produit
-						$feedbackManager->create($_POST, $user, $produit);
-						header("Location: index.php?page=product&id_product=".$product->getId()."");
+						$id_product = intval($_POST['id_product']);
+						header('Location: index.php?page=product&id_product='.$id_product);
 						exit;
 					}
-
-					if (isset($_POST['action']) && $_POST['action'] == "edit")
+					catch (Exception $exception)
 					{
-						$id = intval($_GET['id']);
-						$feedback = $feedbackManager->findById($id);
-						$feedback->setContent($_POST['content']);
-						$feedback->setStatus(0);
-						$feedbackManager->update($feedback);
+						$error = $exception->getMessage();
+					}
+				}
+				else if ($_POST['action'] == 'edit' && !isset($_POST['form']))
+				{
+					$id_product = intval($_POST['id_product']);
+					$feedback = $feedbackManager->findById($id_product);
+					if (!isset($_POST['content']))
+						$error = "Paramètre manquant : Contenu";
+					if (empty($error))
+					{
+						try
+						{
+							$feedback->setContent($_POST['content']);
+							$feedbackManager->update($feedback);
+							header('Location: index.php?page=feedback');
+							exit;
+						}
+						catch (Exception $exception)
+						{
+							$error = $exception->getMessage();
+						}
+					}
+				}
+				else if ($_POST['action'] == 'delete')
+				{
+					$id_feedback = intval($_POST['id_feedback']);
+					$feedback = $feedbackManager->findById($id_feedback);
+					try
+					{
+						$feedbackManager->delete($feedback);
 						header('Location: index.php?page=feedback');
 						exit;
 					}
-
-					if ($_GET['action'] == 'delete')
+					catch (Exception $exception)
 					{
-						$id = intval($_GET['id']);
-						$feedback = $feedbackManager->findById($id);
-						// if ($feedback->getAuthor() == $_SESSION['user_id'])
-						$feedbackManager->remove($feedback);
-						header('Location: index.php?page=feedback');
-						exit;
-					} 
+						$error = $exception->getMessage();
+					}
 				}
 			}
 		}
-		else
-		{
-			header ('Location: index.php?page=login');
-			exit;
-		}
 	}
-	catch (Exception $exception)
+	else 
 	{
-		$error = $exception->getMessage();
-	} 
+		require 'views/contents/must_be_logged.phtml';
+		exit;
+	}
 ?>

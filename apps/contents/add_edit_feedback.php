@@ -1,31 +1,30 @@
 <?php
-	try
+	if (isset($_SESSION['id_user']))
 	{
-		$option = "Add ";
-		$content = "Feedback content...";
-		$id_product = '';
-
-		if (isset($_GET['id_product'], $_GET['action']) || isset($_GET['id'], $_GET['action']))
+		if (isset($_POST['action']))
 		{
-			if ($_GET['action'] == 'edit')
+			if ($_POST['action'] == 'add')
 			{
-				$id = intval($_GET['id']);
-				$feedbackManager = new FeedbackManager($link);
-				$feedback = $feedbackManager->findById($id);
-
-				$option = "Edit ";
-				$content = $feedback->getContent();
+				$option = 'add';
+				$content = 'Feedback content ...';
+				$id_product = $_POST['id_product'];
+				$id_feedback = 0;
 			}
-			else if ($_GET['action'] == 'add')
+			else if ($_POST['action'] == 'edit')
 			{
-				$id = $_SESSION['id_user'];
-				$id_product = $_GET['id_product'];
+				$option = 'edit';
+				$feedbackManager = new FeedbackManager($link);
+				$feedback = $feedbackManager->findById($_POST['id_feedback']);
+				$content = $feedback->getContent();
+				$id_product = $feedback->getIdProduct();
+				$id_feedback = $feedback->getId();
 			}
 			require 'views/contents/add_edit_feedback.phtml';
 		}
 	}
-	catch (Exception $exception)
+	else
 	{
-		$error = $exception->getMessage();
-	} 
+		require 'views/contents/must_be_logged.phtml';
+		exit;
+	}
 ?>
