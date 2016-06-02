@@ -6,6 +6,8 @@
 		private $id_product;
 		private $content;
 		private $date;
+		private $author;
+		private $product;
 
 		//GETTERS 
 		public function getId()

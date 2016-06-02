@@ -1,6 +1,5 @@
 <?php
-	$subCatManager = new SubCategoryManager($link);
-	$subCategories = $subCatManager->findByCategory($categories[$i]->getId());
+	$subCategories = $categorie->getSubCat();
 	$j = 0;
 	$maxj = count($subCategories);
 	while ($j < $maxj)

@@ -5,6 +5,7 @@
 	$max = count($categories);
 	while ($i < $max)
 	{
+		$categorie = $categories[$i];
 		require 'views/contents/display_cat.phtml';
 		$i++;
 	}

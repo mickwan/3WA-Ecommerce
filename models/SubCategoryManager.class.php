@@ -31,10 +31,10 @@ class SubCategoryManager
 		$sub_category = mysqli_fetch_object($res, "SubCategory", [$this->link]);
 		return $sub_category;
 	}
-	public function findByCategory($id_category)
+	public function findByCategory(Category $category)
 	{
 		$list = [];
-		$category = intval($id_category);
+		$id_category = $category->getId();
 		$request = "SELECT * 
 					FROM sub_category 
 					WHERE id_category=".$id_category;
@@ -97,7 +97,6 @@ class SubCategoryManager
 			$id_category = $sub_category->getCategory();
 			$request = "UPDATE sub_category 
 						SET id_category=".$id_category.", name='".$name."', description='".$description."' WHERE id=".$id;
-			var_dump($request);
 			$res = mysqli_query($this->link, $request);
 
 			if ($res)
