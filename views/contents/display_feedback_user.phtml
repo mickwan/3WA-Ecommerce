@@ -1,10 +1,9 @@
 <div class="feedback-content <?=$refuse?> <?=$waitinglist?>">
-	<div class="feeback-header feedback-container">
-		<div>
+	<div class="feeback-header feedback-container clearfix">
+		<div class="pull-left"> Product name :
 			<?=$product->getName()?>
 		</div>
-		<div>
-			<?=$feedbacks[$i]->getdate()?>
+		<div class="pull-right feedback-date"><?=$feedbacks[$i]->getdate()?>
 		</div>
 	</div>
 	<div class="feedback-content">
