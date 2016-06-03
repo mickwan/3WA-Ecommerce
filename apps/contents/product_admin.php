@@ -1,5 +1,5 @@
 <?php
-	$action = "Add";
+	$action = "add";
 	$ref = "add reference";
 	$stock = "Stock of this products";
 	$price = "Price (form 0.00)";
@@ -8,6 +8,7 @@
 	$name = "Product name (max. 15 char.)";
 	$weight = "Weight (form 0.00)";
 	$id_sub_cat = "Choice a sub category";
+	$id_product = '0';
 	$refEdit = '';
 	$stockEdit = '';
 	$sizeEdit = '';
@@ -27,7 +28,7 @@
 
 	if (isset($_POST['action']) && $_POST['action'] == 'edit')
 	{
-		$action = "Edit";
+		$action = "edit";
 		$id_product = intval($_POST['id_product']);
 		$productManager = new ProductsManager($link);
 		$product = $productManager->findById($id_product);

@@ -121,7 +121,7 @@ class Products
 
 	public function setStock($stock)
 	{		
-		if (!is_int($stock))
+		if (is_int($stock))
 			throw new Exception ("Entrez un nombre entier");
 		else if ($stock < 0)
 			throw new Exception ("La quantité doit être positive");
@@ -180,6 +180,12 @@ class Products
 		$this->weight = $weight;
 	}
 
+	public function setSubCat($id_sub_cat)
+	{	
+		$id_sub_cat = intval($id_sub_cat);
+		$this->id_sub_cat =  $id_sub_cat;
+	}
+
 	public function setStatus($status)
 	{	
 		if ($status == "1" || $status == "0")
@@ -190,16 +196,6 @@ class Products
 
 	public function setPicture($picture)
 	{	
-		$maxsize = 1048576;
-		$maxwidth = 150;
-		$maxheight = 150;
-		$valid_extension = array( 'jpg', 'jpeg', 'png', 'bmp');
-		//1. strrchr renvoie l'extension avec le point (« . »).
-		//2. substr(chaine,1) ignore le premier caractère de chaine.
-		//3. strtolower met l'extension en minuscules.
-		$extension_upload = strtolower(  substr(  strrchr($_FILES['picture']['name'], '.')  ,1)  );
-		$image_sizes = getimagesize($_FILES['icone']['tmp_name']);
-
 //		$_FILES['icone']['name']     //Le nom original du fichier, comme sur le disque du visiteur (exemple : mon_icone.png).
 //		$_FILES['icone']['type']     //Le type du fichier. Par exemple, cela peut être « image/png ».
 //		$_FILES['icone']['size']     //La taille du fichier en octets.
@@ -208,14 +204,16 @@ class Products
 
 		if ($_FILES['picture']['error'] > 0)
 			throw new Exception ("Erreur lors du transfert");
-		if ($_FILES['picture']['size'] > $maxsize)
+		$name = $_FILES['picture']['name'];
+		move_uploaded_file($_FILES['picture']['tmp_name'], 'public/images/'.$name.'');
+	/*	if ($_FILES['picture']['size'] > $maxsize)
 			throw new Exception ("Fichier trop lourd > à 1Mo");
 		if (!in_array($extension_upload,$extensions_valides))
 			throw new Exception ("Extension non valide (acceptées : jpg, jpeg, png");
 		if ($image_sizes[0] > $maxwidth OR $image_sizes[1] > $maxheight)
-			throw new Exception ("Taille image trop grande (accepté : 150x150");
+			throw new Exception ("Taille image trop grande (accepté : 150x150");*/
 
-		$this->picture = $picture;
+		$this->picture = 'public/images/'.$name.'';
 	}
 
 
