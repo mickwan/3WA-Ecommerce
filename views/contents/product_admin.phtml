@@ -1,5 +1,5 @@
 <h1> <?=$action?> product</h1>
-
+<?=$error?>
 <!-- Création -->
 
 <form class="form-style" method="post" enctype="multipart/form-data">
@@ -42,7 +42,11 @@
 	</div>
 	<div class="form-group clearfix">
 		<label for="inputSubCat">Sub Category</label>
-		<input type="text" name="id_sub_cat" class="input" id="inputSubCat" value="<?=$id_sub_catEdit?>" placeholder="<?=$id_sub_cat?>">
+		<select name="id_sub_cat" id="inputSubCat">
+			<?php
+				require 'apps/contents/sub_cat_option.php';
+			?>
+		</select>
 	</div>
 
 	<div class="form-group clearfix">
@@ -60,7 +64,9 @@
 
 
 	<div class="form-group clearfix">
-		<input type="hidden" name="action" value="addProduct">
+		<input type="hidden" name="id_product" value="<?=$id_product?>">
+		<input type="hidden" name="action" value="<?=$action?>">
+		<input type="hidden" name="form" value="1">
 		<input class="valid-button" type="submit" value="Submit">
 	</div>
 

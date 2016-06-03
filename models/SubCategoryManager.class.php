@@ -60,7 +60,7 @@ class SubCategoryManager
 		$sub_category->setName($data['name']);
 		$sub_category->setDescription($data['description']);
 
-		$id_category = $sub_category->getCategory();
+		$id_category = $sub_category->getIdCategory();
 		$name = $sub_category->getName();
 		$description = $sub_category->getDescription();
 

@@ -111,9 +111,9 @@ class ProductsManager
 
 	public function create($data)
 	{
-		if (!isset($_SESSION['id']))
+		if (!isset($_SESSION['id_user']))
 			throw new Exception("Vous devez être connecté");
-		if (($_SESSION['id']) != "1")
+		if (($_SESSION['admin']) != "1")
 			throw new Exception("Vous n'êtes pas administrateur");		 
 		if (!isset($data['ref']))
 			throw new Exception("Indiquez la référence");
@@ -127,14 +127,16 @@ class ProductsManager
 			throw new Exception("Indiquez la TVA (avec un . pour la virgule sans le %)");
 		if (!isset($data['description']))
 			throw new Exception("Donnez une description du produit");
-		if (!isset($data['nom']))
+		if (!isset($data['name']))
 			throw new Exception("Donnez le nom (ou la désignation) du produit");
 		if (!isset($data['weight']))
 			throw new Exception("Donnez le poids du produit (avec un . pour la virgule)");
 		if (!isset($data['id_sub_cat']))
-			throw new Exception("Indiquez la sous-categorie du produits)");
+			throw new Exception("Indiquez la sous-categorie du produits");
 		if (!isset($data['status']))
-			throw new Exception("Indiquez le statut du produit)");
+			throw new Exception("Indiquez le statut du produit");
+		if (!isset($_FILES['picture']))
+			throw new Exception("picture");
 
 		
 
@@ -148,8 +150,9 @@ class ProductsManager
 		$products->setDescription($data['description']);
 		$products->setName($data['name']);
 		$products->setWeight($data['weight']);
+		$products->setSubCat($data['id_sub_cat']);
 		$products->setStatus($data['status']);
-		$products->setPicture($data['picture']);
+		$products->setPicture($_FILES['picture']);
 		
 		//
 
@@ -161,13 +164,14 @@ class ProductsManager
 		$description = $products->getDescription();
 		$name = $products->getName();
 		$weight = $products->getWeight();
+		$id_sub_cat = $products->getIdSubCat();
 		$status = $products->getStatus();
 		$picture = $products->getPicture();
 		
 		//
 
 
-		$request = "INSERT INTO products (ref, stock, size, price, tax, description, name, weight, status, picture) VALUES('".$ref."', '".$stock."', '".$size."', '".$price."', '".$tax."', '".$description."', '".$name."', '".$weight."', '".$statut."', '".$picture."')";
+		$request = "INSERT INTO products (ref, stock, size, price, tax, description, name, weight, id_sub_cat, status, picture) VALUES('".$ref."', '".$stock."', '".$size."', '".$price."', '".$tax."', '".$description."', '".$name."', '".$weight."', '".$id_sub_cat."', '".$status."', '".$picture."')";
 		$res = mysqli_query($this->link, $request);
 		if ($res)// Si la requete s'est bien passée
 		{
@@ -197,10 +201,10 @@ class ProductsManager
 			$description = mysqli_real_escape_string($this->link, $products->getDescription());
 			$name = mysqli_real_escape_string($this->link, $products->getName());
 			$weight = $products->getWeight();
-			$id_sub_cat = $products->getSubCat();
-			$statut = $products->getStatut();
+			$id_sub_cat = $products->getIdSubCat();
+			$statut = $products->getStatus();
 			$picture = mysqli_real_escape_string($this->link, $products->getPicture());
-
+			
 			$request = "UPDATE products SET ref='".$ref."', stock='".$stock."', size='".$size."', price='".$price."', tax='".$tax."', description='".$description."', name='".$name."', weight='".$weight."', id_sub_cat='".$id_sub_cat."', status='".$status."', picture='".$picture."' WHERE id=".$id;
 			$res = mysqli_query($this->link, $request);
 			if ($res)
@@ -210,7 +214,7 @@ class ProductsManager
 		}
 	}
 
-	public function delete(Category $products)
+	public function delete(Products $products)
 	{
 		$id = $products->getId();
 		// droit ? admin ? access ?
