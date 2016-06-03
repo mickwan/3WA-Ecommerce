@@ -1,12 +1,12 @@
 <li>
-	<?=$categories[$i]->getName()?>
-	<form method="POST" action="index.php?page=add_edit_cat">
+	<div class="category-name"><?=$categories[$i]->getName()?></div>
+	<form class="category-manager-button" method="POST" action="index.php?page=add_edit_cat">
 		<input type="hidden" name="action" value="edit">
 		<input type="hidden" name="id_category" value="<?=$categories[$i]->getId()?>">
 		<input type="hidden" name="form" value="1">
 		<input type="submit" value="edit">
 	</form>
-	<form method="POST" action="index.php?page=cat_admin">
+	<form  class="category-manager-button" method="POST" action="index.php?page=cat_admin">
 		<input type="hidden" name="action" value="delete">
 		<input type="hidden" name="id_category" value="<?=$categories[$i]->getId()?>">
 		<input type="submit" value="delete">
