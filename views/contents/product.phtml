@@ -1,32 +1,37 @@
 <div class="product-container text-center">
 
-	<div class="product-page clearfix">
-		<figure class="product-picture pull-left">
-			<img src="<?=$product->getPicture()?>" alt="image produit"/>
-		</figure>
-
-		<div class="product-description pull-right">
-			<h2 class="product-name"><?=$product->getName()?></h2>
-
-			
-			<div class="product-price">
-				<?=$product->getPrice()?>
+	<div class="product-page-container">
+		<div class="product-page clearfix">
+			<div class="menu-burger-container">
+				<?php require "apps/contents/menu_burger.php"; ?>
 			</div>
-			<div>
-				<?=$product->getDescription()?>
+			<figure class="product-picture pull-left">
+				<img src="<?=$product->getPicture()?>" alt="image produit"/>
+			</figure>
 
+			<div class="product-text pull-right">
+				<h2 class="product-name"><?=$product->getName()?></h2>
+
+				
+				<div class="product-price">
+					<?=$product->getPrice()?>
+				</div>
+				<div class="product-description">
+					<?=$product->getDescription()?>
+
+
+				</div>
+				
+				<?php
+					require('apps/contents/form_product.php');
+				?>
 
 			</div>
-			
-			<?php
-				require('apps/contents/form_product.php');
-			?>
-
 		</div>
 	</div>
 
 	<div class="product-page product-addFeedback">
-		<form method="POST" action="index.php?page=add_edit_feedback">
+		<form class="feedback-button" method="POST" action="index.php?page=add_edit_feedback">
 			<input type="hidden" name="action" value="add">
 			<input type="hidden" name="id_product" value="<?=$product->getId()?>">
 			<input type="hidden" name="form" value="1">

@@ -1,0 +1,13 @@
+<div>
+	<div class="menu-burger-container">
+		<?php require "apps/contents/menu_burger.php"; ?>
+	</div>
+	<figure>
+		<img src="<?=$products[$i]->getPicture()?>" alt="prod_pic">
+	</figure>
+	<div>
+		<h3><?=$products[$i]->getName()?></h3>
+		<p><?=$products[$i]->getPrice()?></p>
+		<a href="index.php?page=product&id_product=<?=$products[$i]->getId()?>">See Product</a>
+	</div>
+</div>
