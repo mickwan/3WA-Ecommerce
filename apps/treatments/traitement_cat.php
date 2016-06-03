@@ -3,7 +3,7 @@
 	{
 		if (isset($_POST['action']))
 		{
-			if (isset($_POST['id_category']))
+			if (isset($_POST['id_category']) && !isset($_POST['id_sub_cat']))
 			{
 				$categoryManager = new CategoryManager($link);
 				if ($_POST['action'] == 'add' && !isset($_POST['form']))
