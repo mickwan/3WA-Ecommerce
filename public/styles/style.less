@@ -14,6 +14,7 @@ body{
 	font-size: 18px;
 	line-height: 1.8;
 	color: #000;
+	
 }
 
 
@@ -33,7 +34,22 @@ h2{
 	font-weight: 600;
 }
 
+.main{
+	margin-top: 120px;
+}
+
 /* HEADER */
+
+.container-header{
+	position: absolute;
+	top: 0;
+	clear: both;
+}
+
+.header-nav:after{
+	content:"";
+	clear: both;
+}
 
 .container-header{
 	background-color: rgba(255, 255, 255, 0.7);
@@ -72,7 +88,7 @@ ul.header-nav{
 .header-nav li{
 	display: inline;
 	list-style: none;
-	margin: 0 60px;
+	margin: 0 20px;
 }
 
 .header-nav ul li{
@@ -137,24 +153,14 @@ ul.header-icon{
 	padding: 0;
 }
 
-/* vidéo */
 
-.video-home{
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background-size: cover;
+video{
+	width: 100%;
 }
 
-/* rubriques */
+.home-content{
+	margin-top: -10px;
+}
 
 .rubriques{
 	position: relative;

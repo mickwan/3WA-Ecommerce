@@ -1,7 +1,7 @@
 <?php
 	$localhost = 'localhost';
 	$login = 'root';
-	$pass = 'troiswa';
+	$pass = 'root';
 	$database = 'campshop';
 
 ?>
