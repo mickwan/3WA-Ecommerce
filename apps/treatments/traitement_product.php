@@ -1,33 +1,35 @@
 <?php
 
-	try
+	if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1)
 	{
-		
-
-
-		if (isset($_GET['id'])
+		if (isset($_post['action']))
 		{
-			$id = intval($_GET['id']);
-			//
 			$productsManager = new ProductsManager($link);
-			$product = $productsManager->findById($id);
-			$ref = $product->getRef();
-			//
+			try
+			{
+				$productsManager->create($_POST);
+				header('Location: index.php?page=product');
+				exit;
+			}
+			catch (Exception $exception)
+			{
+				$error = $exception->getMessage();
+			}
 		}
-		else if 
-		{
 
-		}
-
-
-
-
-
-
+//  quelque chose ici !!!
 
 	}
-	catch (Exception $exception)
+	else 
 	{
-		$error = $exception->getMessage();
+		require 'views/contents/must_be_logged.phtml';
+		exit;
 	}
+
+
+
+
+
+
+
 ?>

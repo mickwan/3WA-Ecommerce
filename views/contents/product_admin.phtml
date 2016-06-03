@@ -1,58 +1,66 @@
-<h1> Création et édition de produit</h1>
+<h1> <?=$action?> product</h1>
 
 <!-- Création -->
 
-<form method="post" enctype="multipart/form-data">
-	<div>
+<form class="form-style" method="post" enctype="multipart/form-data">
+	<div class="form-group clearfix">
 		<label for="inputRef">Reference</label>
-		<input type="text" name="ref" class="input" id="inputRef" value="<?=$ref?>"><?=$ref?>>
+		<input type="text" name="ref" class="input" id="inputRef" value="<?=$refEdit?>" placeholder="<?=$ref?>">
 	</div>
-	<div>
+	<div class="form-group clearfix">
 		<label for="inputStock">Stock</label>
-		<input type="text" name="stock" class="input" id="inputStock" value="<?=$stock?>"><?=$stock?>>
+		<input type="text" name="stock" class="input" id="inputStock" value="<?=$stockEdit?>" placeholder="<?=$stock?>">
 	</div>
-	<div>
+	<div class="form-group clearfix">
 		<label for="size">Size</label>
 		<select name="size" id="size">
-			<option value="S">S</option>
-			<option value="M" selected>M</option>
-			<option value="L">L</option>
-			<option value="0">0 as without size</option>
+			<option value="S" <?=$S?>>S</option>
+			<option value="M" <?=$M?>>M</option>
+			<option value="L" <?=$L?>>L</option>
+			<option value="0" <?=$O?>>0 as without size</option>
 		</select>
 	</div>
-	<div>
+	<div class="form-group clearfix">
 		<label for="inputPrice">Price</label>
-		<input type="text" name="price" class="input" id="inputPrice" placeholder="Price (form 0.00)" value="<?=$price?>"><?=$price?>>
+		<input type="text" name="price" class="input" id="inputPrice" value="<?=$priceEdit?>" placeholder="<?=$price?>">
 	</div>
-	<div>
+	<div class="form-group clearfix">
 		<label for="inputTax">Tax</label>
-		<input type="text" name="tax" class="input" id="inputTax" placeholder="Tax (form 0.00)" value="<?=$tax?>"><?=$tax?>>
+		<input type="text" name="tax" class="input" id="inputTax" value="<?=$taxEdit?>" placeholder="<?=$tax?>">
 	</div>
-	<div>
+	<div class="form-group clearfix">
 		<label for="inputDescription">Description</label>
-		<input type="text" name="description" class="input" id="inputDescription" placeholder="Description (max. 123 char.)" value="<?=$description?>"><?=$description?>>
+		<textarea name="description" class="input" id="inputDescription" placeholder="<?=$description?>"><?=$descriptionEdit?></textarea>
 	</div>
-	<div>
+	<div class="form-group clearfix">
 		<label for="inputName">Name</label>
-		<input type="text" name="name" class="input" id="inputName" placeholder="Product name (max. 15 char.)" value="<?=$name?>"><?=$name?>>
+		<input type="text" name="name" class="input" id="inputName" value="<?=$nameEdit?>" placeholder="<?=$name?>">
 	</div>
-	<div>
+	<div class="form-group clearfix">
 		<label for="inputWeight">Weight</label>
-		<input type="text" name="weight" class="input" id="inputWeight" placeholder="Weight (form 0.00)" value="<?=$weight?>"><?=$weight?>>
+		<input type="text" name="weight" class="input" id="inputWeight" value="<?=$weightEdit?>" placeholder="<?=$weight?>">
 	</div>
-	<div>
+	<div class="form-group clearfix">
+		<label for="inputSubCat">Sub Category</label>
+		<input type="text" name="id_sub_cat" class="input" id="inputSubCat" value="<?=$id_sub_catEdit?>" placeholder="<?=$id_sub_cat?>">
+	</div>
+
+	<div class="form-group clearfix">
 		<label for="status">Status</label>
 		<select name="status" id="status">
-			<option value="0" selected>0 as not available</option>
-			<option value="1">1 as available</option>
+			<option value="0" <?=$status0?>>not available</option>
+			<option value="1" <?=$status1?>>available</option>
 		</select>
 	</div>
-	<div>
-		<input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-		<label for="picture">Product picture (max. 1Mo)</label>
+	<div class="form-group clearfix">
+<!--		<input type="hidden" name="MAX_FILE_SIZE" value="1048576" />  -->
+		<label for="picture">Choice product picture</label>
 		<input type="file" name="picture" id="picture" />		
 	</div>
-	<div>
+
+
+	<div class="form-group clearfix">
+		<input type="hidden" name="action" value="addProduct">
 		<input class="valid-button" type="submit" value="Submit">
 	</div>
 
