@@ -48,17 +48,14 @@
 	if (array_key_exists($page, $access_traitement))
 		require('apps/treatments/traitement_'.$access_traitement[$page].'.php');
 	
-	/*
-	$.get('index.php', ["page":"cat_admin","ajax":true], function(data)
-	{
-		$('div').html(data);
-	});
 	
-	if (isset($_GET['ajax']))
+	/*if (isset($_GET['ajax']))
 	{
-		$accessAjax = [];
-		require ("");
+		$accessAjax = ['add_edit_cat'];
+		if (in_array($_GET['page'], $accessAjax))
+			$page = $_GET['page'];
+		//require ("apps/contents/".$page.".php");
 	}
-	*/
+	else*/
 	require 'apps/skel.php';
 ?>
