@@ -1,21 +1,23 @@
-<h2><?=$action?> Sub-Category</h2>
-<?=$error?>
-<form method="POST">
-	<div>
-		<label for="category">Category</label>
-		<select name="id_category" id="category">
-			<?php require 'apps/contents/category_option.php';?>
-		</select>
-	</div>
-	<div>
-		<label for="name">Name</label>
-		<input type="text" name="name" id="name" placeholder="<?=$name?>" value="<?=$nameEdit?>" />
-	</div>
-	<div>
-		<label for="description">Description</label>
-		<textarea name="description" id="description" cols="30" rows="10" placeholder="<?=$description?>"><?=$descriptionEdit?></textarea>
-	</div>
-	<input type="hidden" name="action" value="<?=$action?>">
-	<input type="hidden" name="id_sub_cat" value="<?=$id_sub_cat?>"/>
-	<input type="submit" />
-</form>
+<div class="text-center">
+	<h2 class="title"><?=$action?> Sub-Category</h2>
+	<?=$error?>
+	<form  class="edit-subCategory"method="POST">
+		<div class="clearfix edit-subCategory-fields">
+			<label for="category" >Category</label>
+			<select class="input" name="id_category" id="category">
+				<?php require 'apps/contents/category_option.php';?>
+			</select>
+		</div>
+		<div class="clearfix edit-subCategory-fields">
+			<label for="name">Name</label>
+			<input class="input" type="text" name="name" id="name" placeholder="<?=$name?>" value="<?=$nameEdit?>" />
+		</div>
+		<div class="clearfix edit-subCategory-fields">
+			<label for="description">Description</label>
+			<textarea class="input" name="description" id="description" cols="30" rows="10" placeholder="<?=$description?>"><?=$descriptionEdit?></textarea>
+		</div>
+		<input type="hidden" name="action" value="<?=$action?>">
+		<input type="hidden" name="id_sub_cat" value="<?=$id_sub_cat?>"/>
+		<input class="valid-button" type="submit" />
+	</form>
+</div>
