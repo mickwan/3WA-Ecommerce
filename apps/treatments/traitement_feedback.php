@@ -94,7 +94,7 @@
 	}
 	else 
 	{
-		require 'views/contents/must_be_logged.phtml';
+		header('Location: index.php?page=login');
 		exit;
 	}
 ?>
