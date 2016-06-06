@@ -3,10 +3,11 @@ class CartManager
 {
 	private $link;
 
-	public function __construct($link);
+	public function __construct($link)
 	{
 		$this->link = $link;
 	}
+
 	public function findById($id)
 	{
 		$id = intval($id);
@@ -20,12 +21,39 @@ class CartManager
 	public function findByUser(Users $user)
 	{
 		$id_user = $user->getId();
+		$list = [];
 		$request = "SELECT * 
 					FROM cart 
 					WHERE id_user=".$id_user;
-		$res = mysqli_fetch_object($res, "Cart", [$this->link]);
-		return $cart;
+		$res = mysqli_query($this->link, $request);
+		while ($cart = mysqli_fetch_object($res, "Cart", [$this->link]))
+			$list[] = $cart;
+		return $list;
 	}
+	public function findCurrentCart(Users $user)
+	{
+		$id_user = $user->getId();
+		$cartsManager = new CartManager($this->link);
+		$carts = $cartsManager->findByUser($user);
+		if (!isset($carts[1]))
+			return $carts;
+		else
+		{
+			$i = 0;
+			$saveDate = $carts[0]->getDate();
+			while ($i < count($carts))
+			{
+				if ($carts[$i]->getDate() > $saveDate && $carts[$i]->getStatus() == 0)
+				{
+					$saveDate = $carts[$i]->getDate();
+					$currentCart = $carts[$i];
+				}
+				$i++;
+			}
+			return $currentCart;
+		}
+	}
+
 	public function findByStatus($status)
 	{
 		$list = [];
@@ -52,7 +80,7 @@ class CartManager
 			if ($id)
 			{
 				$cart = $this->findById($id);
-			return $cart
+				return $cart;
 			}
 			else
 				throw new Exception("Internal server error");
@@ -77,11 +105,14 @@ class CartManager
 
 		$request = "INSERT INTO link_cart_product(id_cart, id_product)
 					VALUES ('".$id_cart."', '".$products['id']."')";
-		while ($products[])
+
+		$i=0; 
+		while ($i < count($products))
 		{
 			$res = mysqli_query($this->link, $request);
 			if (!$res)
 				throw new Exception("Error Processing Request");
+			$i++;
 		}
 
 		$request = "UPDATE cart 
