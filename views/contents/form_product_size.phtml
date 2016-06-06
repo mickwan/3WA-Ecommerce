@@ -2,9 +2,7 @@
 	<div class="product-size">
 		<label for="size">Size</label>
 		<select name="size" id="size">
-			<option value="S">S</option>
-			<option value="M" selected>M</option>
-			<option value="L">L</option>
+			<?php require 'apps/contents/product_size_option.php';?>
 		</select>
 	</div>
 	<div class="product-quantity">
@@ -12,5 +10,6 @@
 		<input class="input" type="number" name ="quantity" min="1" max="<?=$max?>" />
 	</div>
 	<input type="hidden" name="action" value="addProduct">
+	<input type="hidden" name="id_product" value="<?=$id_product?>">
 	<div class="text-center"><input class="valid-button" type="submit" value="Valider"></div>
 </form>

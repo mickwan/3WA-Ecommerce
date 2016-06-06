@@ -70,7 +70,7 @@ class Cart
 	public function setStatus($status)
 	{
 		if ($status != 0 && $status != 1)
-			throw new Exception 'Status invalide';
+			throw new Exception("Status invalide");
 		$this->status = $status;
 	}
 	public function setPrice($price)
@@ -78,27 +78,33 @@ class Cart
 		$price = str_replace(",",".",$price);
 		$price = floatval($price);
 		if ($price <=0)
-			throw new Exception "Prix invalide";
-		$this->price = $price;
+			throw new Exception("Prix invalide");
+		if ($this->price == null)
+			$this->price = 0;
+		$this->price = $this->price + $price;
 	}
 	public function setNbProducts($nb_products)
 	{
 		$nb_products = intval($nb_products);
 		if ($nb_products<=0)
-			throw new Exception "Quantité invalide";
-		$this->nb_products = $nb_products;
+			throw new Exception("Quantité invalide");
+		if ($this->nb_products == null)
+			$this->nb_products = 0;
+		$this->nb_products = $this->nb_products + $nb_products;
 	}
 	public function setWeight($weight)
 	{
 		$weight = str_replace(",",".",$weight);
 		$weight = floatval($weight);
 		if ($weight<=0)
-			throw new Exception "Poids invalide";
-		$this->weight = $weight;
+			throw new Exception("Poids invalide");
+		if ($this->weight == null)
+			$this->weight = 0;
+		$this->weight = $this->weight + $weight;
 	}
 	public function addProduct(Products $product, $nb)
 	{
-		$i = 0 
+		$i = 0;
 		if ($this->products === null)
 			$this->getProducts();
 		while ($i < $nb)
@@ -113,10 +119,12 @@ class Cart
 		if ($this->products === null)
 			$this->getProducts();
 		$saveTab = [];
-		while ($this->products)
+		$i=0;
+		while ($i < count($this->products))
 		{
 			if ($id_product != $this->products['id'])
-				$saveTab = $this->products[];
+				$saveTab = $this->products[$i];
+			$i++;
 		}
 		$this->products = $saveTab;
 	}	
