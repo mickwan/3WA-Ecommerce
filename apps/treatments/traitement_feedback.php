@@ -4,7 +4,7 @@
 		if (isset($_POST['action']))
 		{
 			$feedbackManager = new FeedbackManager($link);
-			if ($_SESSION['user']->getAdmin() == 1)
+			if ($_SESSION['user']->getAdmin() == 1 && $page == 'feedback')
 			{
 				$id_feedback = intval($_POST['id_feedback']);
 				$feedback = $feedbackManager->findById($id_feedback);
@@ -94,7 +94,7 @@
 	}
 	else 
 	{
-		require 'views/contents/must_be_logged.phtml';
+		header('Location: index.php?page=login');
 		exit;
 	}
 ?>

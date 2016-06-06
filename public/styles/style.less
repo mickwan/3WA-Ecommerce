@@ -35,7 +35,7 @@ h2{
 }
 
 .main{
-	margin-top: 120px;
+	margin-top: 120px; 
 }
 
 /* HEADER */
@@ -111,7 +111,7 @@ ul.header-nav{
 	font-size: 17px;
 	font-weight: 700;
 	color:#FF383F;
-	transition: all 0.2s ease 0s;
+	transition: all 0.3s ease 0s;
 }
 
 .header-icon li{
@@ -368,21 +368,29 @@ label{
 	margin-right: 15px;
 }
 
+.add-file{
+	float: right;
+	width: 50%;
+	padding: 6px 0;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
 /* MY ACCOUNT */
 
 .nav-account{
-	margin: 100px 0 200px;
+	margin: 30px 0 200px;
 }
 
 .account-option-padding{
-	display: inline-block;
+	display: block;
 	margin: 20px;
 	width: 250px;
 }
 
 .account-option-padding a:hover{
 	color: #fff;
-	transition: all 0.s ease 0s;
+	transition: all 0.3s ease 0s;
 }
 
 .account-option{
@@ -411,8 +419,6 @@ label{
 .delete-button{
 	margin: 0;
 	padding: 0;
-	position: relative;
-	top: 42px;
 }
 
 .delete-button input{
@@ -430,6 +436,7 @@ label{
 	background-color: #ff383f;
 	color: #fff;
 	border: solid 2px #ff383f;
+	transition: all 0.3s ease 0s;
 }
 
 /* EDIT PROFILE */
@@ -544,11 +551,10 @@ label{
 	display: inline;
 	padding: 7px 25px 7px;
 	margin: 10px 10px 30px 0px;
-	border: solid 2px #39633F;
 	color: #fff;
 	text-decoration: none;
 	background-color: #39613C;
-	border: 1px solid #39613C;
+	border: 2px solid #39613C;
 	box-shadow: 0px 4px 0px #517E55; 
 	line-height: 1.3;
 	font-size: 18px;
@@ -609,6 +615,11 @@ label{
 	padding-bottom: 100px;
 }
 
+.category-add-button a:hover{
+	text-decoration: none;
+	color: #fff;
+}
+
 .category-manager-content{
 	margin-top: 50px;
 }
@@ -645,6 +656,11 @@ label{
 }
 
 /*MENU-BURGER*/
+
+.menu-burger-container{
+	margin-bottom: 20px;
+}
+
 .nav-menu-burger {
 	width: 50px;
 	height: 50px;
@@ -675,14 +691,19 @@ label{
 	background-color: #333;
 	list-style-type: none;
 }
-.menu-burger li {
-	padding: 0.5em 1em;
-}
-.menu-burger li a {
-	color: #ccc;
-	text-decoration: none;
 
+
+.menu-burger-button{
+	width: 100%;
+	display: block;
+	padding: 5px 10px 5px 0.7em;
+	border: solid 1px #000;
+	color: #fff;
+	text-decoration: none;
+	background-color: #000;
+	font-weight: 500;
 }
+
 .open-burger {
 	background-color: #333;
 	height: 50px;
@@ -691,7 +712,16 @@ label{
 	margin-top: -0.2em;
 }
 .open-burger span {
-	margin: 0.5em 0 0.5em 0.4em;
+	margin: 0em 0 0.5em 0.4em;
+}
+
+/* MUST BE LOGGED */
+
+.must-log{
+	color: #FF383F;
+	position: relative;
+	top: 100px;
+	font-weight: 300;
 }
 
 
