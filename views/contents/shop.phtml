@@ -1,10 +1,21 @@
 <div>
 	<div>
-		<ul>
+		<ul class="menuSubCat">
 			<?php require ("apps/contents/menu_sub_cat.php"); ?>
 		</ul>
 	</div>
-	<div>
+
+	<div class="products">
 		<?php require ("apps/contents/display_products.php"); ?>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".menuSubCat").click(function(){
+					$(".products").load(
+						"apps/contents/display_products.php"
+					);
+				})
+			});
+		</script>
 	</div>
 </div>
