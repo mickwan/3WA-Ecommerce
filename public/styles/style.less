@@ -238,8 +238,7 @@ video{
 /* What's new */
 
 .news{
-	height: auto;
-	width: 100%;
+	max-width: 100%;
 	background-color: #fff;
 	padding: 0 20px 0;
 }
@@ -253,9 +252,45 @@ video{
 	padding: 0 10px;
 }
 
-/*slider */
+/* Owl Carousel*/
+.owl-carousel{
+	max-width: 100%;
+	max-height: 100%;
+	margin: 0;
+	padding: 0;
+	margin-top: -40px;
+}
+
+.owl-item{
+	margin: 0;
+}
+
+.owl-item img{
+	max-width: 100%;
+}
 
 
+.owl-dots{
+	background-color: rgba(255, 255, 255, 0.4);
+	text-align: center;
+	margin-top: -32px;
+	position: relative;
+	width: 100%
+}
+
+.owl-dot{
+	border-radius: 50%;
+	width: 10px;
+	height: 10px; 
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 5px;
+	background: #333;
+}
+
+.owl-dot.active{
+	background: #39633F;
+}
 
 /* FORM */
 
