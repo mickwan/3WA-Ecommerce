@@ -33,10 +33,12 @@ class ProductsManager
 	public function findByName($name)
 	{
 		$name = mysqli_real_escape_string($this->link, $name);
+		$list = [];
 		$request = "SELECT * FROM products WHERE name='".$name."'";
 		$res = mysqli_query($this->link, $request);
-		$product = mysqli_fetch_object($res, "Products", [$this->link]);
-		return $product;
+		while($product = mysqli_fetch_object($res, "Products", [$this->link]))
+			$list[] = $product;
+		return $list;
 	}
 
 	// trouver les produits dans une sous-categorie 

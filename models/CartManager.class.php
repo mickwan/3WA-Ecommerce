@@ -36,7 +36,12 @@ class CartManager
 		$cartsManager = new CartManager($this->link);
 		$carts = $cartsManager->findByUser($user);
 		if (!isset($carts[1]))
-			return $carts;
+		{
+			if (isset($carts[0]))
+				return $carts[0];
+			else
+				return $this->create();
+		}
 		else
 		{
 			$i = 0;
@@ -50,7 +55,7 @@ class CartManager
 				}
 				$i++;
 			}
-			return $currentCart;
+			return $currentCart[0];
 		}
 	}
 
@@ -68,12 +73,12 @@ class CartManager
 	}
 	public function create()
 	{
-		if (!isset($_SESSION['id']))
+		if (!isset($_SESSION['id_user']))
 			throw new Exception("Vous devez être connecté");
-		$id_user = $_SESSION['id'];
-		$request = "INSERT INTO cart('id_user') 
-					VALUES ('".$id_user."')";
-		$res = mysql_query($this->link, $request);
+		$id_user = $_SESSION['id_user'];
+		$request = "INSERT INTO cart(id_user) 
+					VALUES (".$id_user.")";
+		$res = mysqli_query($this->link, $request);
 		if ($res)
 		{
 			$id = mysqli_insert_id($this->link);
@@ -103,12 +108,12 @@ class CartManager
 		if (!$res)
 			throw new Exception("Error Processing Request");
 
-		$request = "INSERT INTO link_cart_product(id_cart, id_product)
-					VALUES ('".$id_cart."', '".$products['id']."')";
 
 		$i=0; 
 		while ($i < count($products))
 		{
+			$request = "INSERT INTO link_cart_product(id_cart, id_product)
+					VALUES ('".$id_cart."', '".$products[$i]->getId()."')";
 			$res = mysqli_query($this->link, $request);
 			if (!$res)
 				throw new Exception("Error Processing Request");
@@ -116,10 +121,10 @@ class CartManager
 		}
 
 		$request = "UPDATE cart 
-					SET status = '".$status."', price = '".$price."', nb_products = '".$nb_products."', weight = '".$weight;
-		$res = mysql_query($this->link, $request);
+					SET status = '".$status."', price = '".$price."', nb_products = '".$nb_products."', weight = '".$weight."'";
+		$res = mysqli_query($this->link, $request);
 		if ($res)
-				return $this->findById($id);
+				return $this->findById($id_cart);
 		else
 			throw new Exception("Error Processing Request");
 	}

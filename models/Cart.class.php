@@ -79,14 +79,18 @@ class Cart
 		$price = floatval($price);
 		if ($price <=0)
 			throw new Exception("Prix invalide");
-		$this->price = $price;
+		if ($this->price == null)
+			$this->price = 0;
+		$this->price = $this->price + $price;
 	}
 	public function setNbProducts($nb_products)
 	{
 		$nb_products = intval($nb_products);
 		if ($nb_products<=0)
 			throw new Exception("Quantité invalide");
-		$this->nb_products = $nb_products;
+		if ($this->nb_products == null)
+			$this->nb_products = 0;
+		$this->nb_products = $this->nb_products + $nb_products;
 	}
 	public function setWeight($weight)
 	{
@@ -94,7 +98,9 @@ class Cart
 		$weight = floatval($weight);
 		if ($weight<=0)
 			throw new Exception("Poids invalide");
-		$this->weight = $weight;
+		if ($this->weight == null)
+			$this->weight = 0;
+		$this->weight = $this->weight + $weight;
 	}
 	public function addProduct(Products $product, $nb)
 	{
