@@ -71,6 +71,17 @@ class CartManager
 			$list[] = $cart;
 		return $list;
 	}
+	public function getQuantity(Products $product, Cart $cart)
+	{
+		$id_product = $product->getId();
+		$id_cart = $cart->getId();
+		$list = [];
+		$request = "SELECT * FROM link_cart_product WHERE id_product =".$id_product." AND id_cart=".$id_cart;
+		$res = mysqli_query($this->link, $request);
+		while ($product = mysqli_fetch_object($res, "Products", [$this->link]))
+			$list[] = $product;
+		return count($list);
+	}
 	public function create()
 	{
 		if (!isset($_SESSION['id_user']))

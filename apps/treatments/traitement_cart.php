@@ -21,6 +21,7 @@
 							$currentCart = $cartManager->findCurrentCart($_SESSION['user']);
 							$currentCart->setNbProducts($_POST['quantity']);
 							$currentCart->addProduct($product, $_POST['quantity']);
+							$product->changeStock(-$_POST['quantity']);
 							$i=0;
 							while ($i < $_POST['quantity'])
 							{
@@ -29,6 +30,8 @@
 								$i++;
 							}
 							$cartManager->update($currentCart);
+							$productsManager->update($product);
+							var_dump($cartManager->getQuantity($product, $currentCart));
 						}
 						catch (Exception $exception)
 						{
@@ -43,6 +46,4 @@
 			}
 		}
 	}
-	else
-		require 'views/contents/must_be_logged.phtml';
 ?>

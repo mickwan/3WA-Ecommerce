@@ -1,15 +1,17 @@
-<h2><?=$action?> Category</h2>
-<?=$error?>
-<form method="POST">
-	<div>
-		<label for="name">Name</label>
-		<input type="text" name="name" id="name" placeholder="<?=$name?>" value="<?=$nameEdit?>" />
-	</div>
-	<div>
-		<label for="description">Description</label>
-		<textarea name="description" id="description" cols="30" rows="10" placeholder="<?=$description?>"><?=$descriptionEdit?></textarea>
-	</div>
-	<input type="hidden" name="action" value="<?=$action?>">
-	<input type="hidden" name="id_category" value="<?=$id_category?>"/>
-	<input type="submit" />
-</form>
+<div class="text-center">
+	<h1 class="title"><?=$action?> Category</h1>
+	<?=$error?>
+	<form class="edit-category" method="POST">
+		<div class="edit-category-fields clearfix">
+			<label for="name">Name</label>
+			<input class="input" type="text" name="name" id="name" placeholder="<?=$name?>" value="<?=$nameEdit?>" />
+		</div>
+		<div class="edit-category-fields clearfix">
+			<label for="description">Description</label>
+			<textarea class="input" name="description" id="description" cols="30" rows="10" placeholder="<?=$description?>"><?=$descriptionEdit?></textarea>
+		</div>
+		<input type="hidden" name="action" value="<?=$action?>">
+		<input type="hidden" name="id_category" value="<?=$id_category?>"/>
+		<input class="valid-button" type="submit" />
+	</form>
+</div>

@@ -127,6 +127,10 @@ class Products
 			throw new Exception ("La quantité doit être positive");
 		$this->stock = $stock;
 	}
+	public function changeStock($nbr)
+	{
+		$this->stock = $this->stock + $nbr;
+	}
 
 	public function setSize($size)
 	{		

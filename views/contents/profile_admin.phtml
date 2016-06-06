@@ -4,22 +4,96 @@
 	<nav class="nav-account clearfix">
 		<div class="account-menu">
 			<div class="account-option-padding">
-				<div class="account-option"><a href="index.php?page=edit_contact">Edit Profile</a></div>
+				<div id="profile_admin" class="account-option"><a href="#">Edit Profile</a></div>
 			</div>
+
 			<div class="account-option-padding">
-				<div class="account-option"><a href="index.php?page=change_password">Change Password</a></div>
+				<div id="password_admin" class="account-option"><a href="#">Change Password</a></div>
 			</div>
+
 			<div class="account-option-padding">
-				<div class="account-option"><a href="index.php?page=feedback">Feedback</a></div>
+				<div id="feedback_check" class="account-option"><a href="#">Feedback</a></div>
 			</div>
+
 			<div class="account-option-padding">
-				<div class="account-option"><a href="index.php?page=cat_admin">Category</a></div>
+				<div id="cat" class="account-option"><a href="#">Category</a></div>
 			</div>
+
 			<div class="account-option-padding">
-				<div class="account-option"><a href="index.php?page=product_admin">Products</a></div>
+				<div id="prod_admin" class="account-option"><a href="#">Products</a></div>
 			</div>
+
 			<div class="account-option-padding">
 				<div class="account-option"><a href="index.php?page=cart">Cart</a></div>
+			</div>
+		</div>
+
+		<!--Ajax-->
+		<div class="ajax">
+			<div id="ajax-profile">
+				<script>
+					$(document).ready(function(){
+
+						$("#profile_admin").click(function(){
+							$("#ajax-profile").load("index.php?page=edit_contact #edit_contact")
+						});
+					});
+				</script>
+			</div>
+
+			<div id="ajax-password">
+				<script>
+					$(document).ready(function(){
+
+						$("#password_admin").click(function(){
+							$("#ajax-password").load("index.php?page=change_password #change_password")
+						});
+					});
+				</script>
+			</div>
+
+<!--/!\-->			<div id="ajax-feedback">
+				<script>
+					$(document).ready(function(){
+
+						$("#feedback_check").click(function(){
+							$("#ajax-feedback").load("index.php?page=feedback #display_feedback_admin")
+						});
+					});
+				</script>
+			</div>
+
+			<div id="ajax-category">
+				<script>
+					$(document).ready(function(){
+
+						$("#cat").click(function(){
+							$("#ajax-category").load("index.php?page=cat_admin #cat_admin")
+						});
+					});
+				</script>
+			</div>
+
+			<div id="ajax-products">
+				<script>
+					$(document).ready(function(){
+
+						$("#prod_admin").click(function(){
+							$("#ajax-products").load("index.php?page=product_admin #product_admin")
+						});
+					});
+				</script>
+			</div>
+
+<!--/!\-->			<div id="ajax-cart">
+				<script>
+					$(document).ready(function(){
+
+						$("#cart").click(function(){
+							$("#ajax-cart").load("index.php?page=cart #cart_user")
+						});
+					});
+				</script>
 			</div>
 		</div>
 	</nav>
