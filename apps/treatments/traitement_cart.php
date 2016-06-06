@@ -6,9 +6,10 @@
 			if ($_SESSION['admin'] == 0)
 			{
 				$cartManager = new CartManager($link);
-				if ($_POST['action'] == 'add')
+				$productsManager = new ProductsManager($link);
+				$product = $productsManager->findById($_POST['id_product']);
+				if ($_POST['action'] == 'addProduct')
 				{
-
 					if (!isset($_POST['size']))
 						$error = "Enter a size";
 					if (!isset($_POST['quantity']))
@@ -18,9 +19,16 @@
 						try
 						{
 							$currentCart = $cartManager->findCurrentCart($_SESSION['user']);
-							if (empty($currentCart))
-								$currentCart = $cartManager->create();
-							/*Besoin d'un changement et de précision dans la bdd*/
+							$currentCart->setNbProducts($_POST['quantity']);
+							$currentCart->addProduct($product, $_POST['quantity']);
+							$i=0;
+							while ($i < $_POST['quantity'])
+							{
+								$currentCart->setPrice($product->getPrice());
+								$currentCart->setWeight($product->getWeight());
+								$i++;
+							}
+							$cartManager->update($currentCart);
 						}
 						catch (Exception $exception)
 						{
