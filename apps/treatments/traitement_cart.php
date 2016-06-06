@@ -46,6 +46,4 @@
 			}
 		}
 	}
-	else
-		require 'views/contents/must_be_logged.phtml';
 ?>
