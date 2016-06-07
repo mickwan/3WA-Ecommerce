@@ -4,7 +4,7 @@
 			<i class="fa fa-user-plus fa-stack-1x icon"></i>
 		</span>
 	
-		<h1>Register</h1>
+		<h1 class="title margin-zero">Register</h1>
 		<span class="separation-noir"> </span>
 		<span class="separation-vert"> </span>
 		<div class="error">
@@ -59,11 +59,13 @@
 				<input type="phone" name="phone" class="input" id="phone" placeholder="Specify a phone">
 			</div>
 
-			<div class="form-group clearfix">
-				<input type="radio" name="sex" value="M" id="men" checked /> <label class="radio" for="men">Men</label>
-			</div>
-			<div class="form-group clearfix">
-				<input type="radio" name="sex" value="W" id="women" /><label class="radio" for="women"> Women</label>
+			<div class="clearfix">
+				<div class="pull-left radio form-group clearfix">
+					<input type="radio" name="sex" value="M" id="men" checked /> <label class="radio" for="men">Men</label>
+				</div>
+				<div class="pull-left radio form-group clearfix">
+					<input type="radio" name="sex" value="W" id="women" /><label class="radio" for="women"> Women</label>
+				</div>
 			</div>
 
 			<input type="hidden" name="action" value="register" />
