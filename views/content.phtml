@@ -1,5 +1,7 @@
-<div class="main">
-	<?php 
-		require 'apps/contents/'.$page.'.php'; 
-	?>
-</div>
+<?php if($page != "home" ) : ?>
+	<div class="main">
+		<?php require 'apps/contents/'.$page.'.php'; ?>
+	</div>
+<?php else: ?>
+	<?php require 'apps/contents/'.$page.'.php'; ?>
+<?php endif; ?>

@@ -111,8 +111,7 @@ class CartManager
 		$price = $cart->getPrice();
 		$nb_products = $cart->getNbProducts();
 		$weight = $cart->getWeight();
-		$products = $cart->getProducts();
-		
+		$products = $cart->getUpdateProducts();
 		$request = "DELETE FROM link_cart_product 
 					WHERE id_cart =".$id_cart;
 		$res = mysqli_query($this->link, $request);
@@ -146,7 +145,7 @@ class CartManager
 		{
 			$request ="DELETE FROM cart 
 					   WHERE id='".$id."' LIMIT 1";
-			$res = mysql_query($this->link, $request);
+			$res = mysqli_query($this->link, $request);
 			if ($res)
 				return $cart;
 			else

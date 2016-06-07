@@ -1,6 +1,29 @@
 <?php
 	if ($_GET['page'] == 'logout')
 	{
+		$productManager = new ProductsManager($link);
+		$cartManager = new CartManager($link);
+		$cart = $cartManager->findCurrentCart($_SESSION['user']);
+		$products = $cart->getProducts();
+		$i = 0;
+		try
+		{
+			while ($i < count($products))
+			{
+				if ($i == 0 || ($i > 0 && $products[$i] != $products[$i-1]))
+				{
+					$quantity = $cartManager->getQuantity($products[$i], $cart);
+					$products[$i]->changeStock($quantity);
+					$productManager->update($products[$i]);
+				}
+				$i++;
+			}
+			$cartManager->removeCart($cart);
+		}
+		catch (Exception $exception)
+		{
+			$error = $exception->getMessage();
+		}
 		session_destroy();
 		header ('Location: index.php?page=home');
 		exit;
