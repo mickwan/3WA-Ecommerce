@@ -55,14 +55,15 @@
 				}
 				else if ($_POST['action'] == 'edit' && !isset($_POST['form']))
 				{
-					$id_product = intval($_POST['id_product']);
-					$feedback = $feedbackManager->findById($id_product);
+					$id_feedback = intval($_POST['id_feedback']);
+					$feedback = $feedbackManager->findById($id_feedback);
 					if (!isset($_POST['content']))
 						$error = "Paramètre manquant : Contenu";
 					if (empty($error))
 					{
 						try
 						{
+							$feedback->setStatus(0);
 							$feedback->setContent($_POST['content']);
 							$feedbackManager->update($feedback);
 							header('Location: index.php?page=feedback');
