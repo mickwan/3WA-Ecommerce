@@ -24,9 +24,6 @@
     <script src="public/scripts/owl.carousel.min.js"></script>
     <script src="public/scripts/owl.init.js"></script>
 
-    <!-- Footer Freestyle -->
-    <script type='text/javascript' src='public/scripts/footer.js'></script>
-
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,6 +32,18 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="public/scripts/menu_burger.js"></script>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var bodyHeight = $("body").height();
+            var vwptHeight = $(window).height();
+                if (vwptHeight > bodyHeight) {
+                $("footer#footer").css("position","absolute").css("bottom",0);
+                }
+        });
+    </script>
+
   </head>
 
   <body>
