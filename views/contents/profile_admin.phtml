@@ -5,43 +5,43 @@
 		<div class="account-menu">
 			<div class="account-option-padding">
 				<div class="account-option">
-					<a href="#" data-target="change_password">Change My Password</a>
+					<a href="#" data-target="change_password" data-element="#change_password">Edit password</a>
 				</div>
 			</div>
 
 			<div class="account-option-padding">
 				<div class="account-option">
-					<a href="#" data-target="edit_contact">Edit My Profile</a>
+					<a href="#" data-target="edit_contact" data-element="#edit_contact">Edit profile</a>
 				</div>
 			</div>
 
 			<div class="account-option-padding">
 				<div class="account-option">
-					<a href="#" data-target="edit_address">Edit My Address</a>
+					<a href="#" data-target="edit_address" data-element="#edit_address">Edit address</a>
 				</div>
 			</div>
 
 			<div class="account-option-padding">
 				<div class="account-option">
-					<a href="#" data-target="cat_admin">Edit Category</a>
+					<a href="#" data-target="cat_admin" data-element="#cat_admin">Edit category</a>
 				</div>
 			</div>
 
 			<div class="account-option-padding">
 				<div class="account-option">
-					<a href="#" data-target="product_admin">Edit Products</a>
+					<a href="#" data-target="product_admin" data-element="#product_admin">Add product</a>
 				</div>
 			</div>
 
 			<div class="account-option-padding">
 				<div class="account-option">
-					<a href="#" data-target="feedback_admin">Moderate Feedback</a>
+					<a href="#" data-target="feedback" data-element="#feedback_admin">Moderate feedback</a>
 				</div>
 			</div>
 
 			<div class="account-option-padding">
 				<div class="account-option">
-					<a href="#" data-target="display_carts_admin">Moderate Cart</a>
+					<a href="#" data-target="cart" data-element="#cart_admin">Moderate cart</a>
 				</div>
 			</div>
 		</div>
@@ -60,7 +60,8 @@
 					event.preventDefault();
 					/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
 					var target = $(this).data("target");
-					$("#ajax_profile_admin").load("index.php?page="+target+" #"+target);
+					var element = $(this).data("element");
+					$("#ajax_profile_admin").load("index.php?page="+target+" "+element);
 				});
 			});
 		</script>
