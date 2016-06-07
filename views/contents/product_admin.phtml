@@ -1,4 +1,4 @@
-<div class="product-admin text-center">
+<div id="product_admin" class="product-admin text-center">
 	<h1 class="title"> <?=$action?> product</h1>
 
 	<div class="error">
@@ -6,7 +6,7 @@
 	</div>
 
 	<!-- Création -->
-	<form id="product_admin" class="form-style" method="post" enctype="multipart/form-data">
+	<form class="form-style" method="post" enctype="multipart/form-data">
 		<div class="form-group clearfix">
 			<label for="inputRef">Reference</label>
 			<input type="text" name="ref" class="input" id="inputRef" value="<?=$refEdit?>" placeholder="<?=$ref?>">
