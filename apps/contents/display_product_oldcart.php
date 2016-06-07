@@ -5,7 +5,7 @@
 	{
 		$quantity = $cartManager->getQuantity($products[$i], $cart);
 		if ($i == 0 || ($i > 0 && $products[$i] != $products[$i-1]))
-			require 'views/contents/form_current_cart.phtml';
+			require 'views/contents/display_product_oldcart.phtml';
 		$i++;
 	}
 ?>

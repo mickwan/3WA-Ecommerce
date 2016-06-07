@@ -7,8 +7,9 @@
 			{
 				if ($_POST['action'] == 'add')
 				{
+					$contentEdit = null;
 					$option = 'add';
-					$content = 'Feedback content ...';
+					$contentAdd = 'Feedback content ...';
 					$id_product = $_POST['id_product'];
 					$id_feedback = 0;
 				}
@@ -17,7 +18,8 @@
 					$option = 'edit';
 					$feedbackManager = new FeedbackManager($link);
 					$feedback = $feedbackManager->findById($_POST['id_feedback']);
-					$content = $feedback->getContent();
+					$contentAdd = $feedback->getContent();
+					$contentEdit = $feedback->getContent();
 					$id_product = $feedback->getIdProduct();
 					$id_feedback = $feedback->getId();
 				}

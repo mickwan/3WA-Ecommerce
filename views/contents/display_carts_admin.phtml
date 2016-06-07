@@ -1,30 +1,32 @@
-<div>
-	
-	<div>
-		<p>Cart Id : <?=$carts[$i]->getId()?></p>
-		<p> Date : <?=$carts[$i]->getDate()?></p>
-		<p> Weight : <?=$carts[$i]->getWeight()?></p>
-		<div>Products : </div>
-
-
-
-	</div>
-
-	<div>
-		<form method="POST">
-			<input type="hidden" name="action" value="valid">
-			<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
-			<input type="submit" value="Valid">				
-		</form>
-		<form method="POST">
-			<input type="hidden" name="action" value="refuse">
-			<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
-			<input type="submit" value="Refuse">				
-		</form>
-
-	</div>
-
-
-	
-
-</div>
+<table class="text-left" style="width:75%;margin:2em auto;">
+	<caption><?=$user->getLogin()?></caption>
+	<thead>
+		<tr>
+			<th>Product</th>
+			<th>Size</th>
+			<th>Quantity</th>
+			<th colspan="2">Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php 
+			require 'apps/contents/display_product_cart.php';
+		?>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3">Total</td>
+			<td colspan="2"><?=$carts[$i]->getPrice()?></td>
+		</tr>
+	</tfoot>
+</table>
+<form method="POST" action="index.php?page=cart">
+	<input type="hidden" name="action" value="valid">
+	<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
+	<input type="submit" value="valid">
+</form>
+<form method="POST" action="index.php?page=cart">
+	<input type="hidden" name="action" value="refuse">
+	<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
+	<input type="submit" value="refuse">
+</form>

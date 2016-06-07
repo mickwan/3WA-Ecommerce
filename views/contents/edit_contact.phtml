@@ -1,11 +1,11 @@
-<div class="edit-profile-container clearfix">
+<div id="edit_contact" class="edit-profile-container clearfix">
 	<h1 class="text-center title">Edit My Profile</h1>
 
 	<div class="error">
 		<?=$error?>
 	</div>
 	
-	<form id="edit_contact" class="form-style" method="POST">
+	<form class="form-style" method="POST" action="index.php?page=edit_contact">
 
 		<div class="form-group clearfix">
 			<label for="email">E-mail</label>
@@ -24,7 +24,7 @@
 			
 		<div class="form-group clearfix">
 			<label for="login">Login</label>
-			<input type="text" name="login" class="input" placeholder="<?=$user->getLogin()?" value="<?=$user->getLogin()?>">
+			<input type="text" name="login" class="input" placeholder="<?=$user->getLogin()?>" value="<?=$user->getLogin()?>">
 		</div>
 
 		<div class="form-group clearfix">

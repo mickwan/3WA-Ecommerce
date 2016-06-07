@@ -1,4 +1,4 @@
-<div id="feedback_admin" class="feedback-content">
+<div class="feedback-content" id="feedback_admin">
 	<div class="feedback-header feedback-container clearfix">
 		<div class="pull-left">
 			<p class="feedback-moderation-login"><?=$user->getLogin()?></p>
@@ -15,13 +15,13 @@
 	</div>
 
 	<div class="feedback-menu clearfix feedback-content">
-		<form class="feedback-moderation-button pull-left" method="POST">
+		<form class="feedback-moderation-button pull-left" method="POST" action="index.php?page=feedback">
 			<input type="hidden" name="action" value="valid">
 			<input type="hidden" name="id_feedback" value="<?=$feedbacks[$i]->getId()?>">
 			<input type="submit" value="Valid">
 		</form>
 
-		<form class="feedback-moderation-button pull-left" method="POST">
+		<form class="feedback-moderation-button pull-left" method="POST" action="index.php?page=feedback">
 			<input type="hidden" name="id_feedback" value="<?=$feedbacks[$i]->getId()?>">
 			<input type="hidden" name="action" value="refuse">
 			<input type="submit" value="Refuse">
