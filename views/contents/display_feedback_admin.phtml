@@ -1,22 +1,26 @@
-<div id="feedback" class="feedback-content">
+<div id="feedback_admin" class="feedback-content">
 	<div class="feedback-header feedback-container clearfix">
 		<div class="pull-left">
 			<p class="feedback-moderation-login"><?=$user->getLogin()?></p>
 			<p> Product name : <?=$product->getName()?></p>
 		</div>
+
 		<div class="feedback-moderation-date pull-right">
 			<?=$feedbacks[$i]->getdate()?>
 		</div>
 	</div>
+
 	<div class="feedback-content">
 		<?=$feedbacks[$i]->getContent()?>
 	</div>
+
 	<div class="feedback-menu clearfix feedback-content">
 		<form class="feedback-moderation-button pull-left" method="POST">
 			<input type="hidden" name="action" value="valid">
 			<input type="hidden" name="id_feedback" value="<?=$feedbacks[$i]->getId()?>">
 			<input type="submit" value="Valid">
 		</form>
+
 		<form class="feedback-moderation-button pull-left" method="POST">
 			<input type="hidden" name="id_feedback" value="<?=$feedbacks[$i]->getId()?>">
 			<input type="hidden" name="action" value="refuse">

@@ -1,17 +1,22 @@
 <div class="product-admin text-center">
 	<h1 class="title"> <?=$action?> product</h1>
-	<?=$error?>
-	<!-- Création -->
 
+	<div class="error">
+		<?=$error?>
+	</div>
+
+	<!-- Création -->
 	<form id="product_admin" class="form-style" method="post" enctype="multipart/form-data">
 		<div class="form-group clearfix">
 			<label for="inputRef">Reference</label>
 			<input type="text" name="ref" class="input" id="inputRef" value="<?=$refEdit?>" placeholder="<?=$ref?>">
 		</div>
+
 		<div class="form-group clearfix">
 			<label for="inputStock">Stock</label>
 			<input type="text" name="stock" class="input" id="inputStock" value="<?=$stockEdit?>" placeholder="<?=$stock?>">
 		</div>
+
 		<div class="form-group clearfix">
 			<label for="size">Size</label>
 			<select class="input" name="size" id="size">
@@ -21,26 +26,32 @@
 				<option value="0" <?=$O?>>0 as without size</option>
 			</select>
 		</div>
+
 		<div class="form-group clearfix">
 			<label for="inputPrice">Price</label>
 			<input type="text" name="price" class="input" id="inputPrice" value="<?=$priceEdit?>" placeholder="<?=$price?>">
 		</div>
+
 		<div class="form-group clearfix">
 			<label for="inputTax">Tax</label>
 			<input type="text" name="tax" class="input" id="inputTax" value="<?=$taxEdit?>" placeholder="<?=$tax?>">
 		</div>
+
 		<div class="form-group clearfix">
 			<label for="inputDescription">Description</label>
 			<textarea name="description" class="input" id="inputDescription" placeholder="<?=$description?>"><?=$descriptionEdit?></textarea>
 		</div>
+
 		<div class="form-group clearfix">
 			<label for="inputName">Name</label>
 			<input type="text" name="name" class="input" id="inputName" value="<?=$nameEdit?>" placeholder="<?=$name?>">
 		</div>
+
 		<div class="form-group clearfix">
 			<label for="inputWeight">Weight</label>
 			<input type="text" name="weight" class="input" id="inputWeight" value="<?=$weightEdit?>" placeholder="<?=$weight?>">
 		</div>
+
 		<div class="form-group clearfix">
 			<label for="inputSubCat">Sub Category</label>
 			<select class="input" name="id_sub_cat" id="inputSubCat">
@@ -57,8 +68,9 @@
 				<option value="1" <?=$status1?>>available</option>
 			</select>
 		</div>
+
 		<div class="form-group clearfix">
-	<!--		<input type="hidden" name="MAX_FILE_SIZE" value="1048576" />  -->
+		<!--<input type="hidden" name="MAX_FILE_SIZE" value="1048576" />-->
 			<label for="picture">Choice product picture</label>
 			<input class="add-file" type="file" name="picture" id="picture" />		
 		</div>
@@ -70,6 +82,5 @@
 			<input type="hidden" name="form" value="1">
 			<input class="valid-button" type="submit" value="Submit">
 		</div>
-
 	</form>
 </div>
