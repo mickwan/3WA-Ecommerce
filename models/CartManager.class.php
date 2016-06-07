@@ -55,7 +55,7 @@ class CartManager
 				}
 				$i++;
 			}
-			return $currentCart[0];
+			return $currentCart;
 		}
 	}
 

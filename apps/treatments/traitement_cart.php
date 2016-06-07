@@ -80,6 +80,9 @@
 						{
 						$currentCart->setStatus(1);
 						$cartManager->update($currentCart);
+						$cartManager->create();
+						header('Location: index.php?page=profile');
+						exit;
 						}
 						catch (Exception $exception)
 						{
