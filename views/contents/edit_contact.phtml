@@ -38,11 +38,13 @@
 				<input type="text" name="phone" class="input" placeholder="<?=$user->getPhone()?>" value="<?=$user->getPhone()?>">
 			</div>
 			
-			<div class="pull-left radio form-group clearfix">
-				<input type="radio" name="sex" value="M" id="men" <?=$Mcheck?>/> <label class="radio"for="men">Men</label>
-			</div>
-			 <div class="pull-left radio form-group clearfix">
-				<input type="radio" name="sex" value="W" id="women" <?=$Fcheck?>/> <label class="radio"for="women">Women</label>
+			<div class="clearfix">
+				<div class="pull-left radio form-group clearfix">
+					<input type="radio" name="sex" value="M" id="men" <?=$Mcheck?>/> <label class="radio"for="men">Men</label>
+				</div>
+				 <div class="pull-left radio form-group clearfix">
+					<input type="radio" name="sex" value="W" id="women" <?=$Fcheck?>/> <label class="radio"for="women">Women</label>
+				</div>
 			</div>
 
 			<input type="hidden" name="action" value="edit" />
