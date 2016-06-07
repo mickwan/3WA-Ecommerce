@@ -144,19 +144,27 @@
 		}
 		else if ($_POST['action'] == 'delete') // Le compte User n'est jamais supprimé mais plutôt rendu inactif
 		{
-			$usersManager = new UsersManager($link);
-			$user = $usersManager->findById($_SESSION['id_user']);
-			try 
+			if ($_POST['choice'] == 'no')
 			{
-				$user->setInactive();
-				$usersManager->update($user);
+				header('Location: index.php?page=profile');
+				exit;
 			}
-			catch (Exception $exception)
-			{
-				$error = $exception->getMessage();
+			else if ($_POST['choice'] == 'yes')
+			{	
+				$usersManager = new UsersManager($link);
+				$user = $usersManager->findById($_SESSION['id_user']);
+				try 
+				{
+					$user->setInactive();
+					$usersManager->update($user);
+				}
+				catch (Exception $exception)
+				{
+					$error = $exception->getMessage();
+				}
+				header ('Location: index.php?page=logout');
+				exit;
 			}
-			header ('Location: index.php?page=logout');
-			exit;
 		}
 	}
 ?>
