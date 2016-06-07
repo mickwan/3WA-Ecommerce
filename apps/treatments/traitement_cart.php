@@ -74,7 +74,7 @@
 					if ($products == null)
 						$error = "You can't check out an empty cart";
 					//Vérifier si adresse présente					
-					if (empty($error)
+					if (empty($error))
 					{
 						try
 						{

@@ -73,7 +73,7 @@ class Cart
 
 	public function setStatus($status)
 	{
-		if ($status == 0 || $status == 1 || $status == 2)
+		if ($status == 0 || $status == 1 || $status == 2 || $status == 3)
 			$this->status = $status;
 		else
 			throw new Exception("Status invalide");

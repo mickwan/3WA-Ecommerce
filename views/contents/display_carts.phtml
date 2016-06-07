@@ -1,17 +1,9 @@
-<li>
-	<div>
-		<?=$cart[$i]->getDate()?>
-		<?=$cart[$i]->getPrice()?>
+<li class="clearfix class">
+	<div class="pull-left">
+		<?=$carts[$i]->getDate()?>
+		<?=$carts[$i]->getPrice()?>
 	</div>
-<!--
-	<form>
-		<input type="hidden" name="action" value="voir le contenu">
-		<input type="hidden" name="id_cart" value="<?=$cart[$i]->getId()?>">
-		<input type="hidden" name="form" value="1">
-		<input type="submit" value="voir le contenu">
-	</form>
-	<ul>
-			<?php require 'apps/contents/old_cart.php';?>
-	</ul>
--->
+	<div class="pull-right">
+		<a href="index.php?page=old_cart&id_cart=<?=$carts[$i]->getId()?>">See more</a>
+	</div>
 </li>
