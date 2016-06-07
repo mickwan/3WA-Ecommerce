@@ -1,8 +1,9 @@
 <div class="account text-center clearfix">
 	<h1 class="title">Welcome to your profile</h1>
 
-	<nav class="nav-account clearfix">
-		<div class="account-menu">
+	<div class="account-menu clearfix">
+		<nav class="nav-account clearfix pull-left">
+		
 			<div class="account-option-padding">
 				<div class="account-option">
 					<a href="#" data-target="change_password">Change Password</a>
@@ -44,25 +45,25 @@
 					<a href="index.php?page=cart" data-target="cart">Moderate Cart</a>
 				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>
 
-	<!--Ajax-->
-	<div class="ajax">
-		<div id="ajax_profile_admin">
-			<!--Affichage des pages en Ajax ici-->
-		</div>
+		<!--Ajax-->
+		<div class="ajax pull-left">
+			<div id="ajax_profile_admin">
+				<!--Affichage des pages en Ajax ici-->
+			</div>
 
-		<script>
-			$(document).ready(function(){
+			<script>
+				$(document).ready(function(){
 
-				$(".account-option a").click(function(event){
-					event.preventDefault();
-					/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
-					var target = $(this).data("target");
-					$("#ajax_profile_admin").load("index.php?page="+target+" #"+target);
+					$(".account-option a").click(function(event){
+						event.preventDefault();
+						/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
+						var target = $(this).data("target");
+						$("#ajax_profile_admin").load("index.php?page="+target+" #"+target);
+					});
 				});
-			});
-		</script>
+			</script>
+		</div>
 	</div>
 </div>
