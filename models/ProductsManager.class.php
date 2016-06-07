@@ -204,7 +204,7 @@ class ProductsManager
 			$name = mysqli_real_escape_string($this->link, $products->getName());
 			$weight = $products->getWeight();
 			$id_sub_cat = $products->getIdSubCat();
-			$statut = $products->getStatus();
+			$status = $products->getStatus();
 			$picture = mysqli_real_escape_string($this->link, $products->getPicture());
 			
 			$request = "UPDATE products SET ref='".$ref."', stock='".$stock."', size='".$size."', price='".$price."', tax='".$tax."', description='".$description."', name='".$name."', weight='".$weight."', id_sub_cat='".$id_sub_cat."', status='".$status."', picture='".$picture."' WHERE id=".$id;
