@@ -1,0 +1,21 @@
+<table class="text-left" style="width:75%;margin:2em auto;">
+	<thead>
+		<tr>
+			<th>Product</th>
+			<th>Size</th>
+			<th>Quantity</th>
+			<th colspan="2">Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php 
+			require 'apps/contents/display_product_oldcart.php';
+		?>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3">Total</td>
+			<td colspan="2"><?=$cart->getPrice()?></td>
+		</tr>
+	</tfoot>
+</table>
