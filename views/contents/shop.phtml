@@ -1,11 +1,23 @@
 <div>
-	<div>
-		<ul class="menuSubCat">
-			<?php require ("apps/contents/menu_sub_cat.php"); ?>
-		</ul>
-	</div>
-
-	<div class="products">
-		<?php require ("apps/contents/display_products.php"); ?>
-	</div>
+	<ul>
+		<?php require ("apps/contents/menu_sub_cat.php"); ?>
+	</ul>
 </div>
+
+<!--Ajax-->
+<div id="ajax-shop">
+	<!--Affichage de l'ajax ici-->
+</div>
+
+<script>
+$(document).ready(function(){
+
+	$("#SubCat").click(function(event){
+		event.preventDefault();
+		/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
+		var target = $(this).data("target");
+		var element = $(this).data("element");
+		$("#ajax_shop").load("index.php?page="+target+" "+element);
+	});
+});
+</script>
