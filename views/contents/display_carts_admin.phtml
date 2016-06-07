@@ -1,4 +1,30 @@
 <div>
-	<?=$cart[$i]->getId()?>
+	
+	<div>
+		<p>Cart Id : <?=$carts[$i]->getId()?></p>
+		<p> Date : <?=$carts[$i]->getDate()?></p>
+		<p> Weight : <?=$carts[$i]->getWeight()?></p>
+		<div>Products : </div>
+
+
+
+	</div>
+
+	<div>
+		<form method="POST">
+			<input type="hidden" name="action" value="valid">
+			<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
+			<input type="submit" value="Valid">				
+		</form>
+		<form method="POST">
+			<input type="hidden" name="action" value="refuse">
+			<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
+			<input type="submit" value="Refuse">				
+		</form>
+
+	</div>
+
+
+	
 
 </div>
