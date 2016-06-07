@@ -1,9 +1,9 @@
-<li class="clearfix class">
-	<div class="pull-left">
+<li class="<?=$class?>">
+	<div>
 		<?=$carts[$i]->getDate()?>
 		<?=$carts[$i]->getPrice()?>
 	</div>
-	<div class="pull-right">
+	<div>
 		<a href="index.php?page=old_cart&id_cart=<?=$carts[$i]->getId()?>">See more</a>
 	</div>
 </li>

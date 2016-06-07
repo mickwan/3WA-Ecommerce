@@ -65,7 +65,7 @@ class CartManager
 		$status = mysqli_real_escape_string($this->link, $status);
 		$request = "SELECT * 
 					FROM cart 
-					WHERE id=".$status;
+					WHERE status=".$status;
 		$res = mysqli_query($this->link, $request);
 		while ($cart = mysqli_fetch_object($res, "Cart", [$this->link]))
 			$list[] = $cart;
@@ -131,7 +131,7 @@ class CartManager
 		}
 
 		$request = "UPDATE cart 
-					SET status = '".$status."', price = '".$price."', nb_products = '".$nb_products."', weight = '".$weight."'";
+					SET status = '".$status."', price = '".$price."', nb_products = '".$nb_products."', weight = '".$weight."' WHERE id=".$id_cart;
 		$res = mysqli_query($this->link, $request);
 		if ($res)
 				return $this->findById($id_cart);
