@@ -17,7 +17,7 @@
 			require ("models/".$className.".class.php");
 	}
 
-	$access = array('logout', 'login', 'register', 'change_password', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'cat_admin', 'add_edit_cat', 'add_edit_sub_cat', 'product_admin', 'add_edit_feedback');
+	$access = array('logout', 'login', 'register', 'change_password', 'address', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'cat_admin', 'add_edit_cat', 'add_edit_sub_cat', 'product_admin', 'add_edit_feedback');
 	$page = 'home'; /*page courante : home par default*/ 
 	$error = '';
 	$success = '';
