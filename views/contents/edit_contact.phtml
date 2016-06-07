@@ -1,53 +1,59 @@
+<div class="edit-profile-container clearfix">
+	<h1 class="text-center title">Edit My Profile</h1>
 
-	<div class="edit-profile-container clearfix">
-		<h1 class="text-center title">Edit My Profile</h1>
+	<div class="error">
+		<?=$error?>
+	</div>
+	
+	<form id="edit_contact" class="form-style" method="POST">
 
-		<div class="error">
-				<?=$error?>
+		<div class="form-group clearfix">
+			<label for="email">E-mail</label>
+			<input type="text" name="email" class="input" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
+		</div>
+
+		<div class="form-group clearfix">
+			<label for="confirmEmail">Confirm Your E-mail</label>
+			<input type="text" name="confirmEmail" class="input" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
 		</div>
 		
-		<form id="edit_contact" class="form-style" method="POST">
+		<div class="form-group clearfix">
+			<label for="login">Login</label>
+			<input type="text" name="login" class="input" placeholder="<?=$user->getLogin()?>" value="<?=$user->getLogin()?>">
+		</div>
 
-			<div class="form-group clearfix">
-				<label for="email">E-mail</label>
-				<input type="text" name="email" class="input" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
-			</div>
-			<div class="form-group clearfix">
-				<label for="confirmEmail">Confirm Your E-mail</label>
-				<input type="text" name="confirmEmail" class="input" placeholder="<?=$user->getEmail()?>" value="<?=$user->getEmail()?>">
-			</div>
-			
-			<div class="form-group clearfix">
-				<label for="login">Login</label>
-				<input type="text" name="login" class="input" placeholder="<?=$user->getLogin()?>" value="<?=$user->getLogin()?>">
-			</div>
-			<div class="form-group clearfix">
-				<label for="firstname">First Name</label>
-				<input type="text" name="firstname" class="input" placeholder="<?=$user->getFirstName()?>" value="<?=$user->getFirstName()?>">
-			</div>
-			<div class="form-group clearfix">
-				<label for="lastname">Last Name</label>
-				<input type="text" name="lastname" class="input" placeholder="<?=$user->getLastName()?>" value="<?=$user->getLastName()?>">
-			</div>
-			<div class="form-group clearfix">
-				<label for="birth_date">Birth Date</label>
-				<input type="date" name="birth_date" class="input" placeholder="<?=$user->getBirthDate()?>" value="<?=$user->getBirthDate()?>">
-			</div>
-			<div class="form-group clearfix">
-				<label for="phone">Phone</label>
-				<input type="text" name="phone" class="input" placeholder="<?=$user->getPhone()?>" value="<?=$user->getPhone()?>">
-			</div>
-			
+		<div class="form-group clearfix">
+			<label for="firstname">First Name</label>
+			<input type="text" name="firstname" class="input" placeholder="<?=$user->getFirstName()?>" value="<?=$user->getFirstName()?>">
+		</div>
+
+		<div class="form-group clearfix">
+			<label for="lastname">Last Name</label>
+			<input type="text" name="lastname" class="input" placeholder="<?=$user->getLastName()?>" value="<?=$user->getLastName()?>">
+		</div>
+
+		<div class="form-group clearfix">
+			<label for="birth_date">Birth Date</label>
+			<input type="date" name="birth_date" class="input" placeholder="<?=$user->getBirthDate()?>" value="<?=$user->getBirthDate()?>">
+		</div>
+
+		<div class="form-group clearfix">
+			<label for="phone">Phone</label>
+			<input type="text" name="phone" class="input" placeholder="<?=$user->getPhone()?>" value="<?=$user->getPhone()?>">
+		</div>
+		
+		<div class="clearfix">
 			<div class="pull-left radio form-group clearfix">
 				<input type="radio" name="sex" value="M" id="men" <?=$Mcheck?>/> <label class="radio"for="men">Men</label>
 			</div>
+
 			 <div class="pull-left radio form-group clearfix">
 				<input type="radio" name="sex" value="W" id="women" <?=$Fcheck?>/> <label class="radio"for="women">Women</label>
 			</div>
+		</div>
 
-			<input type="hidden" name="action" value="edit" />
-			
-			<div class="edit-valid-button text-center"><input class="valid-button" type="submit" value="Valider"></div>
-
-		</form>
-	</div>
+		<input type="hidden" name="action" value="edit" />
+		
+		<div class="edit-valid-button text-center"><input class="valid-button" type="submit" value="Valider"></div>
+	</form>
+</div>

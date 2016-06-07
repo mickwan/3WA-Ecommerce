@@ -5,23 +5,33 @@
 		<div class="account-menu">
 
 			<div class="account-option-padding">
-				<div id="profile" class="account-option"><a href="#">Edit Profile</a></div>
+				<div class="account-option">
+					<a href="#" data-target="change_password">Change Password</a>
+				</div>
 			</div>
 
 			<div class="account-option-padding">
-				<div id="password" class="account-option"><a href="#">Change Password</a></div>
+				<div class="account-option">
+					<a href="#" data-target="edit_contact">Edit Profile</a>
+				</div>
 			</div>
 
 			<div class="account-option-padding">
-				<div id="cart" class="account-option"><a href="#">My Carts</a></div>
+				<div class="account-option">
+					<a href="#" data-target="edit_address">Edit Address</a>
+				</div>	
 			</div>
 
 			<div class="account-option-padding">
-				<div id="feedback" class="account-option"><a href="#">My Feedbacks</a></div>
+				<div class="account-option">
+					<a href="#" data-target="cart_user">My Carts</a>
+				</div>
 			</div>
 
 			<div class="account-option-padding">
-				<div id="address" class="account-option"><a href="index.php?page=address">My Address</a></div>	
+				<div class="account-option">
+					<a href="#" data-target="feedback_user">My Feedbacks</a>
+				</div>
 			</div>
 
 			<div class="account-option-padding">
@@ -30,64 +40,25 @@
 					<input type="submit" value="Delete my Account">
 				</form>
 			</div>
-
-
-		<!--Ajax-->
-		<div class="ajax">
-			<div id="ajax-profile">
-				<script>
-					$(document).ready(function(){
-
-						$("#profile").click(function(){
-							$("#ajax-profile").load("index.php?page=edit_contact #edit_contact")
-						});
-					});
-				</script>
-			</div>
-
-			<div id="ajax-password">
-				<script>
-					$(document).ready(function(){
-
-						$("#password").click(function(){
-							$("#ajax-password").load("index.php?page=change_password #change_password")
-						});
-					});
-				</script>
-			</div>
-
-<!--/!\-->			<div id="ajax-cart">
-				<script>
-					$(document).ready(function(){
-
-						$("#cart").click(function(){
-							$("#ajax-cart").load("index.php?page=cart #cart_user")
-						});
-					});
-				</script>
-			</div>
-
-			<div id="ajax-feedback">
-				<script>
-					$(document).ready(function(){
-
-						$("#feedback").click(function(){
-							$("#ajax-feedback").load("index.php?page=feedback #display_feedback_user")
-						});
-					});
-				</script>
-			</div>
-
-<!--/!\-->			<div id="ajax-address">
-				<script>
-					$(document).ready(function(){
-
-						$("#feedback").click(function(){
-							$("#ajax-address").load("index.php?page=feedback #address_user")
-						});
-					});
-				</script>
-			</div>
 		</div>
 	</nav>
+
+	<!--Ajax-->
+	<div class="ajax">
+		<div id="ajax_profile_user">
+			<!--Affichage des pages en Ajax ici-->
+		</div>
+
+		<script>
+			$(document).ready(function(){
+
+				$(".account-option a").click(function(event){
+					event.preventDefault();
+					/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
+					var target = $(this).data("target");
+					$("#ajax_profile_user").load("index.php?page="+target+" #"+target);
+				});
+			});
+		</script>
+	</div>
 </div>
