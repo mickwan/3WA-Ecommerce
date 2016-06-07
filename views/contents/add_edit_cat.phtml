@@ -6,10 +6,12 @@
 			<label for="name">Name</label>
 			<input class="input" type="text" name="name" id="name" placeholder="<?=$name?>" value="<?=$nameEdit?>" />
 		</div>
+
 		<div class="edit-category-fields clearfix">
 			<label for="description">Description</label>
 			<textarea class="input" name="description" id="description" cols="30" rows="10" placeholder="<?=$description?>"><?=$descriptionEdit?></textarea>
 		</div>
+
 		<input type="hidden" name="action" value="<?=$action?>">
 		<input type="hidden" name="id_category" value="<?=$id_category?>"/>
 		<input class="valid-button" type="submit" />
