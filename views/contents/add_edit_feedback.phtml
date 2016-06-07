@@ -1,9 +1,9 @@
 <div class="text-center">
 	<h1 class="title"><?=$option?> Feedback</h1>
-	<form class="form-style" method="POST">
+	<form class="form-style" method="POST" action="index.php?page=add_edit_feedback">
 		<div class="add-feedback-form clearfix">
 			<label for="content">Content : </label>
-			<textarea name="content" class="input" value="<?=$content?>"><?=$content?></textarea>
+			<textarea name="content" class="input" placeholder="<?=$contentAdd?>"><?=$contentEdit?></textarea>
 		</div>
 
 		<input type="hidden" name="action" value="<?=$option?>" />

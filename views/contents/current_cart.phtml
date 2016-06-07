@@ -21,7 +21,7 @@
 		</tr>
 	</tfoot>
 </table>
-<form method="POST">
+<form method="POST" action="index.php?page=cart">
 	<input type="hidden" name="action" value="valid">
 	<input type="hidden" name="id_cart" value="<?=$cart->getId()?>">
 	<input type="submit" value="Check Out">

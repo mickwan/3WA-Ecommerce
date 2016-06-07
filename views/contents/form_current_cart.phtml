@@ -7,7 +7,7 @@
 	<td><?=$quantity?></td>
 	<td><?=$products[$i]->getPrice()?></td>
 	<td>
-		<form method="POST">
+		<form method="POST" action="index.php?page=current_cart">
 			<input type="hidden" name="id_product" value="<?=$products[$i]->getId()?>">
 			<input type="hidden" name="quantity" value="<?=$quantity?>">
 			<input type="hidden" name="action" value="removeProduct">

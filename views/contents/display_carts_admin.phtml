@@ -20,12 +20,12 @@
 		</tr>
 	</tfoot>
 </table>
-<form method="POST">
+<form method="POST" action="index.php?page=cart">
 	<input type="hidden" name="action" value="valid">
 	<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
 	<input type="submit" value="valid">
 </form>
-<form method="POST">
+<form method="POST" action="index.php?page=cart">
 	<input type="hidden" name="action" value="refuse">
 	<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
 	<input type="submit" value="refuse">

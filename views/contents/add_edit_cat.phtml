@@ -1,7 +1,7 @@
 <div class="text-center">
 	<h1 class="title"><?=$action?> Category</h1>
 	<?=$error?>
-	<form class="edit-category" method="POST">
+	<form class="edit-category" method="POST" action="index.php?page=add_edit_cat">
 		<div class="edit-category-fields clearfix">
 			<label for="name">Name</label>
 			<input class="input" type="text" name="name" id="name" placeholder="<?=$name?>" value="<?=$nameEdit?>" />
