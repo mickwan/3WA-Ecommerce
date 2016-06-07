@@ -1,10 +1,14 @@
 <div class="product-container text-center">
-<?=$error?>
+	<div class="error">
+		<?=$error?>	
+	</div>
+	
 	<div class="product-page-container">
 		<div class="product-page clearfix">
 			<div class="menu-burger-container">
 				<?php require "apps/contents/menu_burger.php"; ?>
 			</div>
+
 			<figure class="product-picture pull-left">
 				<img src="<?=$product->getPicture()?>" alt="image produit"/>
 			</figure>
@@ -12,20 +16,19 @@
 			<div class="product-text pull-right">
 				<h2 class="product-name"><?=$product->getName()?></h2>
 
-				
 				<div class="product-price">
 					<?=$product->getPrice()?>
 				</div>
+
 				<div class="product-description">
 					<?=$product->getDescription()?>
-
-
 				</div>
-				
-				<?php
-					require('apps/contents/form_product.php');
-				?>
 
+				<div>
+					<?php
+						require('apps/contents/form_product.php');
+					?>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -38,7 +41,6 @@
 			<input type="submit" value="Add a Feedback">
 		</form>
 	</div>
-
 
 	<div class="product-page product-feedback">
 		<h2>Feedbacks : </h2>

@@ -7,6 +7,7 @@
 			<input type="hidden" name="form" value="1">
 			<input type="submit" value="edit">
 		</form>
+
 		<form  class="category-manager-button" method="POST" action="index.php?page=cat_admin">
 			<input type="hidden" name="action" value="delete">
 			<input type="hidden" name="id_category" value="<?=$categories[$i]->getId()?>">
@@ -15,6 +16,6 @@
 	</div>
 
 	<ul>
-			<?php require 'apps/contents/display_sub_cat.php';?>
+		<?php require 'apps/contents/display_sub_cat.php';?>
 	</ul>
 </li>

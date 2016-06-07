@@ -6,8 +6,7 @@
 		$i = 0;
 		while ($i < count($products))
 		{
-			if ($i > 1 
-				&& $products[$i]->getIdSubCat() != $products[$i-1]->getIdSubCat())
+			if ($i == 0 || ($i >= 1 && $products[$i]->getIdSubCat() != $products[$i-1]->getIdSubCat()))
 			{
 				$id_product = $products[$i]->getId();
 				require 'views/contents/display_products.phtml';
