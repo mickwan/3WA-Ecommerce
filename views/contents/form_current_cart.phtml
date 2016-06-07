@@ -1,15 +1,17 @@
-<td class="clearfix">
-	<img class="pull-left" src="<?=$products[$i]->getPicture()?>" alt="img product">
-	<div class="pull_right"><?=$products[$i]->getName()?></div>
-</td>
-<td><?=$products[$i]->getSize()?></td>
-<td><?=$quantity?></td>
-<td><?=$products[$i]->getPrice()?></td>
-<td>
-	<form method="POST">
-		<input type="hidden" name="id_product" value="<?=$products[$i]->getId()?>">
-		<input type="hidden" name="quantity" value="<?=$quantity?>">
-		<input type="hidden" name="action" value="removeProduct">
-		<input type="submit" value="remove">
-	</form>
-</td>
+<tr>
+	<td class="clearfix">
+		<img class="pull-left" src="<?=$products[$i]->getPicture()?>" alt="img product">
+		<div class="pull_right"><?=$products[$i]->getName()?></div>
+	</td>
+	<td><?=$products[$i]->getSize()?></td>
+	<td><?=$quantity?></td>
+	<td><?=$products[$i]->getPrice()?></td>
+	<td>
+		<form method="POST" action="index.php?page=current_cart">
+			<input type="hidden" name="id_product" value="<?=$products[$i]->getId()?>">
+			<input type="hidden" name="quantity" value="<?=$quantity?>">
+			<input type="hidden" name="action" value="removeProduct">
+			<input type="submit" value="remove">
+		</form>
+	</td>
+</tr>

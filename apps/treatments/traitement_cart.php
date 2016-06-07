@@ -74,12 +74,15 @@
 					if ($products == null)
 						$error = "You can't check out an empty cart";
 					//Vérifier si adresse présente					
-					if (empty($error)
+					if (empty($error))
 					{
 						try
 						{
 						$currentCart->setStatus(1);
 						$cartManager->update($currentCart);
+						$cartManager->create();
+						header('Location: index.php?page=profile');
+						exit;
 						}
 						catch (Exception $exception)
 						{
@@ -91,7 +94,56 @@
 			}
 			else if ($_SESSION['admin'] == 1)
 			{
-
+				$cartManager = new CartManager($link);
+				$productsManager = new ProductsManager($link);
+				if ($_POST['action'] == 'valid')
+				{
+					if (isset($_POST['id_cart']))
+					{
+						try
+						{		
+							$id_cart = intval($_POST['id_cart']);
+							$cart = $cartManager->findById($id_cart);
+							$cart->getProducts();;
+	 						$cart->setStatus(2);
+	 						$cartManager->update($cart);
+	 					}
+	 					catch (Exception $exception)
+						{
+							$error = $exception->getMessage();
+						}
+					}
+				}
+				if ($_POST['action'] == 'refuse')
+				{
+					if (isset($_POST['id_cart']))
+					{
+						try
+						{	
+							$productManager = new ProductsManager($link);
+							$id_cart = intval($_POST['id_cart']);
+							$cart = $cartManager->findById($id_cart);
+							$products = $cart->getProducts();
+	 						$cart->setStatus(3);
+	 						$cartManager->update($cart);
+	 						$i = 0;
+	 						while ($i < count($products))
+							{
+								if ($i == 0 || ($i > 0 && $products[$i] != $products[$i-1]))
+								{
+									$quantity = $cartManager->getQuantity($products[$i], $cart);
+									$products[$i]->changeStock($quantity);
+									$productManager->update($products[$i]);
+								}
+								$i++;
+							}
+	 					}
+	 					catch (Exception $exception)
+						{
+							$error = $exception->getMessage();
+						}
+					}
+				}
 			}
 		}
 		else 
