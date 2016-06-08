@@ -17,8 +17,8 @@
 			</div>
 
 			<div class="account-option-padding">
-				<div class="account-option">
-					<a href="#" data-target="address" data-element="#edit_address">My Addresses</a>
+				<div class="address account-option">
+					<a href="index.php?page=address">My Addresses</a>
 				</div>	
 			</div>
 
@@ -51,11 +51,18 @@
 				$(document).ready(function(){
 
 					$(".account-option a").click(function(event){
-						event.preventDefault();
-						/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
-						var target = $(this).data("target");
-						var element = $(this).data("element");
-						$("#ajax_profile_user").load("index.php?page="+target+" "+element);
+						if ($(".address a"))
+						{
+
+						}
+						else
+						{ 
+							event.preventDefault();
+							/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
+							var target = $(this).data("target");
+							var element = $(this).data("element");
+							$("#ajax_profile_user").load("index.php?page="+target+" "+element);
+						}
 					});
 				});
 			</script>
