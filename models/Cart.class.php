@@ -122,7 +122,7 @@ class Cart
 		while ($i < count($this->products))
 		{
 			if ($id_product != $this->products[$i]->getId())
-				$saveTab = $this->products[$i];
+				$saveTab[] = $this->products[$i];
 			$i++;
 		}
 		$this->products = $saveTab;

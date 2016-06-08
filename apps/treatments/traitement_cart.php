@@ -59,7 +59,7 @@
 							$currentCart->removeProduct($product);
 							$currentCart->setNbProducts(-$quantity);
 							$i = 0;
-							while ($i< $quantity)
+							while ($i < $quantity)
 							{
 								$currentCart->setPrice(-$product->getPrice());
 								$currentCart->setWeight(-$product->getWeight());

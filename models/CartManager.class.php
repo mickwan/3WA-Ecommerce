@@ -112,7 +112,6 @@ class CartManager
 		$nb_products = $cart->getNbProducts();
 		$weight = $cart->getWeight();
 		$products = $cart->getUpdateProducts();
-
 		$request = "DELETE FROM link_cart_product 
 					WHERE id_cart =".$id_cart;
 		$res = mysqli_query($this->link, $request);
