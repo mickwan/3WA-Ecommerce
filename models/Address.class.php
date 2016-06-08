@@ -14,7 +14,7 @@ class Address
 	private $link;
 
 
-	public function __contruct($link)
+	public function __construct($link)
 	{
 		$this->link = $link;
 	}
@@ -76,8 +76,8 @@ class Address
 	{
 		if (strlen($pathway) <2)
 			throw new Exception ("Nom de la voie trop court (<2)");
-		else if (strlen($pathway) >15)
-			throw new Exception ("Nom de la voie trop long (>15)");
+		else if (strlen($pathway) >123)
+			throw new Exception ("Nom de la voie trop long (>123)");
 		$this->pathway = $pathway;
 	}
 	public function setCity($city)
