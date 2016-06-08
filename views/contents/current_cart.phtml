@@ -1,6 +1,13 @@
 <div class="cart">
 	<h2 class="text-center">Your Cart Content</h2>
-	<?=$error?>
+	<div class="error">
+		<?=$error?>
+	</div>
+
+	<div class="success">
+		<?=$success?>
+	</div>
+
 	<table class="cart-content text-left">
 		<thead>
 			<tr>
@@ -10,18 +17,21 @@
 				<th colspan="2">Price</th>
 			</tr>
 		</thead>
+
 		<tbody>
 			<?php 
 				require 'apps/contents/form_current_cart.php';
 			?>
 		</tbody>
+
 		<tfoot>
 			<tr>
 				<td colspan="3">Total</td>
-				<td colspan="2"><?=$cart->getPrice()?></td>
+				<td colspan="2"><?=htmlentities($cart->getPrice())?></td>
 			</tr>
 		</tfoot>
 	</table>
+
 	<form class="form-style pull-right" method="POST" action="index.php?page=cart">
 		<input type="hidden" name="action" value="valid">
 		<input type="hidden" name="id_cart" value="<?=$cart->getId()?>">

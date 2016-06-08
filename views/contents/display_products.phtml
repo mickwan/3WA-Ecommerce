@@ -4,14 +4,14 @@
 	</div>
 
 	<div class="pict-products">
-		<img class="picture" src="<?=$products[$i]->getPicture()?>" alt="prod_pic">
+		<img class="picture" src="<?=htmlentities($products[$i]->getPicture())?>" alt="prod_pic">
 	</div>
 
 	<div class="info-products">
-		<h3><?=$products[$i]->getName()?></h3>
-		<p><?=$products[$i]->getPrice()?></p>
+		<h3><?=htmlentities($products[$i]->getName())?></h3>
+		<p><?=htmlentities($products[$i]->getPrice())?></p>
 		<div class="see-products">
-			<a href="index.php?page=product&id_product=<?=$products[$i]->getId()?>">See Product</a>
+			<a href="index.php?page=product&id_product=<?=htmlentities($products[$i]->getId())?>">See Product</a>
 		</div>
 	</div>
 </div>

@@ -4,18 +4,22 @@
 	<p>Number : </p>
 	<p><?=htmlentities($address[$i]->getNumber())?></p>
 </div>
+
 <div>
 	<p>Pathway : </p>
 	<p><?=htmlentities($address[$i]->getPathway())?></p>
 </div>
+
 <div>
 	<p>City : </p>
 	<p><?=htmlentities($address[$i]->getCity())?></p>
 </div>
+
 <div>
 	<p>Zipcode : </p>
 	<p><?=htmlentities($address[$i]->getZipcode())?></p>
 </div>
+
 <div>
 	<p>Country : </p>
 	<p><?=htmlentities($address[$i]->getCountry())?></p>
@@ -26,6 +30,7 @@
 	<input type="hidden" name="id_address" value="<?=$address[$i]->getId()?>">
 	<input type="submit" value="Edit">
 </form>
+
 <form action="index.php?page=address" method="POST">
 	<input type="hidden" name="action" value="delete">
 	<input type="hidden" name="id_address" value="<?=$address[$i]->getId()?>">

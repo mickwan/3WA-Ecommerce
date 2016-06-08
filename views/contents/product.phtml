@@ -2,6 +2,10 @@
 	<div class="error">
 		<?=$error?>	
 	</div>
+
+	<div class="success">
+		<?=$success?>	
+	</div>
 	
 	<div class="product-page-container">
 		<div class="product-page clearfix">
@@ -10,18 +14,18 @@
 			</div>
 
 			<figure class="product-picture pull-left">
-				<img src="<?=$product->getPicture()?>" alt="image produit"/>
+				<img src="<?=htmlentities($product->getPicture())?>" alt="image produit"/>
 			</figure>
 
 			<div class="product-text pull-right">
-				<h2 class="product-name"><?=$product->getName()?></h2>
+				<h2 class="product-name"><?=htmlentities($product->getName())?></h2>
 
 				<div class="product-price">
-					<?=$product->getPrice()?>
+					<?=htmlentities($product->getPrice())?>
 				</div>
 
 				<div class="product-description">
-					<?=$product->getDescription()?>
+					<?=htmlentities($product->getDescription())?>
 				</div>
 
 				<div>

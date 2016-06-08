@@ -1,16 +1,16 @@
 <div id="feedback_user" class="feedback-content <?=$refuse?> <?=$waitinglist?>">
 	<div class="feeback-header feedback-container clearfix">
 		<div class="pull-left"> Product name :
-			<?=$product->getName()?>
+			<?=htmlentities($product->getName())?>
 		</div>
 
 		<div class="pull-right feedback-date">
-			<?=$feedbacks[$i]->getdate()?>
+			<?=htmlentities($feedbacks[$i]->getdate())?>
 		</div>
 	</div>
 
 	<div class="feedback-content">
-		<?=$feedbacks[$i]->getContent()?>
+		<?=htmlentities($feedbacks[$i]->getContent())?>
 	</div>
 
 	<div class="feedback-menu clearfix feedback-content">

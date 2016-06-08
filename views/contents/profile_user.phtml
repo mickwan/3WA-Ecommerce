@@ -1,6 +1,8 @@
 <div class="account text-center clearfix">
 	<h1 class="title" >Welcome to your profile</h1>
-
+	<div class="success">
+		<?=$success?>
+	</div>
 	<div class="account-menu clearfix">
 		<nav class="nav-account clearfix pull-left">
 		
@@ -17,7 +19,7 @@
 			</div>
 
 			<div class="account-option-padding">
-				<div class="address account-option">
+				<div class="address">
 					<a href="index.php?page=address">My Addresses</a>
 				</div>	
 			</div>
@@ -49,16 +51,12 @@
 
 			<script>
 				$(document).ready(function(){
-
 					$(".account-option a").click(function(event){
-						if (!$(".address a"))
-						{
-							event.preventDefault();
-							/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
-							var target = $(this).data("target");
-							var element = $(this).data("element");
-							$("#ajax_profile_user").load("index.php?page="+target+" "+element);
-						}
+						event.preventDefault();
+						/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
+						var target = $(this).data("target");
+						var element = $(this).data("element");
+						$("#ajax_profile_user").load("index.php?page="+target+" "+element);
 					});
 				});
 			</script>

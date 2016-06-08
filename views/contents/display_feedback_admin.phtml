@@ -1,17 +1,17 @@
 <div class="feedback-content" id="feedback_admin">
 	<div class="feedback-header feedback-container clearfix">
 		<div class="pull-left">
-			<p class="feedback-moderation-login"><?=$user->getLogin()?></p>
-			<p> Product name : <?=$product->getName()?></p>
+			<p class="feedback-moderation-login"><?=htmlentities($user->getLogin())?></p>
+			<p> Product name : <?=htmlentities($product->getName())?></p>
 		</div>
 
 		<div class="feedback-moderation-date pull-right">
-			<?=$feedbacks[$i]->getdate()?>
+			<?=htmlentities($feedbacks[$i]->getdate())?>
 		</div>
 	</div>
 
 	<div class="feedback-content">
-		<?=$feedbacks[$i]->getContent()?>
+		<?=htmlentities($feedbacks[$i]->getContent())?>
 	</div>
 
 	<div class="feedback-menu clearfix feedback-content">
