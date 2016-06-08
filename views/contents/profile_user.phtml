@@ -1,12 +1,12 @@
-<div class="text-center clearfix">
+<div class="account text-center clearfix">
 	<h1 class="title" >Welcome to your profile</h1>
 
-	<nav class="nav-account clearfix">
-		<div class="account-menu">
-
+	<div class="account-menu clearfix">
+		<nav class="nav-account clearfix pull-left">
+		
 			<div class="account-option-padding">
 				<div class="account-option">
-					<a href="#" data-target="change_password" data-element="#change_password">Change password</a>
+					<a href="#" data-target="change_password" data-element="#change_password">Edit password</a>
 				</div>
 			</div>
 
@@ -39,26 +39,26 @@
 					<a href="#" data-target="confirm_delete" data-element="#delete">Delete My Account</a>
 				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>
 
-	<!--Ajax-->
-	<div class="ajax">
-		<div id="ajax_profile_user">
-			<!--Affichage des pages en Ajax ici-->
-		</div>
+		<!--Ajax-->
+		<div class="ajax pull-left">
+			<div id="ajax_profile_user">
+				<!--Affichage des pages en Ajax ici-->
+			</div>
 
-		<script>
-			$(document).ready(function(){
+			<script>
+				$(document).ready(function(){
 
-				$(".account-option a").click(function(event){
-					event.preventDefault();
-					/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
-					var target = $(this).data("target");
-					var element = $(this).data("element");
-					$("#ajax_profile_user").load("index.php?page="+target+" "+element);
+					$(".account-option a").click(function(event){
+						event.preventDefault();
+						/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
+						var target = $(this).data("target");
+						var element = $(this).data("element");
+						$("#ajax_profile_user").load("index.php?page="+target+" "+element);
+					});
 				});
-			});
-		</script>
+			</script>
+		</div>
 	</div>
 </div>
