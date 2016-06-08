@@ -1,28 +1,30 @@
-<h1>Your Cart Content</h1>
-<?=$error?>
-<table class="text-left" style="width:75%;margin:2em auto;">
-	<thead>
-		<tr>
-			<th>Product</th>
-			<th>Size</th>
-			<th>Quantity</th>
-			<th colspan="2">Price</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php 
-			require 'apps/contents/form_current_cart.php';
-		?>
-	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="3">Total</td>
-			<td colspan="2"><?=$cart->getPrice()?></td>
-		</tr>
-	</tfoot>
-</table>
-<form method="POST" action="index.php?page=cart">
-	<input type="hidden" name="action" value="valid">
-	<input type="hidden" name="id_cart" value="<?=$cart->getId()?>">
-	<input type="submit" value="Check Out">
-</form>
+<div class="cart">
+	<h2 class="text-center">Your Cart Content</h2>
+	<?=$error?>
+	<table class="cart-content text-left">
+		<thead>
+			<tr>
+				<th>Product</th>
+				<th>Size</th>
+				<th>Quantity</th>
+				<th colspan="2">Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php 
+				require 'apps/contents/form_current_cart.php';
+			?>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">Total</td>
+				<td colspan="2"><?=$cart->getPrice()?></td>
+			</tr>
+		</tfoot>
+	</table>
+	<form class="form-style pull-right" method="POST" action="index.php?page=cart">
+		<input type="hidden" name="action" value="valid">
+		<input type="hidden" name="id_cart" value="<?=$cart->getId()?>">
+		<input class="input" type="submit" value="Check Out">
+	</form>
+</div>

@@ -15,7 +15,7 @@ class AddressManager
 					FROM address 
 					WHERE id=".$id;
 		$res = mysqli_query($this->link,$request);
-		$address = mysqli_fetch_object($res, "Address");
+		$address = mysqli_fetch_object($res, "Address", [$this->link]);
 		return $address;
 	}
 	public function findByUser(Users $user)
@@ -24,9 +24,9 @@ class AddressManager
 		$list = [];
 		$request = "SELECT * 
 					FROM address 
-					WHERE id=".$id_user;
+					WHERE id_user=".$id_user;
 		$res = mysqli_query($this->link, $request);
-		while ($address = mysqli_fetch_object($res, "Address"))
+		while ($address = mysqli_fetch_object($res, "Address",[$this->link]))
 			$list[] = $address;
 		return $list;
 	}
@@ -43,10 +43,8 @@ class AddressManager
 
 	public function create($data)
 	{
-		if (!isset($_SESSION['id']))
+		if (!isset($_SESSION['id_user']))
 			throw new Exception ("Vous devez être connecté");
-		$address = new Address($link);
-
 		if (!isset($data['name']))
 			throw new Exception ("Contenu manquant : Nom");
 		if (!isset($data['number']))
@@ -61,6 +59,7 @@ class AddressManager
 			throw new Exception ("Contenu manquant : Code postal");
 		if (!isset($data['type']))
 			throw new Exception ("Choisir le type d'adresse");
+		$address = new Address($link);
 		$address->setName($data['name']);
 		$address->setNumber($data['number']);
 		$address->setPathway($data['pathway']);
@@ -76,10 +75,10 @@ class AddressManager
 		$country = $address->getCountry();
 		$zipcode = $address->getZipcode();
 		$type = $address->getType();
-		$id_user = $_SESSION['id'];
-		$request = "INSERT INTO address (name, 'number', pathway, city, country, zipcode, type, id_user) 
+		$id_user = $_SESSION['id_user'];
+		$request = "INSERT INTO address (name, number, pathway, city, country, zipcode, type, id_user) 
 					VALUES('".$name."', '".$number."', '".$pathway."', '".$city."', '".$country."', '".$zipcode."', '".$type."', '".$id_user."')";
-		$res = mysql_query($this->link, $request);
+		$res = mysqli_query($this->link, $request);
 
 		if ($res)
 		{
@@ -110,7 +109,7 @@ class AddressManager
 			$type = mysqli_real_escape_string($this->link, $address->getType());
 			$request = "UPDATE address 
 						SET name='".$name."', number='".$number."', pathway ='".$pathway ."', city='".$city."', country='".$country."', zipcode='".$zipcode."', type='".$type."' WHERE id=".$id;
-			$res = mysql_query($this->link, $request);
+			$res = mysqli_query($this->link, $request);
 			if ($res)
 				return $this->findById($id);
 			else
@@ -124,7 +123,7 @@ class AddressManager
 		if ($id)
 		{
 			$request = "DELETE FROM address 
-						WHERE id=".$id;
+						WHERE id='".$id."' LIMIT 1";
 			$res = mysqli_query($this->link, $request);
 			if ($res)
 				return $address;

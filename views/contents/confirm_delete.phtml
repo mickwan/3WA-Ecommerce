@@ -1,9 +1,21 @@
-<div id="delete">
-	<form action="index.php?page=edit_contact" method="POST">
-		<div>Do You really want to delete your account :  </div>
-		<input type="radio" name="choice" id="yes" value="yes"><label for="yes">Yes</label>
-		<input type="radio" name="choice" id="no" value="no" checked><label for="no">No</label>
+<div id="delete" class="delete-account text-center">
+	<div>Do You really want to delete your account :  </div>
+	
+	<form class="form-style" action="index.php?page=edit_contact" method="POST">
+		
+		<div class="radio-delete clearfix">
+			<div class="pull-left radio form-group clearfix">
+				<input type="radio" name="choice" id="yes" value="yes"><label class="radio" for="yes">Yes</label>
+			</div>
+
+			<div class="pull-left radio form-group clearfix">
+				<input type="radio" name="choice" id="no" value="no" checked><label class="radio" for="no">No</label>
+			</div>
+		</div>
+
 		<input type="hidden" name="action" value="delete">
-		<input type="submit" value="Submit">
+		
+		<div class="edit-valid-button"><input class="valid-button" type="submit" value="Valider"></div>
+
 	</form>	
 </div>
