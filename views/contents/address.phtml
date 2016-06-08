@@ -1,0 +1,52 @@
+<div id="edit_address" class="edit-address">
+	<h2 class="text-center">YOUR ADDRESS</h2>
+	
+	<form class="form-style" method="POST" action="index.php?page=address">
+
+		<div class="form-group clearfix">
+			<label for="name">Name</label>
+			<input type="text" name="name" autofocus class="input" id="name" placeholder="Specify a name (firstname & lastname)">
+		</div>
+
+		<div class="form-group clearfix">
+			<label for="number">Number</label>
+			<input type="text" name="number" class="input" id="number" placeholder="Your street number">
+		</div>
+
+		<div class="form-group clearfix">
+			<label for="pathway">Pathway</label>
+			<input type="text" name="pathway" class="input" id="pathway" placeholder="Your pathway">
+		</div>
+
+		<div class="form-group clearfix">
+			<label for="city">City</label>
+			<input type="text" name="city" autofocus class="input" id="city" placeholder="Your city">
+		</div>
+
+		<div class="form-group clearfix">
+			<label for="country">Country</label>
+			<input type="text" name="country" autofocus class="input" id="country" placeholder="Your country">
+		</div>
+
+		<div class="form-group clearfix">
+			<label for="zipcode">Zipcode</label>
+			<input type="text" name="zipcode" class="input" id="zipcode" placeholder="Your zipcode">
+		</div>
+
+		<div class="address-type clearfix">
+			<p>Address type :</p>
+
+			<div class="pull-left radio form-group clearfix">
+				<input type="radio" name="address" value="0" id="home" checked /><label class="radio" for="home">Home</label>
+			</div>
+
+			<div class="pull-left radio form-group clearfix">
+				<input type="radio" name="address" value="1" id="work" /><label class="radio" for="work">Work</label>
+			</div>
+		</div>
+		
+		<input type="hidden" name="action" value="edit" />
+
+		<div class="edit-valid-button text-center"><input class="valid-button" type="submit" value="Valider"></div>
+	</form>
+</div>
