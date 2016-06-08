@@ -7,5 +7,5 @@
 			require 'views/contents/feedback_user.phtml';
 	}
 	else 
-		header('Location: index.php?page=login');
+		require 'views/contents/must_be_logged.phtml';
 ?>

@@ -17,7 +17,7 @@
 			require ("models/".$className.".class.php");
 	}
 
-	$access = array('logout', 'login', 'register', 'confirm_delete','change_password', 'address', 'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'cat_admin', 'add_edit_cat', 'add_edit_sub_cat', 'product_admin', 'old_cart', 'add_edit_feedback');
+	$access = array('logout', 'login', 'register', 'confirm_delete','change_password', 'address', 'add_edit_address',  'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'cat_admin', 'add_edit_cat', 'add_edit_sub_cat', 'product_admin', 'old_cart', 'add_edit_feedback');
 	$page = 'home'; /*page courante : home par default*/ 
 	$error = '';
 	$success = '';
@@ -43,6 +43,8 @@
 								"cat_admin" => "cat",
 								"add_edit_cat" => "cat",
 								"add_edit_sub_cat" => "cat",
+								"address" => "address",
+								"add_edit_address" => "address",
 								"product_admin" => "product"
 								);
 	
@@ -50,13 +52,5 @@
 		require('apps/treatments/traitement_'.$access_traitement[$page].'.php');
 	
 	
-	/*if (isset($_GET['ajax']))
-	{
-		$accessAjax = ['add_edit_cat'];
-		if (in_array($_GET['page'], $accessAjax))
-			$page = $_GET['page'];
-		//require ("apps/contents/".$page.".php");
-	}
-	else*/
 	require 'apps/skel.php';
 ?>
