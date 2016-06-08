@@ -55,7 +55,7 @@
 						{
 							$product = $productsManager->findById($_POST['id_product']);
 							$quantity = intval($_POST["quantity"]);
-							//$product->changeStock($quantity);
+							$product->changeStock($quantity);
 							$currentCart->removeProduct($product);
 							$currentCart->setNbProducts(-$quantity);
 							$i = 0;
@@ -66,10 +66,10 @@
 								$i++;
 							}
 							$cartManager->update($currentCart);
-							//$productsManager->update($product);
+							$productsManager->update($product);
 							$_SESSION['success'] = "This product has been removed of your cart";
-							//header('Location: index.php?page=current_cart');
-							//exit;
+							header('Location: index.php?page=current_cart');
+							exit;
 						}
 						catch (Exception $exception)
 						{
