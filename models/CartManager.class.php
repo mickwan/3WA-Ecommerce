@@ -124,7 +124,6 @@ class CartManager
 		{
 			$request = "INSERT INTO link_cart_product(id_cart, id_product)
 					VALUES ('".$id_cart."', '".$products[$i]->getId()."')";
-			var_dump($request);
 			$res = mysqli_query($this->link, $request);
 			if (!$res)
 				throw new Exception("Error Processing Request");

@@ -85,6 +85,8 @@ class Cart
 		if ($this->price == null)
 			$this->price = 0;
 		$this->price = $this->price + $price;
+		if ($this->price < 0)
+			$this->price = 0;
 	}
 	public function setNbProducts($nb_products)
 	{
