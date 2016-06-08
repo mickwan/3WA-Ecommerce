@@ -18,7 +18,8 @@
 					{
 						try
 						{
-							$product = $productsManager->findById($_POST['id_product']);
+							$id_product = intval($_POST['id_product']);
+							$product = $productsManager->findById($id_product);
 							$quantity = intval($_POST["quantity"]);
 							$currentCart->setNbProducts($quantity);
 							$currentCart->addProduct($product, $quantity);
@@ -32,6 +33,8 @@
 							}
 							$cartManager->update($currentCart);
 							$productsManager->update($product);
+							header('Location: index.php?page=product&id_product='.$id_product);
+							exit;
 						}
 						catch (Exception $exception)
 						{
