@@ -51,12 +51,8 @@
 				$(document).ready(function(){
 
 					$(".account-option a").click(function(event){
-						if ($(".address a"))
+						if (!$(".address a"))
 						{
-
-						}
-						else
-						{ 
 							event.preventDefault();
 							/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
 							var target = $(this).data("target");
