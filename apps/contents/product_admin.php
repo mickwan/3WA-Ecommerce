@@ -1,4 +1,6 @@
 <?php
+if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1)
+{
 	$action = "add";
 	$ref = "add reference";
 	$stock = "Stock of this products";
@@ -31,14 +33,14 @@
 		$action = "edit";
 		$id_product = intval($_POST['id_product']);
 		$productManager = new ProductsManager($link);
-		$product = $productManager->findById($id_product);
-		$refEdit = $product->getRef();
-		$stockEdit = $product->getStock();
-		$priceEdit = $product->getPrice();
-		$taxEdit = $product->getTax();
-		$descriptionEdit = $product->getDescription();
-		$nameEdit = $product->getName();
-		$weightEdit = $product->getWeight();
+		$product = htmlentities($productManager->findById($id_product));
+		$refEdit = htmlentities($product->getRef());
+		$stockEdit = htmlentities($product->getStock());
+		$priceEdit = htmlentities($product->getPrice());
+		$taxEdit = htmlentities($product->getTax());
+		$descriptionEdit = htmlentities($product->getDescription());
+		$nameEdit = htmlentities($product->getName());
+		$weightEdit = htmlentities($product->getWeight());
 		$id_sub_catEdit = $product->getIdSubCat();
 
 		if ($product->getStatus() == 0)
@@ -54,9 +56,10 @@
 			$L = 'selected';
 		else
 			$O = 'selected';
-
 	}
 	
 	require 'views/contents/product_admin.phtml';
-
+}
+else
+	require 'views/must_be_logged.phtml';
 ?>

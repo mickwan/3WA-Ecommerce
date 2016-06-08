@@ -18,8 +18,8 @@
 					$option = 'edit';
 					$feedbackManager = new FeedbackManager($link);
 					$feedback = $feedbackManager->findById($_POST['id_feedback']);
-					$contentAdd = $feedback->getContent();
-					$contentEdit = $feedback->getContent();
+					$contentAdd = htmlentities($feedback->getContent());
+					$contentEdit = htmlentities($feedback->getContent());
 					$id_product = $feedback->getIdProduct();
 					$id_feedback = $feedback->getId();
 				}
@@ -27,7 +27,7 @@
 			}
 		}
 		else
-			require 'views/contents/must_be_logged.phtml';
+			require 'views/contents/must_be_user.phtml';
 	}
 	else
 	{

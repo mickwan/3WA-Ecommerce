@@ -7,9 +7,5 @@
 			require 'views/contents/profile_admin.phtml';
 	}
 	else 
-	{
-		// require('views/mustbelogged.phtml');
-		// header ('Location: index.php?page=login');
-		// exit;
-	}
+		require('views/must_be_logged.phtml');
 ?>

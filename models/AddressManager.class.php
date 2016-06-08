@@ -59,7 +59,7 @@ class AddressManager
 			throw new Exception ("Contenu manquant : Code postal");
 		if (!isset($data['type']))
 			throw new Exception ("Choisir le type d'adresse");
-		$address = new Address($link);
+		$address = new Address($this->link);
 		$address->setName($data['name']);
 		$address->setNumber($data['number']);
 		$address->setPathway($data['pathway']);
@@ -68,11 +68,11 @@ class AddressManager
 		$address->setZipcode($data['zipcode']);
 		$address->setType($data['type']);
 
-		$name = $address->getName();
+		$name = mysqli_real_escape_string($this->link, $address->getName());
 		$number = $address->getNumber();
-		$pathway = $address->getPathway();
-		$city = $address->getCity();
-		$country = $address->getCountry();
+		$pathway = mysqli_real_escape_string($this->link, $address->getPathway());
+		$city = mysqli_real_escape_string($this->link, $address->getCity());
+		$country = mysqli_real_escape_string($this->link, $address->getCountry());
 		$zipcode = $address->getZipcode();
 		$type = $address->getType();
 		$id_user = $_SESSION['id_user'];

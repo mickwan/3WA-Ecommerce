@@ -11,6 +11,7 @@
 					try
 					{	
 						$categoryManager->create($_POST);
+						$_SESSION['success'] = "Your category has been added";
 						header('Location: index.php?page=cat_admin');
 						exit;
 					}
@@ -34,6 +35,7 @@
 							$category->setName($_POST['name']);
 							$category->setDescription($_POST['description']);
 							$categoryManager->update($category);
+							$_SESSION['success'] = "Your category has been edited";
 							header('Location: index.php?page=cat_admin');
 							exit;
 						}
@@ -51,6 +53,7 @@
 						$id_category = intval($_POST['id_category']);
 						$category = $categoryManager->findById($id_category);
 						$categoryManager->delete($category);
+						$_SESSION['success'] = "Your category has been deleted";
 						header('Location: index.php?page=cat_admin');
 						exit;
 					}
@@ -68,6 +71,7 @@
 					try
 					{	
 						$subCategoryManager->create($_POST);
+						$_SESSION['success'] = "Your sub-category has been added";
 						header('Location: index.php?page=cat_admin');
 						exit;
 					}
@@ -94,6 +98,7 @@
 							$subCategory->setName($_POST['name']);
 							$subCategory->setDescription($_POST['description']);
 							$subCategoryManager->update($subCategory);
+							$_SESSION['success'] = "Your sub-category has been edited";
 							header('Location: index.php?page=cat_admin');
 							exit;
 						}
@@ -110,6 +115,7 @@
 						$id_sub_cat = intval($_POST['id_sub_cat']);
 						$subCategory = $subCategoryManager->findById($id_sub_cat);
 						$subCategoryManager->delete($subCategory);
+						$_SESSION['success'] = "Your sub-category has been deleted";
 						header('Location: index.php?page=cat_admin');
 						exit;
 					}

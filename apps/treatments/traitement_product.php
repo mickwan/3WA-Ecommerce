@@ -11,6 +11,7 @@
 				{
 					$product = $productsManager->create($_POST);
 					$id_product = $product->getId();
+					$_SESSION['success'] = "Your product has been added";
 					header('Location: index.php?page=product&id_product='.$id_product);
 					exit;
 				}
@@ -62,6 +63,7 @@
 					$product->setPicture($_FILES['picture']);
 
 					$productsManager->update($product);
+					$_SESSION['success'] = "Your product has been edited";
 					header('Location: index.php?page=product&id_product='.$id_product);
 					exit;
 				}
@@ -77,6 +79,7 @@
 					$id_product = intval($_POST['id_product']);
 					$product = $productsManager->findById($id_product);
 					$productsManager->delete($product);
+					$_SESSION['success'] = "Your product has been deleted";
 					header('Location: index.php?page=profile');
 					exit;
 				}

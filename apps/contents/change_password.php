@@ -13,5 +13,5 @@
 		require 'views/contents/change_password.phtml';
 	}
 	else 
-		header ('Location: index.php?page=login');
+		require 'views/must_be_logged.phtml';
 ?>

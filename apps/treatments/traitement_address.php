@@ -52,7 +52,7 @@
 							$address->setZipcode($_POST['zipcode']);
 							$address->setType($_POST['type']);
 							$addressManager->update($address);
-							$_SESSION['success'] = 'Your address has been updated';
+							$_SESSION['success'] = 'Your address has been edited';
 							header('Location: index.php?page=address');
 							exit;
 						}

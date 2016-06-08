@@ -14,6 +14,7 @@
 					{
 						$feedback->setStatus(1);
 						$feedbackManager->update($feedback);
+						$_SESSION['success'] = "This feedback has been checked";
 						header('Location: index.php?page=feedback');
 						exit;
 					}
@@ -28,6 +29,7 @@
 					{
 						$feedback->setStatus(2);
 						$feedbackManager->update($feedback);
+						$_SESSION['success'] = "This feedback has been refused";
 						header('Location: index.php?page=feedback');
 						exit;
 					}
@@ -45,6 +47,7 @@
 					{
 						$feedbackManager->create($_POST);
 						$id_product = intval($_POST['id_product']);
+						$_SESSION['success'] = "Your feedback has been added. Waiting for validation";
 						header('Location: index.php?page=product&id_product='.$id_product);
 						exit;
 					}
@@ -66,6 +69,7 @@
 							$feedback->setStatus(0);
 							$feedback->setContent($_POST['content']);
 							$feedbackManager->update($feedback);
+							$_SESSION['success'] = "Your feedback has been edited. Waiting for validation";
 							header('Location: index.php?page=feedback');
 							exit;
 						}
@@ -82,6 +86,7 @@
 					try
 					{
 						$feedbackManager->delete($feedback);
+						$_SESSION['success'] = "Your feedback has been deleted.";
 						header('Location: index.php?page=feedback');
 						exit;
 					}

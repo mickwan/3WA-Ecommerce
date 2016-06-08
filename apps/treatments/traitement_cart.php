@@ -14,6 +14,8 @@
 						$error = "Enter a size";
 					if (!isset($_POST['quantity']))
 						$error = "Enter a quantity";
+					if ($_POST['quantity'] == '')
+						$error = "Enter a quantity";
 					if (empty($error))
 					{
 						try
@@ -33,13 +35,14 @@
 							}
 							$cartManager->update($currentCart);
 							$productsManager->update($product);
-							header('Location: index.php?page=product&id_product='.$id_product);
-							exit;
+							$_SESSION['success'] = "This product has been added in your cart";
 						}
 						catch (Exception $exception)
 						{
 							$error = $exception->getMessage();
 						}
+						header('Location: index.php?page=product&id_product='.$id_product);
+						exit;
 					}
 				}
 				if ($_POST['action'] == 'removeProduct')
@@ -52,7 +55,7 @@
 						{
 							$product = $productsManager->findById($_POST['id_product']);
 							$quantity = intval($_POST["quantity"]);
-							$product->changeStock($quantity);
+							//$product->changeStock($quantity);
 							$currentCart->removeProduct($product);
 							$currentCart->setNbProducts(-$quantity);
 							$i = 0;
@@ -63,7 +66,10 @@
 								$i++;
 							}
 							$cartManager->update($currentCart);
-							$productsManager->update($product);
+							//$productsManager->update($product);
+							$_SESSION['success'] = "This product has been removed of your cart";
+							//header('Location: index.php?page=current_cart');
+							//exit;
 						}
 						catch (Exception $exception)
 						{
@@ -84,6 +90,7 @@
 						$currentCart->setStatus(1);
 						$cartManager->update($currentCart);
 						$cartManager->create();
+						$_SESSION['success'] = "You have validate your cart. Waiting for validation by an admin";
 						header('Location: index.php?page=profile');
 						exit;
 						}
@@ -110,6 +117,9 @@
 							$cart->getProducts();;
 	 						$cart->setStatus(2);
 	 						$cartManager->update($cart);
+	 						$_SESSION['success'] = "This cart has been checked";
+	 						header('Location : index.php?page=cart');
+	 						exit;
 	 					}
 	 					catch (Exception $exception)
 						{
@@ -137,6 +147,9 @@
 									$quantity = $cartManager->getQuantity($products[$i], $cart);
 									$products[$i]->changeStock($quantity);
 									$productManager->update($products[$i]);
+									$_SESSION['success'] = "This cart has been refused";
+									header('Location : index.php?page=cart');
+									exit;
 								}
 								$i++;
 							}
