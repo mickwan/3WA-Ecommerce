@@ -1,7 +1,6 @@
-<li>
-	<a id="SubCat" class="text-center"
-	   href="index.php?page=shop&id_sub_cat=<?=$sub_cat[$i]->getId()?>&id_cat=<?=$sub_cat[$i]->getIdCategory()?>"
-	   data-target="display_products" data-element="#display_products">
+<li class="account-option">
+	<a class="text-center"
+	   href="index.php?page=shop&id_sub_cat=<?=$sub_cat[$i]->getId()?>&id_cat=<?=$sub_cat[$i]->getIdCategory()?>">
 		<?=$sub_cat[$i]->getName()?>
 	</a>
 </li>

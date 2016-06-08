@@ -1,23 +1,13 @@
-<div>
-	<ul>
-		<?php require ("apps/contents/menu_sub_cat.php"); ?>
-	</ul>
+<div class="box clearfix">
+	<div class="menu_sub_cat pull-left">
+		<div class="account-option-padding">
+			<ul>
+				<?php require ("apps/contents/menu_sub_cat.php"); ?>
+			</ul>
+		</div>
+	</div>
+
+	<div class="sub_products pull-right text-center">
+		<?php require ("apps/contents/display_products.php"); ?>
+	</div>
 </div>
-
-<!--Ajax-->
-<div id="ajax-shop">
-	<!--Affichage de l'ajax ici-->
-</div>
-
-<script>
-$(document).ready(function(){
-
-	$("#SubCat").click(function(event){
-		event.preventDefault();
-		/* event.preventDefault(); ->Permet d'annuler le comportement du lien "href" pour ne garder que le clic par defaut */
-		var target = $(this).data("target");
-		var element = $(this).data("element");
-		$("#ajax_shop").load("index.php?page="+target+" "+element);
-	});
-});
-</script>
