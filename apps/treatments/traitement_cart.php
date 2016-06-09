@@ -30,13 +30,18 @@
 							$currentCart->setNbProducts($quantity);
 							$currentCart->addProduct($product, $quantity);
 							$product->changeStock(-$quantity);
+							$UpdateProducts = $currentCart->getUpdateProducts();
 							$i=0;
-							while ($i < $quantity)
+							$price = 0;
+							$weight = 0;
+							while ($i < count($UpdateProducts))
 							{
-								$currentCart->setPrice($product->getPrice());
-								$currentCart->setWeight($product->getWeight());
+								$price = $price + $UpdateProducts[$i]->getPrice();
+								$weight = $weight + $UpdateProducts[$i]->getWeight();
 								$i++;
 							}
+							$currentCart->setPrice($price);
+							$currentCart->setWeight($weight);
 							$cartManager->update($currentCart);
 							$productsManager->update($product);
 							$_SESSION['success'] = "This product has been added in your cart";
@@ -62,13 +67,18 @@
 							$product->changeStock($quantity);
 							$currentCart->removeProduct($product);
 							$currentCart->setNbProducts(-$quantity);
-							$i = 0;
-							while ($i < $quantity)
+							$UpdateProducts = $currentCart->getUpdateProducts();
+							$i=0;
+							$price = 0;
+							$weight = 0;
+							while ($i < count($UpdateProducts))
 							{
-								$currentCart->setPrice(-$product->getPrice());
-								$currentCart->setWeight(-$product->getWeight());
+								$price = $price + $UpdateProducts[$i]->getPrice();
+								$weight = $weight + $UpdateProducts[$i]->getWeight();
 								$i++;
 							}
+							$currentCart->setPrice($price);
+							$currentCart->setWeight($weight);
 							$cartManager->update($currentCart);
 							$productsManager->update($product);
 							$_SESSION['success'] = "This product has been removed of your cart";
