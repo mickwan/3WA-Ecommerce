@@ -84,7 +84,7 @@ class Cart
 		$price = floatval($price);
 		if ($this->price == null)
 			$this->price = 0;
-		$this->price = $this->price + $price;
+		$this->price = $price;
 		if ($this->price < 0)
 			$this->price = 0;
 	}
@@ -101,7 +101,7 @@ class Cart
 		$weight = floatval($weight);
 		if ($this->weight == null)
 			$this->weight = 0;
-		$this->weight = $this->weight + $weight;
+		$this->weight = $weight;
 	}
 	public function addProduct(Products $product, $nb)
 	{
