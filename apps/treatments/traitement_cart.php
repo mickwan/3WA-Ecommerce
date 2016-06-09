@@ -16,12 +16,16 @@
 						$error = "Enter a quantity";
 					if ($_POST['quantity'] == '')
 						$error = "Enter a quantity";
+					if ($_POST['quantity'] < 0)
+						$error = "Enter a positive quantity ;)";
+					$id_product = intval($_POST['id_product']);
+					$product = $productsManager->findById($id_product);
+					if ($_POST['quantity'] > $product->getStock())
+						$error = "Sorry, the stock is the stock!";
 					if (empty($error))
 					{
 						try
 						{
-							$id_product = intval($_POST['id_product']);
-							$product = $productsManager->findById($id_product);
 							$quantity = intval($_POST["quantity"]);
 							$currentCart->setNbProducts($quantity);
 							$currentCart->addProduct($product, $quantity);
@@ -82,7 +86,14 @@
 					$products = $currentCart->getProducts();
 					if ($products == null)
 						$error = "You can't check out an empty cart";
-					//Vérifier si adresse présente					
+					$addressManager = new AddressManager($link);
+					$address = $addressManager->findByUser($_SESSION['user']);
+					if (empty($error) &&$adress == null)
+					{
+						$_SESSION['success'] = 'Please, Add an address before!';
+						header('Location: index.php?page=address');
+						exit;
+					}			
 					if (empty($error))
 					{
 						try

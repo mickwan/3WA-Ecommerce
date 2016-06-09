@@ -3,28 +3,31 @@
 	{
 		$productManager = new ProductsManager($link);
 		$cartManager = new CartManager($link);
-		$cart = $cartManager->findCurrentCart($_SESSION['user']);
-		if ($cart->getStatus() == 0)
+		if ($_SESSION['admin'] == 0)
 		{
-			$products = $cart->getProducts();
-			$i = 0;
-			try
+			$cart = $cartManager->findCurrentCart($_SESSION['user']);
+			if ($cart != null && $cart->getStatus() == 0)
 			{
-				while ($i < count($products))
+				$products = $cart->getProducts();
+				$i = 0;
+				try
 				{
-					if ($i == 0 || ($i > 0 && $products[$i] != $products[$i-1]))
+					while ($i < count($products))
 					{
-						$quantity = $cartManager->getQuantity($products[$i], $cart);
-						$products[$i]->changeStock($quantity);
-						$productManager->update($products[$i]);
+						if ($i == 0 || ($i > 0 && $products[$i] != $products[$i-1]))
+						{
+							$quantity = $cartManager->getQuantity($products[$i], $cart);
+							$products[$i]->changeStock($quantity);
+							$productManager->update($products[$i]);
+						}
+						$i++;
 					}
-					$i++;
+					$cartManager->removeCart($cart);
 				}
-				$cartManager->removeCart($cart);
-			}
-			catch (Exception $exception)
-			{
-				$error = $exception->getMessage();
+				catch (Exception $exception)
+				{
+					$error = $exception->getMessage();
+				}
 			}
 		}
 		session_destroy();

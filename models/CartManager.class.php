@@ -37,7 +37,7 @@ class CartManager
 		$carts = $cartsManager->findByUser($user);
 		if (!isset($carts[1]))
 		{
-			if (isset($carts[0]))
+			if (isset($carts[0]) && $carts[0]->getStatus() == 0)
 				return $carts[0];
 			else
 				return $this->create();
