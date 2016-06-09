@@ -36,13 +36,13 @@
 							$cartManager->update($currentCart);
 							$productsManager->update($product);
 							$_SESSION['success'] = "This product has been added in your cart";
+							header('Location: index.php?page=product&id_product='.$id_product);
+							exit;
 						}
 						catch (Exception $exception)
 						{
 							$error = $exception->getMessage();
 						}
-						header('Location: index.php?page=product&id_product='.$id_product);
-						exit;
 					}
 				}
 				if ($_POST['action'] == 'removeProduct')
