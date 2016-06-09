@@ -26,17 +26,17 @@
 				{
 					if (!isset($_POST['name']))
 						$error = "Contenu manquant : Nom";
-					if (!isset($_POST['number']))
+					else if (!isset($_POST['number']))
 						$error = "Contenu manquant : Numéro de voie";
-					if (!isset($_POST['pathway']))
+					else if (!isset($_POST['pathway']))
 						$error = "Contenu manquant : Voie";
-					if (!isset($_POST['city']))
+					else if (!isset($_POST['city']))
 						$error = "Contenu manquant : Ville";
-					if (!isset($_POST['country']))
+					else if (!isset($_POST['country']))
 						$error = "Contenu manquant : Pays";
-					if (!isset($_POST['zipcode']))
+					else if (!isset($_POST['zipcode']))
 						$error = "Contenu manquant : Code postal";
-					if (!isset($_POST['type']))
+					else if (!isset($_POST['type']))
 						$error = "Choisir le type d'adresse";
 					if (empty($error))
 					{

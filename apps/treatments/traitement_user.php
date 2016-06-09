@@ -38,34 +38,41 @@
 	{
 		if ($_POST['action'] == 'login')
 		{
-			$email = $_POST['email'];
-			$password = $_POST['password'];
-			$usersManager = new UsersManager($link);
-			if ($user = $usersManager->findByEmail($email))
+			if (!isset($_POST['email']))
+				$error = "Enter your email";
+			else if (!isset($_POST['password']))
+				$error = "Enter your password";
+			if (empty($error))
 			{
-				if ($user->getStatus() == 0)
-					$error = "Inactive Account";
-				else
+				$email = $_POST['email'];
+				$password = $_POST['password'];
+				$usersManager = new UsersManager($link);
+				if ($user = $usersManager->findByEmail($email))
 				{
-					try
+					if ($user->getStatus() == 0)
+						$error = "Inactive Account";
+					else
 					{
-						if ($user->verifPassword($password))
+						try
 						{
-							$_SESSION['id_user'] = $user->getID();
-							$_SESSION['admin'] = $user->getAdmin();
-							$_SESSION['user'] = $user;
-							header ('Location: index.php?page=profile');
-							exit; 
+							if ($user->verifPassword($password))
+							{
+								$_SESSION['id_user'] = $user->getID();
+								$_SESSION['admin'] = $user->getAdmin();
+								$_SESSION['user'] = $user;
+								header ('Location: index.php?page=profile');
+								exit; 
+							}
 						}
-					}
-					catch (Exception $exception)
-					{
-						$error = $exception->getMessage();
+						catch (Exception $exception)
+						{
+							$error = $exception->getMessage();
+						} 
 					}
 				}
+				else 
+					$error = "Invalid Email";	
 			}
-			else 
-				$error = "Invalid Email";	
 		}
 		else if ($_POST['action'] == 'register')
 		{
@@ -88,17 +95,17 @@
 
 			if (!isset($_POST['login']))
 				$error = "Missing parameter: login";
-			if (!isset($_POST['firstname']))
+			else if (!isset($_POST['firstname']))
 				$error = "Missing parameter: firstname";
-			if (!isset($_POST['lastname']))
+			else if (!isset($_POST['lastname']))
 				$error = "Missing parameter: lastname";
-			if (!isset($_POST['email']))
+			else if (!isset($_POST['email']))
 				$error = "Missing parameter: email";
-			if (!isset($_POST['birth_date']))
+			else if (!isset($_POST['birth_date']))
 				$error = "Missing parameter: birth date";
-			if (!isset($_POST['phone']))
+			else if (!isset($_POST['phone']))
 				$error = "Missing parameter: phone";
-			if (!isset($_POST['sex']))
+			else if (!isset($_POST['sex']))
 				$error = "Missing parameter: sex";	
 			if (empty($error))
 			{
@@ -128,7 +135,7 @@
 			$user = $usersManager->findById($_SESSION['id_user']);
 			if (!isset($_POST['password']))
 				$error = "Missing parameter: password";
-			if (!isset($_POST['confirmPassword']))
+			else if (!isset($_POST['confirmPassword']))
 				$error = "Missing parameter: password";
 			if (empty($error))
 			{		
