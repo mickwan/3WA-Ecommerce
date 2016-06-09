@@ -262,6 +262,22 @@ class ProductsManager
 	}
 
 
+	public function FindBySearch($search)
+	{
+		$list = [];
+		$request = "SELECT * FROM products WHERE name LIKE '%".$search."%'";
+		$res = mysqli_query($this->link, $request);
+		if(!$res)
+			throw new Exception("DB request error");
+		while($product = mysqli_fetch_object($res, "Products", [$this->link]))
+				$list[] = $product;
+			return $list;
+		}
+		else 
+			throw new Exception("invalid research");
+	}
+
+
 
 }
 ?>
