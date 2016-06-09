@@ -24,7 +24,7 @@
 				{
 					if (!isset($_POST['name']))
 						$error = "Nommer la catégorie";
-					if (!isset($_POST['description']))
+					else if (!isset($_POST['description']))
 						$error = "Donner une description succincte de la catégorie";
 					if (empty($error))
 					{
@@ -84,9 +84,9 @@
 				{
 					if (!isset($_POST['id_category']))
 						$error = "Missing paramater: id_category";
-					if (!isset($_POST['name']))
+					else if (!isset($_POST['name']))
 						$error = "Nommer la sous catégorie";
-					if (!isset($_POST['description']))
+					else if (!isset($_POST['description']))
 						$error = "Donner une description succincte de la sous catégorie";
 					if (empty($error))
 					{
