@@ -16,12 +16,16 @@
 						$error = "Enter a quantity";
 					if ($_POST['quantity'] == '')
 						$error = "Enter a quantity";
+					if ($_POST['quantity'] < 0)
+						$error = "Enter a positive quantity ;)";
+					$id_product = intval($_POST['id_product']);
+					$product = $productsManager->findById($id_product);
+					if ($_POST['quantity'] > $product->getStock())
+						$error = "Sorry, the stock is the stock!";
 					if (empty($error))
 					{
 						try
 						{
-							$id_product = intval($_POST['id_product']);
-							$product = $productsManager->findById($id_product);
 							$quantity = intval($_POST["quantity"]);
 							$currentCart->setNbProducts($quantity);
 							$currentCart->addProduct($product, $quantity);

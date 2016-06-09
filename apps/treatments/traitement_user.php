@@ -6,7 +6,7 @@
 		if ($_SESSION['admin'] == 0)
 		{
 			$cart = $cartManager->findCurrentCart($_SESSION['user']);
-			if ($cart->getStatus() == 0)
+			if ($cart != null && $cart->getStatus() == 0)
 			{
 				$products = $cart->getProducts();
 				$i = 0;
