@@ -1,17 +1,18 @@
-<div class="grid-products col-lg-4">
+<div class="grid-products col-lg-1 col-sm-12">
 	<div class="menu-burger-container clearfix">
 		<?php require "apps/contents/menu_burger.php"; ?>
 	</div>
 
-	<div class="pict-products">
+	<div class="pict-products clearfix">
 		<img class="picture" src="<?=htmlentities($products[$i]->getPicture())?>" alt="prod_pic">
 	</div>
 
 	<div class="info-products">
 		<h3><?=htmlentities($products[$i]->getName())?></h3>
-		<p><?=htmlentities($products[$i]->getPrice())?></p>
-		<div class="see-products">
-			<a href="index.php?page=product&id_product=<?=htmlentities($products[$i]->getId())?>">See Product</a>
-		</div>
+		<p><?=htmlentities($products[$i]->getPrice())?>$</p>
+	</div>
+		
+	<div class="see-products">
+		<a href="index.php?page=product&id_product=<?=htmlentities($products[$i]->getId())?>">See Product</a>
 	</div>
 </div>
