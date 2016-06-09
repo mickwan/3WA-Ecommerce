@@ -1,38 +1,45 @@
-<h2><?=htmlentities($address[$i]->getName())?> - <?=$type?></h2>
+<div class="address-main-container">
+	<div class="address-container text-center">
+		<h2 class="address-title"><?=htmlentities($address[$i]->getName())?> - <?=$type?></h2>
+		<div class="address-content text-center">
+			<div class="address-details clearfix">
+				<p class="col1-address pull-left">Number : </p>
+				<p class="col2-address pull-right"><?=htmlentities($address[$i]->getNumber())?></p>
+			</div>
 
-<div>
-	<p>Number : </p>
-	<p><?=htmlentities($address[$i]->getNumber())?></p>
+			<div class="address-details clearfix">
+				<p class="col1-address pull-left">Pathway : </p>
+				<p class="col2-address pull-right"><?=htmlentities($address[$i]->getPathway())?></p>
+			</div>
+
+			<div class="address-details clearfix">
+				<p class="col1-address pull-left">City : </p>
+				<p class="col2-address pull-right"><?=htmlentities($address[$i]->getCity())?></p>
+			</div>
+
+			<div class="address-details clearfix">
+				<p class="col1-address pull-left">Zipcode : </p>
+				<p class="col2-address pull-right"><?=htmlentities($address[$i]->getZipcode())?></p>
+			</div>
+
+			<div class="address-details clearfix">
+				<p class="col1-address pull-left">Country : </p>
+				<p class="col2-address pull-right"><?=htmlentities($address[$i]->getCountry())?></p>
+			</div>
+
+			<div class="address-button">
+				<form class="form-group edit" action="index.php?page=address" method="POST">
+					<input type="hidden" name="action" value="edit">
+					<input type="hidden" name="id_address" value="<?=$address[$i]->getId()?>">
+					<input type="submit" value="Edit">
+				</form>
+
+				<form class="form-group delete"  action="index.php?page=address" method="POST">
+					<input type="hidden" name="action" value="delete">
+					<input type="hidden" name="id_address" value="<?=$address[$i]->getId()?>">
+					<input type="submit" value="Delete">
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
-
-<div>
-	<p>Pathway : </p>
-	<p><?=htmlentities($address[$i]->getPathway())?></p>
-</div>
-
-<div>
-	<p>City : </p>
-	<p><?=htmlentities($address[$i]->getCity())?></p>
-</div>
-
-<div>
-	<p>Zipcode : </p>
-	<p><?=htmlentities($address[$i]->getZipcode())?></p>
-</div>
-
-<div>
-	<p>Country : </p>
-	<p><?=htmlentities($address[$i]->getCountry())?></p>
-</div>
-
-<form action="index.php?page=address" method="POST">
-	<input type="hidden" name="action" value="edit">
-	<input type="hidden" name="id_address" value="<?=$address[$i]->getId()?>">
-	<input type="submit" value="Edit">
-</form>
-
-<form action="index.php?page=address" method="POST">
-	<input type="hidden" name="action" value="delete">
-	<input type="hidden" name="id_address" value="<?=$address[$i]->getId()?>">
-	<input type="submit" value="Delete">
-</form>
