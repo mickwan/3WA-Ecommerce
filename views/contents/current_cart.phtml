@@ -20,13 +20,6 @@
 		</thead>
 
 		<tbody>
-			<tr class="cart-content">
-				<td>blah blah blah</td>
-				<td>blah blah blah</td>
-				<td>blah blah blah</td>
-				<td>blah blah blah</td>
-				<td></td>
-			</tr>
 			<?php 
 				require 'apps/contents/form_current_cart.php';
 			?>
@@ -40,7 +33,7 @@
 		</tfoot>
 	</table>
 
-	<form class="cart-content form-style" method="POST" action="index.php?page=cart">
+	<form class="cart-content form-style clearfix" method="POST" action="index.php?page=cart">
 		<input type="hidden" name="action" value="valid">
 		<input type="hidden" name="id_cart" value="<?=$cart->getId()?>">
 		<input class="checkout pull-right" type="submit" value="Check Out">
