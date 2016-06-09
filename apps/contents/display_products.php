@@ -1,5 +1,5 @@
 <?php
-	if (isset($_GET['id_cat'])&& !isset($_GET['id_sub_cat']))
+	if (isset($_GET['id_cat']) && !isset($_GET['id_sub_cat']))
 	{
 		$prodMan = new ProductsManager($link);
 		$products = $prodMan->findByCategory($category);

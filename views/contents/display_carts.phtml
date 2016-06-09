@@ -1,8 +1,9 @@
 <li class="<?=$class?>">
 	<div>
-		<?=$carts[$i]->getDate()?>
-		<?=$carts[$i]->getPrice()?>
+		<?=htmlentities($carts[$i]->getDate())?>
+		<?=htmlentities($carts[$i]->getPrice())?>
 	</div>
+
 	<div>
 		<a href="index.php?page=old_cart&id_cart=<?=$carts[$i]->getId()?>">See more</a>
 	</div>

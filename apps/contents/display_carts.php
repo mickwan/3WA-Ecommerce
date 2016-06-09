@@ -16,7 +16,4 @@
 		require 'views/contents/display_carts.phtml';
 		$i++;
 	}
-
-
-
 ?>

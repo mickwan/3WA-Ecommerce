@@ -4,12 +4,14 @@
 		<span></span>
 		<span></span>
 	</div>
+
 	<ul class="menu-burger" id="menu-burger">
 		<form method="POST" action="index.php?page=product_admin">
 			<input type="hidden" name="action" value="edit">
 			<input type="hidden" name="id_product" value="<?=$id_product?>">
 			<input class="menu-burger-button" type="submit" value="Edit">
 		</form>
+		
 		<form method="POST" action="index.php?page=product_admin">
 			<input type="hidden" name="action" value="delete">
 			<input type="hidden" name="id_product" value="<?=$id_product?>">

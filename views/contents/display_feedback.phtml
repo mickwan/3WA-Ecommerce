@@ -1,13 +1,15 @@
 <div class="feedback-container">
 	<div class="feeback-header clearfix">
 		<div>
-			<p class="pull-left feedback-user"><?=$user->getLogin()?></p>
+			<p class="pull-left feedback-user"><?=htmlentities($user->getLogin())?></p>
 		</div>
+
 		<div class="pull-right feedback-date">
-			<?=$feedbacks[$i]->getdate()?>
+			<?=htmlentities($feedbacks[$i]->getdate())?>
 		</div>
 	</div>
+
 	<div class="feedback-content pull-left">
-		<?=$feedbacks[$i]->getContent()?>
+		<?=htmlentities($feedbacks[$i]->getContent())?>
 	</div>
 </div>

@@ -1,8 +1,13 @@
 <div class="feedback">
 	<h1 class="title text-center">My Feedbacks :  </h1>
+	<div class="error">
+		<?=$error?>
+	</div>
+
 	<div class="success">
 		<?=$success?>
 	</div>
+
 	<?php
 		require 'apps/contents/display_feedback_user.php';
 	?>

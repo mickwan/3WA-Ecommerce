@@ -10,5 +10,4 @@
 		require 'views/contents/display_carts_admin.phtml';
 		$i++;
 	}
-
 ?>

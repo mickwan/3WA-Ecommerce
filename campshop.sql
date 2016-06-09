@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 01 Juin 2016 à 10:27
+-- Généré le: Mer 08 Juin 2016 à 13:35
 -- Version du serveur: 5.5.47-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -23,15 +23,15 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `adress`
+-- Structure de la table `address`
 --
 
-CREATE TABLE IF NOT EXISTS `adress` (
+CREATE TABLE IF NOT EXISTS `address` (
   `id` int(7) unsigned NOT NULL AUTO_INCREMENT,
   `id_user` int(7) unsigned NOT NULL,
   `name` varchar(31) NOT NULL,
   `number` int(7) NOT NULL,
-  `pathway` varchar(15) NOT NULL,
+  `pathway` varchar(123) NOT NULL,
   `city` varchar(63) NOT NULL,
   `country` varchar(31) NOT NULL,
   `zipcode` int(15) NOT NULL,
@@ -56,7 +56,14 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `weight` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `cart`
+--
+
+INSERT INTO `cart` (`id`, `id_user`, `date`, `status`, `price`, `nb_products`, `weight`) VALUES
+(2, 4, '2016-06-07 11:55:11', 0, 100.99, 20, 20);
 
 -- --------------------------------------------------------
 
@@ -96,7 +103,16 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   PRIMARY KEY (`id`),
   KEY `id_author` (`id_author`),
   KEY `id_product` (`id_product`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `id_author`, `id_product`, `content`, `date`, `status`) VALUES
+(1, 6, 1, 'voila voila', '2016-06-07 11:54:21', 0),
+(2, 4, 3, 'houlaaaaaa', '2016-06-07 11:54:21', 0),
+(3, 6, 1, 'coucou c''est moi FEEDBACK =)', '2016-06-07 12:46:21', 1);
 
 -- --------------------------------------------------------
 
@@ -134,18 +150,26 @@ CREATE TABLE IF NOT EXISTS `products` (
   `picture` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_sub_cat` (`id_sub_cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `products`
 --
 
 INSERT INTO `products` (`id`, `ref`, `stock`, `size`, `price`, `tax`, `description`, `name`, `weight`, `id_sub_cat`, `status`, `picture`) VALUES
-(1, '00001', 5, '0', 65.99, 19.6, 'GRAND SAC À DOS HAUT ROULÉ\r\nBoucle fermeture latérale, bretelles matelassées, poche avant zip, 2 poches plaquées latérales\r', 'swamis', 1.5, 1, 1, 'public/images/products/accessories/bags/swamis.png'),
-(2, '00002', 5, '0', 65.99, 19.6, 'Signature striped fabric liner\r\nPadded and fleece lined 15" laptop sleeve\r\nMagnetic strap closures with metal pin clips\r\nMa', 'little america', 1.5, 1, 1, 'public/images/products/accessories/bags/little_america_black.jpeg'),
-(3, '00003', 5, '0', 65.99, 19.6, 'Signature striped fabric liner\r\nFully padded and fleece lined 15" laptop sleeve pocket\r\nMain compartment cinch top closure\r', 'little america', 1.5, 1, 1, 'public/images/products/accessories/bags/little_america_beige.jpeg'),
-(4, '00004', 5, 'M', 25.99, 19.6, 'BONNET EN ACRYLIQUE\r\nbonnet en grosses mailles confectionné à la main. Fil torsadé aux couleurs contrastées. Détail d’étiqu', 'tête brûlée', 0.1, 5, 1, 'public/images/products/accessories/caps&hats/tet_brulee_black.jpg'),
-(5, '00005', 5, 'M', 25.99, 19.6, 'BONNET EN ACRYLIQUE\r\nbonnet en grosses mailles confectionné à la main. Fil torsadé aux couleurs contrastées. Détail d’étiqu', 'tête brûlée', 0.1, 5, 1, 'public/images/products/accessories/caps&hats/tete_brulee.jpg');
+(1, '00001', 10, '0', 69.99, 19.6, 'je suis un sac', 'sac a dos', 5, 1, 1, 'public/images/little_america_beige.jpeg'),
+(2, '00002', 10, '0', 69.99, 19.6, 'je suis une montre', 'montre', 1, 3, 1, 'public/images/products/accessories/watches/kenzi_leather.jpg'),
+(3, '00003', 10, '0', 69.99, 19.6, 'je suis une lunette', 'lunette', 1, 4, 1, 'public/images/products/accessories/glasses/shelter.png'),
+(4, '00004', 10, '0', 69.99, 19.6, 'je suis un porte-monaie', 'porte-monaie', 1, 2, 1, 'public/images/products/accessories/wallets/showtime.png'),
+(5, '00005', 10, 'M', 69.99, 19.6, 'je suis un bonnet', 'bonnet', 1, 5, 1, 'public/images/products/accessories/caps&hats/Nouveau dossier 2/milo.jpg'),
+(6, '00006', 10, 'M', 69.99, 19.6, 'je suis un pull', 'pull', 1, 6, 1, 'public/images/pull.jpg'),
+(7, '00006', 10, 'M', 69.99, 19.6, 'je suis un pull', 'pull', 1, 6, 1, 'public/images/pull.jpg'),
+(8, '00006', 10, 'M', 69.99, 19.6, 'je suis un pull', 'pull', 1, 6, 1, 'public/images/pull.jpg'),
+(9, '00006', 10, 'M', 69.99, 19.6, 'je suis un pull', 'pull', 1, 6, 1, 'public/images/pull.jpg'),
+(10, '00006', 10, 'M', 69.99, 19.6, 'je suis un pull', 'pull', 1, 6, 1, 'public/images/pull.jpg'),
+(11, '00006', 10, 'M', 69.99, 19.6, 'je suis un pull', 'pull', 1, 6, 1, 'public/images/pull.jpg'),
+(12, '00006', 10, 'M', 69.99, 19.6, 'je suis un pull', 'pull', 1, 6, 1, 'public/images/pull.jpg'),
+(13, '00006', 10, 'M', 69.99, 19.6, 'je suis un pull', 'pull', 1, 6, 1, 'public/images/pull.jpg');
 
 -- --------------------------------------------------------
 
@@ -160,28 +184,28 @@ CREATE TABLE IF NOT EXISTS `sub_category` (
   `description` varchar(123) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_category` (`id_category`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `sub_category`
 --
 
 INSERT INTO `sub_category` (`id`, `id_category`, `name`, `description`) VALUES
-(1, 1, 'bags', ''),
+(1, 1, 'Bags', ''),
 (2, 1, 'wallets', ''),
 (3, 1, 'watches', ''),
 (4, 1, 'glasses', ''),
-(5, 1, 'caps&hats', ''),
+(5, 1, 'caps & hats', ''),
 (6, 2, 'sweaters', ''),
-(7, 2, 'jackets', ''),
-(8, 2, 'shirts&t-shirts', ''),
+(8, 2, 'shirts & t-shirts', ''),
 (9, 2, 'pants', ''),
 (10, 2, 'accessories', ''),
 (11, 3, 'sweaters', ''),
 (12, 3, 'jackets', ''),
-(13, 3, 'shirts&t-shirts', ''),
+(13, 3, 'shirts & t-shirts', ''),
 (14, 3, 'pants', ''),
-(15, 3, 'accessories', '');
+(15, 3, 'accessories', ''),
+(16, 2, 'Sous cat ', 'new newnenw ');
 
 -- --------------------------------------------------------
 
@@ -203,24 +227,26 @@ CREATE TABLE IF NOT EXISTS `users` (
   `admin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0:user / 1:admin',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0:inactif / 1:actif',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `users`
 --
 
 INSERT INTO `users` (`id`, `login`, `firstname`, `lastname`, `email`, `password`, `register_date`, `birth_date`, `phone`, `sex`, `admin`, `status`) VALUES
-(1, 'mickwan', 'mickael', 'rinner', 'mickael.rinner@hotmail.fr', '$2y$08$LsOaMJxvH3yojIwoSDvFw.iMWpz7yz6e8SyEUvMhQaPemy8wy2FBS', '2016-06-01 07:57:34', '1990-11-29', '0688330599', 'M', 0, 1);
+(4, 'test', 'test', 'test', 'test@test.fr', '$2y$08$0qBo6z48Ljz2/VAXVvQvQe106MYCZP6hi0KguP2pnAqjQmkAYz/pm', '2016-06-02 11:43:19', '1990-11-29', '0688330599', 'W', 0, 1),
+(5, 'mickwan', 'mickael', 'rinner', 'mickael.rinner@hotmail.fr', '$2y$08$Kt2LF.bt0fnebG3PbOdyaeMFezNkKkH6NYlYEOZezi87OWMShme3m', '2016-06-02 11:44:14', '1990-11-29', '0688330599', 'M', 1, 1),
+(6, 'Arteast', 'thomas', 'loegel', 'arteast.academy@gmail.com', '$2y$08$ZtSu9f6l2rSZ8RAmxvLlmOxB9.o914eAeO89QOBb78lX9qoC4i8Qe', '2016-06-06 12:51:35', '1986-11-02', '0771719925', 'M', 1, 1);
 
 --
 -- Contraintes pour les tables exportées
 --
 
 --
--- Contraintes pour la table `adress`
+-- Contraintes pour la table `address`
 --
-ALTER TABLE `adress`
-  ADD CONSTRAINT `adress_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `address`
+  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `cart`

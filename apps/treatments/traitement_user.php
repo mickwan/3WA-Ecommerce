@@ -108,8 +108,8 @@
 					$user->setBirthDate($_POST['birth_date']);
 					$user->setPhone($_POST['phone']);
 					$user->setSex($_POST['sex']);
-
 					$usersManager->update($user);
+					$_SESSION['success'] = 'Your profile has been edited';
 				}
 				catch (Exception $exception)
 				{
@@ -133,6 +133,9 @@
 				{
 					$user->setPassword($_POST['password'], $_POST['confirmPassword']);
 					$usersManager->update($user);
+					$_SESSION['success'] = 'Your password has been changed';
+					header('Location: index.php?page=profile');
+					exit;
 				}
 				catch (Exception $exception)
 				{

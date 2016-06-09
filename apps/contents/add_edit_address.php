@@ -22,18 +22,18 @@ if (isset($_SESSION['id_user']))
 		$id_address = intval($_POST['id_address']);
 		$address = $addressManager->findById($id_address);
 		$action = 'edit';
-		$name = $address->getName();
-		$nameEdit = $address->getName();
-		$number = $address->getNumber();
-		$numberEdit = $address->getNumber();
-		$pathway =  $address->getPathway();
-		$pathwayEdit =  $address->getPathway();
-		$city = $address->getCity();
-		$cityEdit = $address->getCity();
-		$country = $address->getCountry();
-		$countryEdit = $address->getCountry();
-		$zipcode = $address->getZipcode();
-		$zipcodeEdit = $address->getZipcode();
+		$name = htmlentities($address->getName());
+		$nameEdit = htmlentities($address->getName());
+		$number = htmlentities($address->getNumber());
+		$numberEdit = htmlentities($address->getNumber());
+		$pathway =  htmlentities($address->getPathway());
+		$pathwayEdit =  htmlentities($address->getPathway());
+		$city = htmlentities($address->getCity());
+		$cityEdit = htmlentities($address->getCity());
+		$country = htmlentities($address->getCountry());
+		$countryEdit = htmlentities($address->getCountry());
+		$zipcode = htmlentities($address->getZipcode());
+		$zipcodeEdit = htmlentities($address->getZipcode());
 		if ($address->getType() == 1)
 		{
 			$home = '';

@@ -1,27 +1,27 @@
 <div id="feedback_user" class="feedback-content <?=$refuse?> <?=$waitinglist?>">
 	<div class="feeback-header feedback-container clearfix">
 		<div class="pull-left"> Product name :
-			<?=$product->getName()?>
+			<?=htmlentities($product->getName())?>
 		</div>
 
 		<div class="pull-right feedback-date">
-			<?=$feedbacks[$i]->getdate()?>
+			<?=htmlentities($feedbacks[$i]->getdate())?>
 		</div>
 	</div>
 
 	<div class="feedback-content">
-		<?=$feedbacks[$i]->getContent()?>
+		<?=htmlentities($feedbacks[$i]->getContent())?>
 	</div>
 
 	<div class="feedback-menu clearfix feedback-content">
-		<form class="feedback-moderation-button pull-left" method="POST" action="index.php?page=add_edit_feedback">
+		<form class="feedback-moderation-button text-center" method="POST" action="index.php?page=add_edit_feedback">
 			<input type="hidden" name="action" value="edit">
 			<input type="hidden" name="id_feedback" value="<?=$feedbacks[$i]->getId()?>">
 			<input type="hidden" name="form" value="1">
 			<input type="submit" value="Edit">
 		</form>
 
-		<form class="feedback-moderation-button pull-left" method="POST" action="index.php?page=add_edit_feedback">
+		<form class="feedback-moderation-button text-center" method="POST" action="index.php?page=add_edit_feedback">
 			<input type="hidden" name="id_feedback" value="<?=$feedbacks[$i]->getId()?>">
 			<input type="hidden" name="action" value="delete">
 			<input type="submit" value="Delete">

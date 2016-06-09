@@ -1,9 +1,9 @@
 <tr>
 	<td class="clearfix">
-		<img class="pull-left" src="<?=$products[$i]->getPicture()?>" alt="img product">
-		<div class="pull_right"><?=$products[$i]->getName()?></div>
+		<img class="pull-left" src="<?=htmlentities($products[$i]->getPicture())?>" alt="img product">
+		<div class="pull_right"><?=htmlentities($products[$i]->getName())?></div>
 	</td>
-	<td><?=$products[$i]->getSize()?></td>
+	<td><?=htmlentities($products[$i]->getSize())?></td>
 	<td><?=$quantity?></td>
-	<td colspan="2"><?=$products[$i]->getPrice()?></td>
+	<td colspan="2"><?=htmlentities($products[$i]->getPrice())?></td>
 </tr>

@@ -11,11 +11,11 @@
 		$id_sub_cat = $_POST['id_sub_cat'];
 		$subCategoryManager = new SubCategoryManager($link);
 		$subCategory = $subCategoryManager->findById($id_sub_cat);
-		$name = $subCategory->getName();
-		$description = $subCategory->getDescription();
-		$nameEdit = $subCategory->getName();
-		$descriptionEdit = $subCategory->getDescription();
-		$id_cat = $subCategory->getCategory();
+		$name = htmlentities($subCategory->getName());
+		$description = htmlentities($subCategory->getDescription());
+		$nameEdit = htmlentities($subCategory->getName());
+		$descriptionEdit = htmlentities($subCategory->getDescription());
+		$id_cat = htmlentities($subCategory->getCategory());
 	}
 	require 'views/contents/add_edit_sub_cat.phtml';
 ?>

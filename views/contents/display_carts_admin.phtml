@@ -1,5 +1,5 @@
 <table class="text-left" style="width:75%;margin:2em auto;">
-	<caption><?=$user->getLogin()?></caption>
+	<caption><?=htmlentities($user->getLogin())?></caption>
 	<thead>
 		<tr>
 			<th>Product</th>
@@ -8,23 +8,27 @@
 			<th colspan="2">Price</th>
 		</tr>
 	</thead>
+
 	<tbody>
 		<?php 
 			require 'apps/contents/display_product_cart.php';
 		?>
 	</tbody>
+
 	<tfoot>
 		<tr>
 			<td colspan="3">Total</td>
-			<td colspan="2"><?=$carts[$i]->getPrice()?></td>
+			<td colspan="2"><?=htmlentities($carts[$i]->getPrice())?></td>
 		</tr>
 	</tfoot>
 </table>
+
 <form method="POST" action="index.php?page=cart">
 	<input type="hidden" name="action" value="valid">
 	<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
 	<input type="submit" value="valid">
 </form>
+
 <form method="POST" action="index.php?page=cart">
 	<input type="hidden" name="action" value="refuse">
 	<input type="hidden" name="id_cart" value="<?=$carts[$i]->getId()?>">
