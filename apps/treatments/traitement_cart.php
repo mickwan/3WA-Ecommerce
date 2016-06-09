@@ -106,6 +106,8 @@
 			{
 				$cartManager = new CartManager($link);
 				$productsManager = new ProductsManager($link);
+				if ($_POST['action'] == 'addProduct')
+					$error = "An admin can't buy product";
 				if ($_POST['action'] == 'valid')
 				{
 					if (isset($_POST['id_cart']))
@@ -114,11 +116,11 @@
 						{		
 							$id_cart = intval($_POST['id_cart']);
 							$cart = $cartManager->findById($id_cart);
-							$cart->getProducts();;
+							$cart->getProducts();
 	 						$cart->setStatus(2);
 	 						$cartManager->update($cart);
 	 						$_SESSION['success'] = "This cart has been checked";
-	 						header('Location : index.php?page=cart');
+	 						header('Location: index.php?page=profile');
 	 						exit;
 	 					}
 	 					catch (Exception $exception)
@@ -148,7 +150,7 @@
 									$products[$i]->changeStock($quantity);
 									$productManager->update($products[$i]);
 									$_SESSION['success'] = "This cart has been refused";
-									header('Location : index.php?page=cart');
+									header('Location: index.php?page=profile');
 									exit;
 								}
 								$i++;

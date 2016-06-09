@@ -8,7 +8,7 @@
 			require 'views/contents/current_cart.phtml';
 		}
 		else
-			require 'views/must_be_user.phtml';
+			require 'views/contents/must_be_user.phtml';
 	}
 	else 
 		require 'views/contents/must_be_logged.phtml';
