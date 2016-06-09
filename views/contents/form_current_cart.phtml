@@ -1,7 +1,7 @@
 <tr>
-	<td class="clearfix">
-		<img class="pull-left" src="<?=htmlentities($products[$i]->getPicture())?>" alt="img product">
-		<div class="pull_right"><?=htmlentities($products[$i]->getName())?></div>
+	<td>
+		<div><?=htmlentities($products[$i]->getName())?></div>
+		<img class="cart-picture" src="<?=htmlentities($products[$i]->getPicture())?>" alt="img product">
 	</td>
 
 	<td>
@@ -14,8 +14,8 @@
 		<?=htmlentities($products[$i]->getPrice())?>
 	</td>
 	
-	<td>
-		<form method="POST" action="index.php?page=current_cart">
+	<td class="clearfix">
+		<form class="cart-remove-product pull-right" method="POST" action="index.php?page=current_cart">
 			<input type="hidden" name="id_product" value="<?=$products[$i]->getId()?>">
 			<input type="hidden" name="quantity" value="<?=$quantity?>">
 			<input type="hidden" name="action" value="removeProduct">

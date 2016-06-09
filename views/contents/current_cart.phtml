@@ -1,4 +1,4 @@
-<div class="cart">
+<div class="cart text-center">
 	<h2 class="text-center">Your Cart Content</h2>
 	<div class="error">
 		<?=$error?>
@@ -14,11 +14,19 @@
 				<th>Product</th>
 				<th>Size</th>
 				<th>Quantity</th>
-				<th colspan="2">Price</th>
+				<th colspan="3">Price</th>
+				<th></th>
 			</tr>
 		</thead>
 
 		<tbody>
+			<tr class="cart-content">
+				<td>blah blah blah</td>
+				<td>blah blah blah</td>
+				<td>blah blah blah</td>
+				<td>blah blah blah</td>
+				<td></td>
+			</tr>
 			<?php 
 				require 'apps/contents/form_current_cart.php';
 			?>
@@ -32,9 +40,9 @@
 		</tfoot>
 	</table>
 
-	<form class="form-style pull-right" method="POST" action="index.php?page=cart">
+	<form class="cart-content form-style" method="POST" action="index.php?page=cart">
 		<input type="hidden" name="action" value="valid">
 		<input type="hidden" name="id_cart" value="<?=$cart->getId()?>">
-		<input class="input" type="submit" value="Check Out">
+		<input class="checkout pull-right" type="submit" value="Check Out">
 	</form>
 </div>
