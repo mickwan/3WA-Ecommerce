@@ -86,7 +86,14 @@
 					$products = $currentCart->getProducts();
 					if ($products == null)
 						$error = "You can't check out an empty cart";
-					//Vérifier si adresse présente					
+					$addressManager = new AddressManager($link);
+					$address = $addressManager->findByUser($_SESSION['user']);
+					if ($adress == null)
+					{
+						$_SESSION['success'] = 'Please, Add an address before!';
+						header('Location: index.php?page=address');
+						exit;
+					}			
 					if (empty($error))
 					{
 						try
