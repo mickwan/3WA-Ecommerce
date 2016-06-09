@@ -36,13 +36,13 @@
 							$cartManager->update($currentCart);
 							$productsManager->update($product);
 							$_SESSION['success'] = "This product has been added in your cart";
+							header('Location: index.php?page=product&id_product='.$id_product);
+							exit;
 						}
 						catch (Exception $exception)
 						{
 							$error = $exception->getMessage();
 						}
-						header('Location: index.php?page=product&id_product='.$id_product);
-						exit;
 					}
 				}
 				if ($_POST['action'] == 'removeProduct')
@@ -59,7 +59,7 @@
 							$currentCart->removeProduct($product);
 							$currentCart->setNbProducts(-$quantity);
 							$i = 0;
-							while ($i< $quantity)
+							while ($i < $quantity)
 							{
 								$currentCart->setPrice(-$product->getPrice());
 								$currentCart->setWeight(-$product->getWeight());
@@ -106,6 +106,8 @@
 			{
 				$cartManager = new CartManager($link);
 				$productsManager = new ProductsManager($link);
+				if ($_POST['action'] == 'addProduct')
+					$error = "An admin can't buy product";
 				if ($_POST['action'] == 'valid')
 				{
 					if (isset($_POST['id_cart']))
@@ -114,11 +116,11 @@
 						{		
 							$id_cart = intval($_POST['id_cart']);
 							$cart = $cartManager->findById($id_cart);
-							$cart->getProducts();;
+							$cart->getProducts();
 	 						$cart->setStatus(2);
 	 						$cartManager->update($cart);
 	 						$_SESSION['success'] = "This cart has been checked";
-	 						header('Location : index.php?page=cart');
+	 						header('Location: index.php?page=profile');
 	 						exit;
 	 					}
 	 					catch (Exception $exception)
@@ -148,7 +150,7 @@
 									$products[$i]->changeStock($quantity);
 									$productManager->update($products[$i]);
 									$_SESSION['success'] = "This cart has been refused";
-									header('Location : index.php?page=cart');
+									header('Location: index.php?page=profile');
 									exit;
 								}
 								$i++;

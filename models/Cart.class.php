@@ -85,6 +85,8 @@ class Cart
 		if ($this->price == null)
 			$this->price = 0;
 		$this->price = $this->price + $price;
+		if ($this->price < 0)
+			$this->price = 0;
 	}
 	public function setNbProducts($nb_products)
 	{
@@ -122,7 +124,7 @@ class Cart
 		while ($i < count($this->products))
 		{
 			if ($id_product != $this->products[$i]->getId())
-				$saveTab = $this->products[$i];
+				$saveTab[] = $this->products[$i];
 			$i++;
 		}
 		$this->products = $saveTab;
