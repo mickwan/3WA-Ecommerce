@@ -10,17 +10,17 @@
 				$currentCart = $cartManager->findCurrentCart($_SESSION['user']);
 				if ($_POST['action'] == 'addProduct')
 				{
-					if (!isset($_POST['size']))
-						$error = "Enter a size";
-					if (!isset($_POST['quantity']))
-						$error = "Enter a quantity";
-					if ($_POST['quantity'] == '')
-						$error = "Enter a quantity";
-					if ($_POST['quantity'] < 0)
-						$error = "Enter a positive quantity ;)";
 					$id_product = intval($_POST['id_product']);
 					$product = $productsManager->findById($id_product);
-					if ($_POST['quantity'] > $product->getStock())
+					if (!isset($_POST['size']))
+						$error = "Enter a size";
+					else if (!isset($_POST['quantity']))
+						$error = "Enter a quantity";
+					else if ($_POST['quantity'] == '')
+						$error = "Enter a quantity";
+					else if ($_POST['quantity'] < 0)
+						$error = "Enter a positive quantity ;)";
+					else if ($_POST['quantity'] > $product->getStock())
 						$error = "Sorry, the stock is the stock!";
 					if (empty($error))
 					{
