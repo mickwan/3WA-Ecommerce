@@ -88,7 +88,7 @@
 						$error = "You can't check out an empty cart";
 					$addressManager = new AddressManager($link);
 					$address = $addressManager->findByUser($_SESSION['user']);
-					if ($adress == null)
+					if (empty($error) &&$adress == null)
 					{
 						$_SESSION['success'] = 'Please, Add an address before!';
 						header('Location: index.php?page=address');
