@@ -7,12 +7,12 @@
 		<img class="picture" src="<?=htmlentities($products[$i]->getPicture())?>" alt="prod_pic">
 	</div>
 
-	<div class="info-products">
+	<div class="info-products text-center">
 		<h3><?=htmlentities($products[$i]->getName())?></h3>
 		<p><?=htmlentities($products[$i]->getPrice())?>$</p>
 	</div>
 		
-	<div class="see-products">
+	<div class="see-products text-center">
 		<a href="index.php?page=product&id_product=<?=htmlentities($products[$i]->getId())?>">See Product</a>
 	</div>
 </div>
