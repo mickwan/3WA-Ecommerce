@@ -1,18 +1,23 @@
 <div>
 	
 	<form method="GET">
-
 	<!--	<i class="fa fa-search"></i>   -->
-		
 		<label for="Search">Recherche</label>
 		<input type="search" placeholder="search" name="search" id="search" />
-
 	</form>
 
 	<div id="results">
 		
-
 	</div>
-
-
 </div>
+
+<script>
+	$(document).ready(function(){
+		$("form").keyup(function(){
+			var $form = $(this),
+				search = $form.find("input[name='search']").val();
+
+			$("#results").load("index.php?page=search_result&ajax&search="+search);
+		});
+	});
+</script>

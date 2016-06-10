@@ -17,7 +17,7 @@
 			require ("models/".$className.".class.php");
 	}
 
-	$access = array('logout', 'login', 'register', 'confirm_delete','change_password', 'address', 'add_edit_address',  'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'cat_admin', 'add_edit_cat', 'add_edit_sub_cat', 'product_admin', 'old_cart', 'add_edit_feedback');
+	$access = array('search','search_result', 'logout', 'login', 'register', 'confirm_delete','change_password', 'address', 'add_edit_address',  'home', 'shop', 'product', 'current_cart', 'profile', 'cart', 'edit_contact', 'feedback', 'cat_admin', 'add_edit_cat', 'add_edit_sub_cat', 'product_admin', 'old_cart', 'add_edit_feedback');
 	$page = 'home'; /*page courante : home par default*/ 
 	$error = '';
 	
@@ -57,6 +57,8 @@
 	
 	if (array_key_exists($page, $access_traitement))
 		require('apps/treatments/traitement_'.$access_traitement[$page].'.php');
-	
-	require 'apps/skel.php';
+	if (isset($_GET['ajax']))
+		require('apps/contents/search_result.php');
+	else
+		require 'apps/skel.php';
 ?>
